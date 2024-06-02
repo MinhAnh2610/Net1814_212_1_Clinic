@@ -7,6 +7,8 @@ namespace Clinic.Data
     {
         private ClinicRepository _clinicRepository;
         private RecordDetailRepository _recordDetailRepository;
+        private CustomerRepository _customerRepository;
+        private RecordRepository _recordRepository;
         private Net1814_212_1_ClinicContext _unitOfWorkContext;
         public UnitOfWork()
         {
@@ -25,6 +27,22 @@ namespace Clinic.Data
             get 
             { 
                 return _recordDetailRepository ??= new RecordDetailRepository();
+            }
+        }
+
+        public CustomerRepository CustomerRepository
+        {
+            get
+            {
+                return _customerRepository ??= new CustomerRepository();
+            }
+        }
+
+        public RecordRepository RecordRepository
+        {
+            get
+            {
+                return _recordRepository ??= new RecordRepository();
             }
         }
 

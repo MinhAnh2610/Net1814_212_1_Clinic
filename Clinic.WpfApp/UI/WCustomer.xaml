@@ -1,0 +1,98 @@
+﻿<Window x:Class="Clinic.WpfApp.UI.WCustomer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Clinic.WpfApp.UI"
+        mc:Ignorable="d"
+        Title="Customer" Height="auto" Width="1300"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <StackPanel Orientation="Horizontal">
+        <materialDesign:Card Padding="20" Margin="10">
+            <StackPanel>
+                <GroupBox Header="Customer Form" Margin="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="200"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Customer ID -->
+                        <Label Content="Customer ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="5"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" x:Name="CustomerId" Height="25" Text="{Binding Path=CustomerId, Mode=TwoWay}" Margin="5"/>
+
+                        <!-- Customer First Name -->
+                        <Label Content="First Name" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="1" Margin="5"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" x:Name="CustomerFirstName" Height="25" Text="{Binding Path=CustomerFirstName, Mode=TwoWay}" Margin="5"/>
+
+                        <!--Customer Last Name -->
+                        <Label Content="Last Name" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="2" Margin="5"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" x:Name="CustomerLastName" Height="25" Text="{Binding Path=CustomerLastName, Mode=TwoWay}" Margin="5"/>
+
+                        <!--Customer Phone -->
+                        <Label Content="Phone" HorizontalAlignment="Left" VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="3" Margin="5"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" x:Name="CustomerPhone" Height="50" Text="{Binding Path=CustomerPhone, Mode=TwoWay}" Margin="5"
+                             AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
+                    </Grid>
+                </GroupBox>
+                <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Button x:Name="ButtonSave" Content="Save" Height="30" Width="80"
+                    Command="{Binding SaveCommand}" Margin="10,0,0,0" Click="ButtonSave_Click"/>
+                    <Button x:Name="ButtonUpdate" Content="Update" Height="30" Width="80"
+                    Command="{Binding UpdateCommand}" Margin="10,0,0,0" Click="ButtonUpdate_Click"/>
+                    <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" 
+                    Command="{Binding ResetCommand}" Margin="10,0,0,0" Click="ButtonCancel_Click"/>
+                    <Button x:Name="ButtonLoadList" Content="Load List" Height="30" Width="80"  Margin="10,0,0,0" Click="ButtonLoadList_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </materialDesign:Card>
+
+        <materialDesign:Card Padding="20" Margin="10">
+            <StackPanel>
+                <DataGrid x:Name="customerList" AutoGenerateColumns="False" ItemsSource="{Binding Customers}"
+                  HorizontalAlignment="Stretch" CanUserAddRows="False" Margin="10"
+                  materialDesign:DataGridAssist.ColumnHeaderPadding="8,4,8,4"
+                RowDetailsVisibilityMode="VisibleWhenSelected">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="CustomerId" Binding="{Binding Path=CustomerId}" Visibility="Visible"/>
+                        <DataGridTextColumn Header="First Name" Binding="{Binding Path=CustomerFirstName}" Visibility="Visible"/>
+                        <DataGridTextColumn Header="Last Name" Binding="{Binding Path=CustomerFirstName}" Width="auto"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Phone" Binding="{Binding Path=CustomerPhone}" Width="auto"  IsReadOnly="True"/>
+                        <DataGridTemplateColumn Header="Edit" Width="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Select" x:Name="ButtonEdit" CommandParameter="{Binding Path=CustomerId}"
+                                    Command="{Binding Path=DataContext.EditCommand,RelativeSource={RelativeSource FindAncestor,
+                                            AncestorType=Window}}" Click="ButtonGetData_Click"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Delete" Width="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Delete" x:Name="ButtonDelete" CommandParameter="{Binding Path=CustomerId}"
+                                    Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor,
+                                            AncestorType=Window}}" Click="ButtonDelete_Click"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </materialDesign:Card>
+    </StackPanel>
+</Window>

@@ -8,14 +8,27 @@
         Title="MainWindow" Height="450" Width="1200">
     <Grid>
         <Menu Height="30" Name="menu1" Margin="0,0,0,0" VerticalAlignment="Top" BorderThickness="2" FontSize="16" FontWeight="Bold">
-            <MenuItem Header="Menu" IsCheckable="False" FontSize="16" Click="MenuItem_Click_1">
+            <MenuItem Header="Menu" IsCheckable="False" FontSize="16">
                 
-            </MenuItem>
-            <MenuItem Header="Clinic" IsCheckable="False" FontSize="16" Click="Open_wClinic_Click">
+                <MenuItem Header="Customer" IsCheckable="False" FontSize="12" Click="Open_WCustomer_Click">
 
-            </MenuItem>
-            <MenuItem Header="RecordDetail" IsCheckable="False" FontSize="16" Click="Open_wRecordDetail_Click">
+                </MenuItem>
+                
+                <!--<MenuItem Header="Record" IsCheckable="False" FontSize="12" Click="Open_WRecord_Click">
+                    
+                </MenuItem>-->
 
+                <MenuItem Header="RecordDetail" IsCheckable="False" FontSize="12" Click="Open_wRecordDetail_Click">
+
+                </MenuItem>
+
+
+                <MenuItem Header="Clinic" IsCheckable="False" FontSize="12" Click="Open_wClinic_Click">
+
+                </MenuItem>
+
+                
+                
             </MenuItem>
         </Menu>
     </Grid>

@@ -1,4 +1,5 @@
-﻿using Clinic.WpfApp.UI;
+﻿using Clinic.Data.Models;
+using Clinic.WpfApp.UI;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,9 +36,18 @@ namespace Clinic.WpfApp
             p.Show();
         }
 
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        private void Open_WCustomer_Click(object sender, RoutedEventArgs e)
         {
-
+            var p = new WCustomer();
+            p.Owner = this;
+            p.Show();
         }
+
+        //private void Open_WRecord_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var p = new WRecord();
+        //    p.Owner = this;
+        //    p.Show();
+        //}
     }
 }
