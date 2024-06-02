@@ -58,6 +58,7 @@ namespace Clinic.Data
                 return _appointmentDetailRepository ??= new Repository.AppointmentDetailRepository();
             }
         }
+        
         public ServiceRepository ServiceRepository
         {
             get
