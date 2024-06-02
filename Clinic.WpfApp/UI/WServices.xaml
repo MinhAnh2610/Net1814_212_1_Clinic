@@ -1,0 +1,92 @@
+<Window x:Class="Clinic.WpfApp.UI.WServices"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Clinic.WpfApp.UI"
+        mc:Ignorable="d"
+        Title="wServices" Height="450" Width="1000">
+    <Window.Resources>
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Button" x:Key="SelectButtonStyle">
+            <Setter Property="Background" Value="LightGreen"/>
+        </Style>
+        <Style TargetType="Button" x:Key="DeleteButtonStyle">
+            <Setter Property="Background" Value="LightCoral"/>
+        </Style>
+        <Style TargetType="GroupBox">
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" FontSize="22px" Margin="20,0,0,0" FontWeight="Bold"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <StackPanel>
+            <GroupBox Header="Service Form" Margin="10" Height="99">
+                <Grid Height="50">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="13,0,0,0"/>
+                    <TextBox Grid.Row="0" x:Name="ServiceID" Height="25" Text="{Binding Path=Service.ServiceId, Mode=TwoWay}" Margin="40,13,0,12" Width="53" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+                    <Label Content="ClinicID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="31,0,0,-1"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="ClinicID" Height="25" Text="{Binding Path=Service.ClinicId, Mode=TwoWay}" Margin="86,13,0,12" Width="57" HorizontalAlignment="Left"/>
+                    <Label Grid.Column="3" Content="Price" HorizontalAlignment="Left" Margin="134,0,0,0" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="0" Grid.Column="3" x:Name="Price" Height="25" Text="{Binding Path=Service.Price, Mode=TwoWay}" Margin="177,13,0,12" Width="81" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+                    <Label Content="ServiceName" Grid.Column="1" HorizontalAlignment="Left" Margin="163,0,0,0" VerticalAlignment="Center" Grid.ColumnSpan="2" Width="80"/>
+                    <TextBox Grid.Row="0" Grid.Column="2" x:Name="ServiceName" Height="25" Text="{Binding Path=Service.Name, Mode=TwoWay}" Margin="48,13,0,12" Width="156" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+                    <Label Grid.Column="4" Content="Description" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="63,0,0,0"/>
+                    <TextBox Grid.Row="0" Grid.Column="5" x:Name="Description" Height="25" Text="{Binding Path=Service.Description, Mode=TwoWay}" Margin="58,13,0,12" Width="250" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+                </Grid>
+            </GroupBox>
+            <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="ButtonAdd" Content="Add" Height="30" Width="80" Click="ButtonAdd_Click" Margin="0,0,10,0"/>
+                <Button x:Name="ButtonUpdate" Content="Update" Height="30" Width="80" Click="ButtonUpdate_Click" Margin="0,0,10,0"/>
+                <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" Click="ButtonCancel_Click" Margin="0,0,20,0"/>
+            </StackPanel>
+            <StackPanel Height="230" Margin="0,10,0,0">
+                <DataGrid x:Name="grdService" AutoGenerateColumns="False" ItemsSource="{Binding Service}" CanUserAddRows="False" Height="253" BorderBrush="#FF181918" Background="#FFFDF5F5" Foreground="#FFFF0404" FontSize="13" Width="954">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Code" Binding="{Binding Id}" Visibility="Hidden"/>
+                        <DataGridTextColumn Header="ID" Binding="{Binding ServiceId}" Width="100" Visibility="Visible"/>
+                        <DataGridTextColumn Header="ClinicID" Binding="{Binding ClinicId}" Width="100" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Service Name" Binding="{Binding Name}" Width="200" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="170" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="270" IsReadOnly="True"/>
+                        <DataGridTemplateColumn Width="50">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Select" x:Name="ButtonEdit" CommandParameter="{Binding ServiceId}" Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Click="ButtonSelect_Click" Style="{StaticResource SelectButtonStyle}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="50">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Delete" x:Name="ButtonDelete" CommandParameter="{Binding ServiceId}" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Click="ButtonDelete_Click" Style="{StaticResource DeleteButtonStyle}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
