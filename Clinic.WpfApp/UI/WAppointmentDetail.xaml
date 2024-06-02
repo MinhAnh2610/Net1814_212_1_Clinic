@@ -1,0 +1,113 @@
+﻿<Window x:Class="Clinic.WpfApp.UI.WAppointmentDetail"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Clinic.WpfApp.UI"
+        mc:Ignorable="d"
+        Title="WAppointmentDetail" Height="auto" Width="1300"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <StackPanel Orientation="Horizontal">
+        <materialDesign:Card Padding="20" Margin="10">
+            <StackPanel>
+                <GroupBox Header="Appointment Detail Form" Margin="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="200"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Appointment Detail ID -->
+                        <Label Content="Appointment Detail ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="5"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" x:Name="AppointmentDetailId" Height="25" Text="{Binding Path=AppointmentDetailId, Mode=TwoWay}" Margin="5"/>
+
+                        <!-- Appointment ID -->
+                        <Label Content="Appointment ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="1" Margin="5"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" x:Name="AppointmentId" Height="25" Text="{Binding Path=AppointmentId, Mode=TwoWay}" Margin="5"/>
+
+                        <!-- Service ID -->
+                        <Label Content="Service ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="2" Margin="5"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" x:Name="ServiceId" Height="25" Text="{Binding Path=ServiceId, Mode=TwoWay}" Margin="5"/>
+                        
+                        <!-- Is Periodic -->
+                        <Label Content="Is Periodic" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="3" Margin="5"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" x:Name="isPeriodic" Height="25" Text="{Binding Path=isPeriodic, Mode=TwoWay}" Margin="5"/>
+
+                        <!-- Day -->
+                        <Label Content="Day" HorizontalAlignment="Left" VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="4" Margin="5"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" x:Name="Day" Height="50" Text="{Binding Path=Day, Mode=TwoWay}" Margin="5" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
+
+                        <!-- Month -->
+                        <Label Content="Month" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="5" Margin="5"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" x:Name="Month" Height="25" Text="{Binding Path=Month, Mode=TwoWay}" Margin="5"/>
+                        
+                        <!-- Year -->
+                        <Label Content="Year" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="6" Margin="5"/>
+                        <TextBox Grid.Row="6" Grid.Column="1" x:Name="Year" Height="25" Text="{Binding Path=Year, Mode=TwoWay}" Margin="5"/>
+                    </Grid>
+                </GroupBox>
+                <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Button x:Name="ButtonSave" Content="Save" Height="30" Width="80"
+                        Command="{Binding SaveCommand}" Margin="10,0,0,0" Click="ButtonSave_Click"/>
+                    <Button x:Name="ButtonUpdate" Content="Update" Height="30" Width="80"
+                        Command="{Binding UpdateCommand}" Margin="10,0,0,0" Click="ButtonUpdate_Click"/>
+                    <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" 
+                        Command="{Binding ResetCommand}" Margin="5,0,0,0" Click="ButtonCancel_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </materialDesign:Card>
+
+        <materialDesign:Card Padding="20" Margin="10">
+        <StackPanel>
+            <DataGrid x:Name="AppointmentDetailList" AutoGenerateColumns="False" ItemsSource="{Binding AppointmentDetailLists}"
+                      HorizontalAlignment="Stretch" CanUserAddRows="False" Margin="10"
+                      materialDesign:DataGridAssist.ColumnHeaderPadding="8,4,8,4"
+                    RowDetailsVisibilityMode="VisibleWhenSelected">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="AppointmentDetailId" Binding="{Binding Path=AppointmentDetailId}" Visibility="Visible"/>
+                    <DataGridTextColumn Header="AppointmentId" Binding="{Binding Path=AppointmentId}" Visibility="Visible"/>
+                    <DataGridTextColumn Header="ServiceId" Binding="{Binding Path=ServiceId}" Width="auto"  IsReadOnly="True"/>
+                    <DataGridTextColumn Header="isPeriodic" Binding="{Binding Path=isPeriodic}" Width="auto"  IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Day" Binding="{Binding Path=Day}" Width="auto"  IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Month" Binding="{Binding Path=Month}" Width="auto"  IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Year" Binding="{Binding Path=Year}" Width="auto"  IsReadOnly="True"/>
+                    <DataGridTemplateColumn Header="Edit" Width="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Select" x:Name="ButtonEdit" CommandParameter="{Binding Path=AppointmentDetailId}"
+                                        Command="{Binding Path=DataContext.EditCommand,RelativeSource={RelativeSource FindAncestor,
+                                                AncestorType=Window}}" Click="ButtonGetData_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Delete" Width="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete" x:Name="ButtonDelete" CommandParameter="{Binding Path=AppointmentDetailId}"
+                                        Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor,
+                                                AncestorType=Window}}" Click="ButtonDelete_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        </materialDesign:Card>
+    </StackPanel>
+</Window>
