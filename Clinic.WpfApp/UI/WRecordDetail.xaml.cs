@@ -1,4 +1,5 @@
-﻿using Clinic.Business.Clinic;
+﻿using Clinic.Business;
+using Clinic.Business.Clinic;
 using Clinic.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -23,10 +24,14 @@ namespace Clinic.WpfApp.UI
     public partial class WRecordDetail : Window
     {
         private readonly IRecordDetailBusiness _recordDetailBusiness;
+        private readonly IRecordBusiness _recordBusiness;
+        private readonly IAppointmentDetailBusiness _appointmentDetailBusiness;
         public WRecordDetail()
         {
             InitializeComponent();
             _recordDetailBusiness = new RecordDetailBusiness();
+            _recordBusiness = new RecordBusiness();
+            _appointmentDetailBusiness = new AppointmentDetailBusiness();
             LoadRecordDetails();    
         }
 
@@ -56,11 +61,25 @@ namespace Clinic.WpfApp.UI
                     Evaluation = Evaluation.Text,
                     Reccommend = Reccommend.Text,
                 };
+                var appointmentDetail = await _appointmentDetailBusiness.GetById(recordDetail.AppointmentDetailId);
+                if (appointmentDetail.Data == null) 
+                {
+                    MessageBox.Show("Appointment Detail ID doesn't exist", "Warning");
+                    return;
+                }
+
+                var record = await _recordBusiness.GetById(recordDetail.RecordId);
+                if (record.Data == null)
+                {
+                    MessageBox.Show("Record ID doesn't exist", "Warning");
+                    return;
+                }
 
                 var existingRecordDetail = await _recordDetailBusiness.GetById(recordDetail.RecordDetailId);
                 if (existingRecordDetail.Data != null)
                 {
                     MessageBox.Show("Record Detail ID already exist", "Warning");
+                    return;
                 }
                 else
                 {

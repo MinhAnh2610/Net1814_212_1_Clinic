@@ -148,6 +148,7 @@ namespace Clinic.WpfApp.UI
                 if (existingClinic.Data == null)
                 {
                     MessageBox.Show("Clinic ID doesn't exist", "Warning");
+                    return;
                 }
                 else if (clinicModel != null)
                 {
