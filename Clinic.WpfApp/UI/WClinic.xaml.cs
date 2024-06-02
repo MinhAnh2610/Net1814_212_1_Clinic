@@ -157,7 +157,7 @@ namespace Clinic.WpfApp.UI
                     clinicModel.Contact = clinicUpdate.Contact;
 
                     var result = await _clinicBusiness.Update(clinicModel);
-                    MessageBox.Show(result.Message, "Udpate");
+                    MessageBox.Show(result.Message, "Update");
 
                     ClinicId.Text = string.Empty;
                     OwnerName.Text = string.Empty;

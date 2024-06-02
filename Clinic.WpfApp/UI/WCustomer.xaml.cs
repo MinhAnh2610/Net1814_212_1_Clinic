@@ -27,6 +27,7 @@ namespace Clinic.WpfApp.UI
         {
             InitializeComponent();
             _customerBusiness = new CustomerBusiness();
+            LoadCustomers();
         }
 
         private async void LoadCustomers()
@@ -49,10 +50,10 @@ namespace Clinic.WpfApp.UI
             }
         }
 
-        private async void ButtonLoadList_Click(object sender, RoutedEventArgs e)
-        {
-            LoadCustomers();
-        }
+        //private async void ButtonLoadList_Click(object sender, RoutedEventArgs e)
+        //{
+        //    LoadCustomers();
+        //}
 
         private async void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
@@ -66,6 +67,12 @@ namespace Clinic.WpfApp.UI
                     LastName = CustomerLastName.Text,
                     Phone = CustomerPhone.Text
                 };
+                var temp = await _customerBusiness.GetById(customer.CustomerId);
+                if(temp.Data != null)
+                {
+                    MessageBox.Show("Customer Id already exists");
+                    return;
+                }
 
                 var result = await _customerBusiness.Save(customer);
                 MessageBox.Show(result.Message, "Save");
@@ -170,7 +177,7 @@ namespace Clinic.WpfApp.UI
                     customer.Phone= customerUpdate.Phone;
 
                     var result = await _customerBusiness.Update(customer);
-                    MessageBox.Show(result.Message, "Udpate");
+                    MessageBox.Show(result.Message, "Update");
 
                     //reset text box
                     CustomerId.Text = string.Empty;

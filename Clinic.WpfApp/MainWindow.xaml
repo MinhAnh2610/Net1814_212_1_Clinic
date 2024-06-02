@@ -14,9 +14,9 @@
 
                 </MenuItem>
                 
-                <!--<MenuItem Header="Record" IsCheckable="False" FontSize="12" Click="Open_WRecord_Click">
+                <MenuItem Header="Record" IsCheckable="False" FontSize="12" Click="Open_WRecord_Click">
                     
-                </MenuItem>-->
+                </MenuItem>
 
                 <MenuItem Header="RecordDetail" IsCheckable="False" FontSize="12" Click="Open_wRecordDetail_Click">
 

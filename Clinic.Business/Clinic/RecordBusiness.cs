@@ -13,10 +13,10 @@ namespace Clinic.Business.Clinic
     public interface IRecordBusiness
     {
         Task<IBusinessResult> GetAll();
-        Task<IBusinessResult> GetById(string code);
+        Task<IBusinessResult> GetById(int code);
         Task<IBusinessResult> Save(Record record);
         Task<IBusinessResult> Update(Record record);
-        Task<IBusinessResult> DeleteById(string code);
+        Task<IBusinessResult> DeleteById(int code);
     }
     public class RecordBusiness : IRecordBusiness
     {
@@ -54,14 +54,13 @@ namespace Clinic.Business.Clinic
             return businessResult;
         }
 
-        public async Task<IBusinessResult> GetById(string code)
+        public async Task<IBusinessResult> GetById(int code)
         {
             try
             {
                 #region Business rule
                 #endregion
 
-                //var Record = await _RecordRepository.GetByIdAsync(code);
                 var record = await _unitOfWork.RecordRepository.GetByIdAsync(code);
 
                 if(record == null)
@@ -83,7 +82,6 @@ namespace Clinic.Business.Clinic
         {
             try
             {
-                //int result = await _RecordRepository.CreateAsync(record);
                 int result = await _unitOfWork.RecordRepository.CreateAsync(record);
                 if(result > 0)
                 {
@@ -121,11 +119,10 @@ namespace Clinic.Business.Clinic
             }
         }
 
-        public async Task<IBusinessResult> DeleteById(string code)
+        public async Task<IBusinessResult> DeleteById(int code)
         {
             try
             {
-                //var currency = await _currencyRepository.GetByIdAsync(code);
                 var record = await _unitOfWork.RecordRepository.GetByIdAsync(code);
                 if(record != null)
                 {

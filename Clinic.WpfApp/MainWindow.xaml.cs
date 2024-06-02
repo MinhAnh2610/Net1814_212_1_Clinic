@@ -43,11 +43,11 @@ namespace Clinic.WpfApp
             p.Show();
         }
 
-        //private void Open_WRecord_Click(object sender, RoutedEventArgs e)
-        //{
-        //    var p = new WRecord();
-        //    p.Owner = this;
-        //    p.Show();
-        //}
+        private void Open_WRecord_Click(object sender, RoutedEventArgs e)
+        {
+            var p = new WRecord();
+            p.Owner = this;
+            p.Show();
+        }
     }
 }

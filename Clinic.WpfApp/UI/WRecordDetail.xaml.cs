@@ -167,7 +167,7 @@ namespace Clinic.WpfApp.UI
                     recordDetailModel.Reccommend = recordDetailUpdate.Reccommend;
 
                     var result = await _recordDetailBusiness.Update(recordDetailModel);
-                    MessageBox.Show(result.Message, "Udpate");
+                    MessageBox.Show(result.Message, "Update");
 
                     RecordDetailId.Text = string.Empty;
                     AppointmentDetailId.Text = string.Empty;
