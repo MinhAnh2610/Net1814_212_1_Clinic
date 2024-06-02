@@ -49,5 +49,12 @@ namespace Clinic.WpfApp
             p.Owner = this;
             p.Show();
         }
+
+        private void Open_WAppointmentDetail_Click(object sender, RoutedEventArgs e)
+        {
+            var p = new WAppointmentDetail();
+            p.Owner = this;
+            p.Show();
+        }
     }
 }

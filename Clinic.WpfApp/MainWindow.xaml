@@ -26,6 +26,10 @@
                 <MenuItem Header="Clinic" IsCheckable="False" FontSize="12" Click="Open_wClinic_Click">
 
                 </MenuItem>
+                
+                <MenuItem Header="AppointmentDetail" IsCheckable="False" FontSize="12" Click="Open_WAppointmentDetail_Click">
+
+                </MenuItem>
 
                 
                 
