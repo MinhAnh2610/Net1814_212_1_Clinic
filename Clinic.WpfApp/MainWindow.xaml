@@ -31,7 +31,9 @@
 
                 </MenuItem>
 
-                
+                <MenuItem Header="Service" IsCheckable="False" FontSize="12" Click="Open_wServices_Click">
+
+                </MenuItem>
                 
             </MenuItem>
         </Menu>
