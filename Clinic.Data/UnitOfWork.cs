@@ -23,14 +23,14 @@ namespace Clinic.Data
         {
             get
             { 
-                return _clinicRepository ??= new ClinicRepository();
+                return _clinicRepository ??= new ClinicRepository(_unitOfWorkContext);
             }
         }
         public RecordDetailRepository RecordDetailRepository
         { 
             get 
             { 
-                return _recordDetailRepository ??= new RecordDetailRepository();
+                return _recordDetailRepository ??= new RecordDetailRepository(_unitOfWorkContext);
             }
         }
 
