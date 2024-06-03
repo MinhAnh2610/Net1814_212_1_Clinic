@@ -52,30 +52,21 @@ namespace Clinic.WpfApp.UI
         {
             try
             {
-
-                var recordDetail = new Data.Models.RecordDetail()
-                {
-                    RecordDetailId = Int32.Parse(RecordDetailId.Text),
-                    AppointmentDetailId = Int32.Parse(AppointmentDetailId.Text),
-                    RecordId = Int32.Parse(RecordId.Text),
-                    Evaluation = Evaluation.Text,
-                    Reccommend = Reccommend.Text,
-                };
-                var appointmentDetail = await _appointmentDetailBusiness.GetById(recordDetail.AppointmentDetailId);
+                var appointmentDetail = await _appointmentDetailBusiness.GetById(Int32.Parse(AppointmentDetailId.Text));
                 if (appointmentDetail.Data == null) 
                 {
                     MessageBox.Show("Appointment Detail ID doesn't exist", "Warning");
                     return;
                 }
 
-                var record = await _recordBusiness.GetById(recordDetail.RecordId);
+                var record = await _recordBusiness.GetById(Int32.Parse(RecordId.Text));
                 if (record.Data == null)
                 {
                     MessageBox.Show("Record ID doesn't exist", "Warning");
                     return;
                 }
 
-                var existingRecordDetail = await _recordDetailBusiness.GetById(recordDetail.RecordDetailId);
+                var existingRecordDetail = await _recordDetailBusiness.GetById(Int32.Parse(RecordDetailId.Text));
                 if (existingRecordDetail.Data != null)
                 {
                     MessageBox.Show("Record Detail ID already exist", "Warning");
@@ -83,6 +74,14 @@ namespace Clinic.WpfApp.UI
                 }
                 else
                 {
+                    var recordDetail = new Data.Models.RecordDetail()
+                    {
+                        RecordDetailId = Int32.Parse(RecordDetailId.Text),
+                        AppointmentDetailId = Int32.Parse(AppointmentDetailId.Text),
+                        RecordId = Int32.Parse(RecordId.Text),
+                        Evaluation = Evaluation.Text,
+                        Reccommend = Reccommend.Text,
+                    };
                     var existingRecordDetails = await _recordDetailBusiness.GetAll();
                     if (existingRecordDetails.Data != null)
                     {
@@ -165,16 +164,7 @@ namespace Clinic.WpfApp.UI
         {
             try
             {
-                var recordDetailUpdate = new Data.Models.RecordDetail()
-                {
-                    RecordDetailId = Int32.Parse(RecordDetailId.Text),
-                    AppointmentDetailId = Int32.Parse(AppointmentDetailId.Text),
-                    RecordId = Int32.Parse(RecordId.Text),
-                    Evaluation = Evaluation.Text,
-                    Reccommend = Reccommend.Text,
-                };
-
-                var existingRecordDetail = await _recordDetailBusiness.GetById(recordDetailUpdate.RecordDetailId);
+                var existingRecordDetail = await _recordDetailBusiness.GetById(Int32.Parse(RecordDetailId.Text));
                 var recordDetailModel = existingRecordDetail.Data as Data.Models.RecordDetail;
                 if (existingRecordDetail.Data == null)
                 {
@@ -182,6 +172,15 @@ namespace Clinic.WpfApp.UI
                 }
                 else if (recordDetailModel != null)
                 {
+                    var recordDetailUpdate = new Data.Models.RecordDetail()
+                    {
+                        RecordDetailId = Int32.Parse(RecordDetailId.Text),
+                        AppointmentDetailId = Int32.Parse(AppointmentDetailId.Text),
+                        RecordId = Int32.Parse(RecordId.Text),
+                        Evaluation = Evaluation.Text,
+                        Reccommend = Reccommend.Text,
+                    };
+
                     recordDetailModel.Evaluation = recordDetailUpdate.Evaluation;
                     recordDetailModel.Reccommend = recordDetailUpdate.Reccommend;
 

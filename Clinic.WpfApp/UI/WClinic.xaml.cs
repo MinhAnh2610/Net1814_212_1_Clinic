@@ -57,22 +57,20 @@ namespace Clinic.WpfApp.UI
         {
             try
             {
-
-                var clinic = new Data.Models.Clinic()
-                {
-                    ClinicId = Int32.Parse(ClinicId.Text),
-                    OwnerName = OwnerName.Text,
-                    Name = Name.Text,
-                    Address = Address.Text,
-                    Contact = Contact.Text,
-                };
-
-                var existingClinic = await _clinicBusiness.GetById(clinic.ClinicId);
+                var existingClinic = await _clinicBusiness.GetById(Int32.Parse(ClinicId.Text));
                 if (existingClinic.Data != null)
                 {
                     MessageBox.Show("Clinic ID already exist", "Warning");
                 }
                 else {
+                    var clinic = new Data.Models.Clinic()
+                    {
+                        ClinicId = Int32.Parse(ClinicId.Text),
+                        OwnerName = OwnerName.Text,
+                        Name = Name.Text,
+                        Address = Address.Text,
+                        Contact = Contact.Text,
+                    };
                     var result = await _clinicBusiness.Save(clinic);
                     MessageBox.Show(result.Message, "Save");
 
@@ -134,16 +132,7 @@ namespace Clinic.WpfApp.UI
         {
             try
             {
-                var clinicUpdate = new Data.Models.Clinic()
-                {
-                    ClinicId = Int32.Parse(ClinicId.Text),
-                    OwnerName = OwnerName.Text,
-                    Name = Name.Text,
-                    Address = Address.Text,
-                    Contact = Contact.Text,
-                };
-
-                var existingClinic = await _clinicBusiness.GetById(clinicUpdate.ClinicId);
+                var existingClinic = await _clinicBusiness.GetById(Int32.Parse(ClinicId.Text));
                 var clinicModel = existingClinic.Data as Data.Models.Clinic;
                 if (existingClinic.Data == null)
                 {
@@ -152,6 +141,15 @@ namespace Clinic.WpfApp.UI
                 }
                 else if (clinicModel != null)
                 {
+                    var clinicUpdate = new Data.Models.Clinic()
+                    {
+                        ClinicId = Int32.Parse(ClinicId.Text),
+                        OwnerName = OwnerName.Text,
+                        Name = Name.Text,
+                        Address = Address.Text,
+                        Contact = Contact.Text,
+                    };
+
                     clinicModel.OwnerName = clinicUpdate.OwnerName;
                     clinicModel.Name = clinicUpdate.Name;
                     clinicModel.Address = clinicUpdate.Address;
