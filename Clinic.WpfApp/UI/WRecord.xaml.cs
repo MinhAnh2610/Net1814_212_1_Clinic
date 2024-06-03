@@ -58,6 +58,24 @@ namespace Clinic.WpfApp.UI
         {
             try
             {
+                var temp = await _recordBusiness.GetById(Int32.Parse(RecordId.Text));
+                if(temp.Data != null)
+                {
+                    MessageBox.Show("Record Id already exists");
+                    return;
+                }
+                temp = await _clinicBusiness.GetById(Int32.Parse(RecordClinicId.Text));
+                if(temp.Data == null)
+                {
+                    MessageBox.Show("Clinic Id not found");
+                    return;
+                }
+                temp = await _customerBusiness.GetById(Int32.Parse(RecordCustomerId.Text));
+                if(temp.Data == null)
+                {
+                    MessageBox.Show("Customer Id not found");
+                    return;
+                }
 
                 var record = new Record()
                 {
@@ -66,33 +84,17 @@ namespace Clinic.WpfApp.UI
                     CustomerId = Int32.Parse(RecordCustomerId.Text),
                     NumOfVisits = Int32.Parse(NumOfVisits.Text)
                 };
-
-                var temp = await _recordBusiness.GetById(record.RecordId);
-                if(temp.Data != null)
-                {
-                    MessageBox.Show("Record Id already exists");
-                    return;
-                }
-                temp = await _clinicBusiness.GetById(record.ClinicId);
-                if(temp.Data == null)
-                {
-                    MessageBox.Show("Clinic Id not found");
-                    return;
-                }
-                temp = await _customerBusiness.GetById(record.CustomerId);
-                if(temp.Data == null)
-                {
-                    MessageBox.Show("Customer Id not found");
-                    return;
-                }
+                
                 var result = await _recordBusiness.Save(record);
                 MessageBox.Show(result.Message, "Save");
 
+                //reset text box
                 RecordId.Text = string.Empty;
                 RecordClinicId.Text = string.Empty;
                 RecordCustomerId.Text = string.Empty;
                 NumOfVisits.Text = string.Empty;
 
+                //refresh list
                 LoadRecords();
             }
             catch(Exception ex)

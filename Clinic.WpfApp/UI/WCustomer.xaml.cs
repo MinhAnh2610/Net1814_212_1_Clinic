@@ -1,4 +1,5 @@
-﻿using Clinic.Business.Clinic;
+﻿using Clinic.Business.Base;
+using Clinic.Business.Clinic;
 using Clinic.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -50,39 +51,59 @@ namespace Clinic.WpfApp.UI
             }
         }
 
-        //private async void ButtonLoadList_Click(object sender, RoutedEventArgs e)
-        //{
-        //    LoadCustomers();
-        //}
-
         private async void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-
-                var customer = new Customer()
+                //check if customer id already existed
+                var customerBR = await _customerBusiness.GetById(Int32.Parse(CustomerId.Text));
+                var existingCustomer = customerBR.Data as Customer;
+                var isExist = existingCustomer != null;
+                IBusinessResult result = new BusinessResult();
+                var newCustomer = new Customer()
                 {
                     CustomerId = Int32.Parse(CustomerId.Text),
                     FirstName = CustomerFirstName.Text,
                     LastName = CustomerLastName.Text,
                     Phone = CustomerPhone.Text
                 };
-                var temp = await _customerBusiness.GetById(customer.CustomerId);
-                if(temp.Data != null)
+
+                //case : update
+                if(isExist)
                 {
-                    MessageBox.Show("Customer Id already exists");
+                    existingCustomer.CustomerId = newCustomer.CustomerId;
+                    existingCustomer.FirstName = newCustomer.FirstName;
+                    existingCustomer.LastName = newCustomer.LastName;
+                    existingCustomer.Phone = newCustomer.Phone;
+
+                    result = await _customerBusiness.Update(existingCustomer);
+                    MessageBox.Show(result.Message, "Update");
+
+                    //reset text box
+                    CustomerId.Text = string.Empty;
+                    CustomerFirstName.Text = string.Empty;
+                    CustomerLastName.Text = string.Empty;
+                    CustomerPhone.Text = string.Empty;
+
+                    //refresh list
+                    LoadCustomers();
                     return;
                 }
 
-                var result = await _customerBusiness.Save(customer);
+                //case : create
+                result = await _customerBusiness.Save(newCustomer);
                 MessageBox.Show(result.Message, "Save");
 
+                //reset text box
                 CustomerId.Text = string.Empty;
                 CustomerFirstName.Text = string.Empty;
                 CustomerLastName.Text = string.Empty;
                 CustomerPhone.Text = string.Empty;
 
+                //refresh list
                 LoadCustomers();
+                return;
+
             }
             catch(Exception ex)
             {
@@ -94,6 +115,7 @@ namespace Clinic.WpfApp.UI
         {
             try
             {
+                //get id
                 var button = sender as Button;
                 if(button == null)
                 {
@@ -101,7 +123,11 @@ namespace Clinic.WpfApp.UI
                     return;
                 }
                 int customerId = (int)button.CommandParameter;
+
+                //get confirmation
                 MessageBoxResult confirm = MessageBox.Show("Are you sure you want to delete this customer?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+                //delete
                 if(confirm == MessageBoxResult.Yes)
                 {
                     var result = await _customerBusiness.DeleteById(customerId);
@@ -120,11 +146,11 @@ namespace Clinic.WpfApp.UI
         {
             try
             {
+                //get id
                 var button = sender as Button;
                 if(button != null)
                 {
                     int customerId = (int)button.CommandParameter;
-
                     var existingClinic = await _customerBusiness.GetById(customerId);
                     var customer = existingClinic.Data as Customer;
 
@@ -145,51 +171,37 @@ namespace Clinic.WpfApp.UI
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
+            //reset text box
             CustomerId.Text = string.Empty;
             CustomerFirstName.Text = string.Empty;
             CustomerLastName.Text = string.Empty;
             CustomerPhone.Text = string.Empty;
         }
 
-        private async void ButtonUpdate_Click(object sender, RoutedEventArgs e)
+        private async void grdCustomer_MouseDouble_Click(object sender, MouseEventArgs e)
         {
-            try
+            //MessageBox.Show("Double Click on Grid");
+            DataGrid grd = sender as DataGrid;
+            if(grd != null && grd.SelectedItems != null && grd.SelectedItems.Count == 1)
             {
-                var customerUpdate = new Customer()
+                var row = grd.ItemContainerGenerator.ContainerFromItem(grd.SelectedItem) as DataGridRow;
+                if(row != null)
                 {
-                    CustomerId = Int32.Parse(CustomerId.Text),
-                    FirstName = CustomerFirstName.Text,
-                    LastName = CustomerLastName.Text,
-                    Phone = CustomerPhone.Text,
-                };
+                    var item = row.Item as Customer;
+                    if(item != null)
+                    {
+                        var currencyResult = await _customerBusiness.GetById(item.CustomerId);
 
-                var existingCustomer = await _customerBusiness.GetById(customerUpdate.CustomerId);
-                var customer = existingCustomer.Data as Customer;
-                if(existingCustomer.Data == null)
-                {
-                    MessageBox.Show("Customer ID doesn't exist", "Warning");
+                        if(currencyResult.Status > 0 && currencyResult.Data != null)
+                        {
+                            item = currencyResult.Data as Customer;
+                            CustomerId.Text = item.CustomerId.ToString();
+                            CustomerFirstName.Text = item.FirstName;
+                            CustomerLastName.Text = item.LastName;
+                            CustomerPhone.Text = item.Phone;
+                        }
+                    }
                 }
-                else if(customer != null)
-                {
-                    customer.CustomerId = customerUpdate.CustomerId;
-                    customer.FirstName = customerUpdate.FirstName;
-                    customer.LastName = customerUpdate.LastName;
-                    customer.Phone= customerUpdate.Phone;
-
-                    var result = await _customerBusiness.Update(customer);
-                    MessageBox.Show(result.Message, "Update");
-
-                    //reset text box
-                    CustomerId.Text = string.Empty;
-                    CustomerFirstName.Text = string.Empty;
-                    CustomerLastName.Text = string.Empty;
-                    CustomerPhone.Text = string.Empty;
-                    LoadCustomers();
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show($"{ex.Message}", "Error");
             }
         }
     }
