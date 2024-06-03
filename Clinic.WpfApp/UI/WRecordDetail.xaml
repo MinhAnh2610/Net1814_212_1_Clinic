@@ -90,7 +90,7 @@
                         <DataGridTemplateColumn Header="Delete" Width="50">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Delete" x:Name="ButtonDelete" CommandParameter="{Binding Path=RecordDetailId}"
+                                    <Button Content="X" x:Name="ButtonDelete" CommandParameter="{Binding Path=RecordDetailId}"
                         Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor,
                                 AncestorType=Window}}" Click="ButtonDelete_Click"/>
                                 </DataTemplate>
