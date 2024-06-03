@@ -52,8 +52,6 @@
                 <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left">
                     <Button x:Name="ButtonSave" Content="Save" Height="30" Width="80"
                 Command="{Binding SaveCommand}" Margin="10,0,0,0" Click="ButtonSave_Click"/>
-                    <Button x:Name="ButtonUpdate" Content="Update" Height="30" Width="80"
-                Command="{Binding UpdateCommand}" Margin="10,0,0,0" Click="ButtonUpdate_Click"/>
                     <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" 
                 Command="{Binding ResetCommand}" Margin="10,0,0,0" Click="ButtonCancel_Click"/>
                 </StackPanel>
@@ -62,7 +60,7 @@
 
         <materialDesign:Card Padding="20" Margin="10">
             <StackPanel>
-                <DataGrid x:Name="recordList" AutoGenerateColumns="False" ItemsSource="{Binding Records}"
+                <DataGrid x:Name="recordList" AutoGenerateColumns="False" MouseDoubleClick="grdRecord_MouseDouble_Click" SelectionMode="Single" SelectionUnit="FullRow" ItemsSource="{Binding Records}"
               HorizontalAlignment="Stretch" CanUserAddRows="False" Margin="10"
               materialDesign:DataGridAssist.ColumnHeaderPadding="8,4,8,4"
             RowDetailsVisibilityMode="VisibleWhenSelected">
@@ -71,15 +69,6 @@
                         <DataGridTextColumn Header="Clinic Id" Binding="{Binding Path=ClinicId}" Visibility="Visible"/>
                         <DataGridTextColumn Header="Customer Id" Binding="{Binding Path=CustomerId}" Width="auto"  IsReadOnly="True"/>
                         <DataGridTextColumn Header="Number Of Visits" Binding="{Binding Path=NumOfVisits}" Width="auto"  IsReadOnly="True"/>
-                        <DataGridTemplateColumn Header="Edit" Width="100">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Content="Select" x:Name="ButtonEdit" CommandParameter="{Binding Path=RecordId}"
-                                Command="{Binding Path=DataContext.EditCommand,RelativeSource={RelativeSource FindAncestor,
-                                        AncestorType=Window}}" Click="ButtonGetData_Click"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
                         <DataGridTemplateColumn Header="Delete" Width="100">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

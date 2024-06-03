@@ -56,27 +56,19 @@ namespace Clinic.WpfApp.UI
             try
             {
                 //check if customer id already existed
-                var customerBR = await _customerBusiness.GetById(Int32.Parse(CustomerId.Text));
-                var existingCustomer = customerBR.Data as Customer;
-                var isExist = existingCustomer != null;
-                IBusinessResult result = new BusinessResult();
-                var newCustomer = new Customer()
-                {
-                    CustomerId = Int32.Parse(CustomerId.Text),
-                    FirstName = CustomerFirstName.Text,
-                    LastName = CustomerLastName.Text,
-                    Phone = CustomerPhone.Text
-                };
+                var item = await _customerBusiness.GetById(Int32.Parse(CustomerId.Text));
+                
 
                 //case : update
-                if(isExist)
+                if(item.Data != null)
                 {
-                    existingCustomer.CustomerId = newCustomer.CustomerId;
-                    existingCustomer.FirstName = newCustomer.FirstName;
-                    existingCustomer.LastName = newCustomer.LastName;
-                    existingCustomer.Phone = newCustomer.Phone;
+                    var customer = item.Data as Customer;
+                    customer.CustomerId = Int32.Parse(CustomerId.Text);
+                    customer.FirstName = CustomerFirstName.Text;
+                    customer.LastName = CustomerLastName.Text;
+                    customer.Phone = CustomerPhone.Text;
 
-                    result = await _customerBusiness.Update(existingCustomer);
+                    var result = await _customerBusiness.Update(customer);
                     MessageBox.Show(result.Message, "Update");
 
                     //reset text box
@@ -89,19 +81,28 @@ namespace Clinic.WpfApp.UI
                     LoadCustomers();
                     return;
                 }
+                else
+                {
+                    var customer = new Customer()
+                    {
+                        CustomerId = Int32.Parse(CustomerId.Text),
+                        FirstName = CustomerFirstName.Text,
+                        LastName = CustomerLastName.Text,
+                        Phone = CustomerPhone.Text
+                    };
 
-                //case : create
-                result = await _customerBusiness.Save(newCustomer);
-                MessageBox.Show(result.Message, "Save");
+                    var result = await _customerBusiness.Save(customer);
+                    MessageBox.Show(result.Message, "Save");
 
-                //reset text box
-                CustomerId.Text = string.Empty;
-                CustomerFirstName.Text = string.Empty;
-                CustomerLastName.Text = string.Empty;
-                CustomerPhone.Text = string.Empty;
+                    //reset text box
+                    CustomerId.Text = string.Empty;
+                    CustomerFirstName.Text = string.Empty;
+                    CustomerLastName.Text = string.Empty;
+                    CustomerPhone.Text = string.Empty;
 
-                //refresh list
-                LoadCustomers();
+                    //refresh list
+                    LoadCustomers();
+                }
                 return;
 
             }
@@ -142,32 +143,6 @@ namespace Clinic.WpfApp.UI
             }
         }
 
-        private async void ButtonGetData_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                //get id
-                var button = sender as Button;
-                if(button != null)
-                {
-                    int customerId = (int)button.CommandParameter;
-                    var existingClinic = await _customerBusiness.GetById(customerId);
-                    var customer = existingClinic.Data as Customer;
-
-                    if(customer != null)
-                    {
-                        CustomerId.Text = customer.CustomerId.ToString();
-                        CustomerFirstName.Text = customer.FirstName;
-                        CustomerLastName.Text = customer.LastName;
-                        CustomerPhone.Text = customer.Phone;
-                    }
-                }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show($"{ex.Message}", "Error");
-            }
-        }
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {

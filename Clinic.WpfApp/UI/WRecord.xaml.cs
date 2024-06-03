@@ -59,43 +59,76 @@ namespace Clinic.WpfApp.UI
             try
             {
                 var temp = await _recordBusiness.GetById(Int32.Parse(RecordId.Text));
-                if(temp.Data != null)
-                {
-                    MessageBox.Show("Record Id already exists");
-                    return;
-                }
-                temp = await _clinicBusiness.GetById(Int32.Parse(RecordClinicId.Text));
+                //create case
                 if(temp.Data == null)
                 {
-                    MessageBox.Show("Clinic Id not found");
-                    return;
+                    temp = await _clinicBusiness.GetById(Int32.Parse(RecordClinicId.Text));
+                    if(temp.Data == null)
+                    {
+                        MessageBox.Show("Clinic Id not found");
+                        return;
+                    }
+                    temp = await _customerBusiness.GetById(Int32.Parse(RecordCustomerId.Text));
+                    if(temp.Data == null)
+                    {
+                        MessageBox.Show("Customer Id not found");
+                        return;
+                    }
+
+                    var record = new Record()
+                    {
+                        RecordId = Int32.Parse(RecordId.Text),
+                        ClinicId = Int32.Parse(RecordClinicId.Text),
+                        CustomerId = Int32.Parse(RecordCustomerId.Text),
+                        NumOfVisits = Int32.Parse(NumOfVisits.Text)
+                    };
+
+                    var result = await _recordBusiness.Save(record);
+                    MessageBox.Show(result.Message, "Save");
+
+                    //reset text box
+                    RecordId.Text = string.Empty;
+                    RecordClinicId.Text = string.Empty;
+                    RecordCustomerId.Text = string.Empty;
+                    NumOfVisits.Text = string.Empty;
+
+                    //refresh list
+                    LoadRecords();
                 }
-                temp = await _customerBusiness.GetById(Int32.Parse(RecordCustomerId.Text));
-                if(temp.Data == null)
+                else
                 {
-                    MessageBox.Show("Customer Id not found");
-                    return;
+                    //update case
+                    var record = temp.Data as Record;
+                    record.RecordId = Int32.Parse(RecordId.Text);
+                    record.ClinicId = Int32.Parse(RecordClinicId.Text);
+                    record.CustomerId = Int32.Parse(RecordCustomerId.Text);
+                    record.NumOfVisits = Int32.Parse(NumOfVisits.Text);
+
+                    temp = await _clinicBusiness.GetById(Int32.Parse(RecordClinicId.Text));
+                    if(temp.Data == null)
+                    {
+                        MessageBox.Show("Clinic Id not found");
+                        return;
+                    }
+                    temp = await _customerBusiness.GetById(Int32.Parse(RecordCustomerId.Text));
+                    if(temp.Data == null)
+                    {
+                        MessageBox.Show("Customer Id not found");
+                        return;
+                    }
+
+                    var result = await _recordBusiness.Update(record);
+                    MessageBox.Show(result.Message, "Update");
+
+                    //reset text box
+                    RecordId.Text = string.Empty;
+                    RecordClinicId.Text = string.Empty;
+                    RecordCustomerId.Text = string.Empty;
+                    NumOfVisits.Text = string.Empty;
+                    LoadRecords();
                 }
 
-                var record = new Record()
-                {
-                    RecordId = Int32.Parse(RecordId.Text),
-                    ClinicId = Int32.Parse(RecordClinicId.Text),
-                    CustomerId = Int32.Parse(RecordCustomerId.Text),
-                    NumOfVisits = Int32.Parse(NumOfVisits.Text)
-                };
                 
-                var result = await _recordBusiness.Save(record);
-                MessageBox.Show(result.Message, "Save");
-
-                //reset text box
-                RecordId.Text = string.Empty;
-                RecordClinicId.Text = string.Empty;
-                RecordCustomerId.Text = string.Empty;
-                NumOfVisits.Text = string.Empty;
-
-                //refresh list
-                LoadRecords();
             }
             catch(Exception ex)
             {
@@ -129,30 +162,30 @@ namespace Clinic.WpfApp.UI
             }
         }
 
-        private async void ButtonGetData_Click(object sender, RoutedEventArgs e)
+        private async void grdRecord_MouseDouble_Click(object sender, RoutedEventArgs e)
         {
-            try
+            //MessageBox.Show("Double Click on Grid");
+            DataGrid grd = sender as DataGrid;
+            if(grd != null && grd.SelectedItems != null && grd.SelectedItems.Count == 1)
             {
-                var button = sender as Button;
-                if(button != null)
+                var row = grd.ItemContainerGenerator.ContainerFromItem(grd.SelectedItem) as DataGridRow;
+                if(row != null)
                 {
-                    int recordId = (int)button.CommandParameter;
-
-                    var existingRecord = await _recordBusiness.GetById(recordId);
-                    var record = existingRecord.Data as Record;
-
-                    if(record != null)
+                    var item = row.Item as Record;
+                    if(item != null)
                     {
-                        RecordId.Text = record.RecordId.ToString();
-                        RecordClinicId.Text = record.ClinicId.ToString();
-                        RecordCustomerId.Text = record.CustomerId.ToString();
-                        NumOfVisits.Text = record.NumOfVisits.ToString();
+                        var recordResult = await _recordBusiness.GetById(item.RecordId);
+
+                        if(recordResult.Status > 0 && recordResult.Data != null)
+                        {
+                            item = recordResult.Data as Record;
+                            RecordId.Text = item.RecordId.ToString();
+                            RecordClinicId.Text = item.ClinicId.ToString();
+                            RecordCustomerId.Text = item.CustomerId.ToString();
+                            NumOfVisits.Text = item.NumOfVisits.ToString();
+                        }
                     }
                 }
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show($"{ex.Message}", "Error");
             }
         }
 
@@ -164,59 +197,6 @@ namespace Clinic.WpfApp.UI
             NumOfVisits.Text = string.Empty;
         }
 
-        private async void ButtonUpdate_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var recordUpdate = new Record()
-                {
-                    RecordId = Int32.Parse(RecordId.Text),
-                    ClinicId = Int32.Parse(RecordClinicId.Text),
-                    CustomerId = Int32.Parse(RecordCustomerId.Text),
-                    NumOfVisits = Int32.Parse(NumOfVisits.Text)
-                };
-
-                var existingRecord = await _recordBusiness.GetById(recordUpdate.RecordId);
-                var record = existingRecord.Data as Record;
-                if(existingRecord.Data == null)
-                {
-                    MessageBox.Show("Record ID doesn't exist", "Warning");
-                    return;
-                }
-                var temp = await _clinicBusiness.GetById(recordUpdate.ClinicId);
-                if(temp.Data == null)
-                {
-                    MessageBox.Show("Clinic ID doesn't exist", "Warning");
-                    return;
-                }
-                temp = await _customerBusiness.GetById(recordUpdate.CustomerId);
-                if(temp.Data == null)
-                {
-                    MessageBox.Show("Customer ID doesn't exist", "Warning");
-                    return;
-                }
-
-                //update
-                record.RecordId = recordUpdate.RecordId;
-                record.ClinicId = recordUpdate.ClinicId;
-                record.CustomerId = recordUpdate.CustomerId;
-                record.NumOfVisits = recordUpdate.NumOfVisits;
-
-                var result = await _recordBusiness.Update(record);
-                MessageBox.Show(result.Message, "Update");
-
-                //reset text box
-                RecordId.Text = string.Empty;
-                RecordClinicId.Text = string.Empty;
-                RecordCustomerId.Text = string.Empty;
-                NumOfVisits.Text = string.Empty;
-                LoadRecords();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show($"{ex.Message}", "Error");
-            }
-        }
     }
 }
 
