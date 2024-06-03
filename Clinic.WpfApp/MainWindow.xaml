@@ -34,7 +34,10 @@
                 <MenuItem Header="Service" IsCheckable="False" FontSize="12" Click="Open_wServices_Click">
 
                 </MenuItem>
-                
+                <MenuItem Header="Appointment" IsCheckable="False" FontSize="12" Click="Open_wAppointment_Click">
+
+                </MenuItem>
+
             </MenuItem>
         </Menu>
     </Grid>

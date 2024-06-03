@@ -63,5 +63,11 @@ namespace Clinic.WpfApp
             p.Owner = this;
             p.Show();
         }
+        public void Open_wAppointment_Click(object sender, RoutedEventArgs e)
+        {
+            var p = new wAppointment();
+            p.Owner = this;
+            p.Show();
+        }
     }
 }
