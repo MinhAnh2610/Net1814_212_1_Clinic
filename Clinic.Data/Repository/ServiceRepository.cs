@@ -13,5 +13,6 @@ namespace Clinic.Data.Repository
         public ServiceRepository() 
         {
         }
+        public ServiceRepository(Net1814_212_1_ClinicContext context) => _context = context;
     }
 }

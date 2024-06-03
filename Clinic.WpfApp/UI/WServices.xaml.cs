@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Net;
 using Clinic.Business.Clinic;
+using System.Windows.Forms.Design;
 
 namespace Clinic.WpfApp.UI
 {
@@ -33,52 +34,63 @@ namespace Clinic.WpfApp.UI
             this._clinicBusiness = new ClinicBusiness();
             this.LoadGrdServices();
         }
-        private async void ButtonAdd_Click(object sender, RoutedEventArgs e)
+        private async void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 if (!int.TryParse(ClinicID.Text, out int clinicID) || !int.TryParse(ServiceID.Text, out int serviceID) || !decimal.TryParse(Price.Text, out decimal price))
                 {
                     MessageBox.Show("Invalid type of input", "Warning");
+                    return;
                 }
-                else
-                {
-                    var existingClinic = await _clinicBusiness.GetById(clinicID);
-                    if (existingClinic.Data == null)
-                    {
-                        MessageBox.Show("No clinic found", "Warning");
-                        return;
-                    }
 
+                var existingClinic = await _clinicBusiness.GetById(clinicID);
+                if (existingClinic.Data == null)
+                {
+                    MessageBox.Show("No clinic found", "Warning");
+                    return;
+                }
+
+                String name = ServiceName.Text;
+                String description = Description.Text;
+
+                var item = await _serviceBusiness.GetById(serviceID);
+
+                if (item.Data == null)
+                {
                     var service = new Service()
                     {
                         ServiceId = serviceID,
                         ClinicId = clinicID,
                         Price = price,
-                        Name = ServiceName.Text,
-                        Description = Description.Text,
+                        Name = name,
+                        Description = description,
                     };
 
-                    var item = await _serviceBusiness.GetById(service.ServiceId);
-                    if (item.Data == null)
-                    {
-
-                        var result = await _serviceBusiness.Save(service);
-                        MessageBox.Show(result.Message, "Save");
-
-                        this.LoadGrdServices();
-
-                        ServiceID.Text = string.Empty;
-                        ClinicID.Text = string.Empty;
-                        ServiceName.Text = string.Empty;
-                        Price.Text = string.Empty;
-                        Description.Text = string.Empty;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Exist service data", "Warning");
-                    }
+                    var result = await _serviceBusiness.Save(service);
+                    MessageBox.Show(result.Message, "Save");
                 }
+                else
+                {
+                    var updatedService = item.Data as Service;
+
+                    updatedService.ServiceId = serviceID;
+                    updatedService.ClinicId = clinicID;
+                    updatedService.Name = name;
+                    updatedService.Price = price;
+                    updatedService.Description = description;
+
+                    var result = await _serviceBusiness.Update(updatedService);
+                    MessageBox.Show(result.Message, "Save");
+                }
+
+                ServiceID.Text = string.Empty;
+                ClinicID.Text = string.Empty;
+                ServiceName.Text = string.Empty;
+                Price.Text = string.Empty;
+                Description.Text = string.Empty;
+
+                this.LoadGrdServices();
             }
             catch (Exception ex)
             {
@@ -103,99 +115,44 @@ namespace Clinic.WpfApp.UI
             }
         }
 
-        private async void ButtonSelect_Click(object sender, RoutedEventArgs e)
+        private async void grdService_MouseDouble_Click(object sender, RoutedEventArgs e)
         {
-            try
+            DataGrid grd = sender as DataGrid;
+            if (grd != null && grd.SelectedItems != null && grd.SelectedItems.Count == 1)
             {
-                var button = sender as Button;
-                if (button != null)
+                var row = grd.ItemContainerGenerator.ContainerFromItem(grd.SelectedItem) as DataGridRow;
+                if (row != null)
                 {
-                    int serviceID = (int)button.CommandParameter;
-
-                    var service = await _serviceBusiness.GetById(serviceID);
-                    var serviceModel = service.Data as Data.Models.Service;
-
-                    if (serviceModel != null)
+                    var item = row.Item as Service;
+                    if (item != null)
                     {
-                        ServiceID.Text = serviceModel.ServiceId.ToString();
-                        ClinicID.Text = serviceModel.ClinicId.ToString();
-                        ServiceName.Text = serviceModel.Name;
-                        Price.Text = serviceModel.Price.ToString();
-                        Description.Text = serviceModel.Description;
+                        var serviceResult = await _serviceBusiness.GetById(item.ServiceId);
+
+                        if (serviceResult.Status > 0 && serviceResult.Data != null)
+                        {
+                            item = serviceResult.Data as Service;
+                            ServiceID.Text = item.ServiceId.ToString();
+                            ClinicID.Text = item.ClinicId.ToString();
+                            ServiceName.Text = item.Name;
+                            Price.Text = item.Price.ToString();
+                            Description.Text = item.Description;
+                        }
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "Error");
-            }
         }
 
-        private async void ButtonUpdate_Click(object sender, RoutedEventArgs e)
+        private async void grdService_ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (!int.TryParse(ClinicID.Text, out int clinicID) || !int.TryParse(ServiceID.Text, out int serviceID) || !decimal.TryParse(Price.Text, out decimal price))
+                Button btn = (Button)sender;
+                int serviceID = (int)btn.CommandParameter;
+                MessageBoxResult askDelete = MessageBox.Show("Do you want to delete this?", "Delete", MessageBoxButton.YesNo);
+                if (askDelete == MessageBoxResult.Yes)
                 {
-                    MessageBox.Show("Invalid type of input", "Warning");
-                    return;
-                }
-
-                var updatedService = new Service()
-                {
-                    ServiceId = serviceID,
-                    ClinicId = clinicID,
-                    Price = price,
-                    Name = ServiceName.Text,
-                    Description = Description.Text,
-                };
-
-                var existingService = await _serviceBusiness.GetById(updatedService.ServiceId);
-                var service = existingService.Data as Service;
-
-                if (existingService.Data == null)
-                {
-                    MessageBox.Show("Service doesn't exist", "Warning");
-                    return;
-                }
-
-                if (service != null)
-                {
-                    service.ServiceId = updatedService.ServiceId;
-                    service.ClinicId = updatedService.ClinicId;
-                    service.Name = updatedService.Name;
-                    service.Price = updatedService.Price;
-                    service.Description = updatedService.Description;
-
-                    var result = await _serviceBusiness.Update(service);
-                    MessageBox.Show(result.Message, "Udpate");
-
-                    this.LoadGrdServices();
-
-                    ServiceID.Text = string.Empty;
-                    ClinicID.Text = string.Empty;
-                    ServiceName.Text = string.Empty;
-                    Price.Text = string.Empty;
-                    Description.Text = string.Empty;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "Error");
-            }
-        }
-
-        private async void ButtonDelete_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var button = sender as Button;
-                if (button != null)
-                {
-                    int serviceID = (int)button.CommandParameter;
                     var result = await _serviceBusiness.DeleteById(serviceID);
                     MessageBox.Show(result.Message, "Delete");
-
                     this.LoadGrdServices();
                 }
             }
