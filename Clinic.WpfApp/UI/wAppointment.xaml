@@ -38,6 +38,18 @@
                             </Style>
                         </TextBox.Style>
                     </TextBox>
+                    <Label Content="Appointment ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="3" Grid.Row="2"/>
+                    <TextBox Grid.Row="2" Grid.Column="4" x:Name="AppointmentID" Height="25" Text=""  Margin="5"  Width="150" HorizontalAlignment="Left" TextChanged="NumberValidation">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="">
+                                        <Setter Property="Background" Value="LightPink"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
                     <Label Content="Date" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="1"/>
                     <DatePicker Grid.Row="1" Grid.Column="1" x:Name="Date" Height="25" SelectedDate="{x:Null}" Margin="5" Width="150" HorizontalAlignment="Left">
                         <DatePicker.Style>
@@ -88,7 +100,7 @@
                             </Style>
                         </TextBox.Style>
                     </TextBox>
-                    <Button Grid.Row="2" Grid.Column="3" x:Name="ButtonSave" Height="25" Width="100" Margin="35,5,35,0" Click="ButtonSave_Click">
+                    <Button Grid.Row="3" Grid.Column="3" x:Name="ButtonSave" Height="25" Width="100" Margin="35,5,35,0" Click="ButtonSave_Click">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Content" Value="Save"/>
@@ -125,7 +137,7 @@
 
             </StackPanel>
             <StackPanel Height="210">
-                <DataGrid x:Name="w_appointments" AutoGenerateColumns="False" CanUserAddRows="False" Height="200" Margin="10" SelectionChanged="w_appointments_SelectionChanged" CellEditEnding="DatagridUpdate">
+                <DataGrid x:Name="w_appointments" AutoGenerateColumns="False" CanUserAddRows="False" Height="200" Margin="10" SelectionChanged="w_appointments_SelectionChanged" CellEditEnding="DatagridUpdate" MouseDoubleClick="grdAppointment_MouseDouble_Click" SelectionMode="Single" SelectionUnit="FullRow">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Appointment ID" Binding="{Binding Path=AppointmentId}" Visibility="Visible" Width="100" IsReadOnly="True"/>
                         <DataGridTextColumn Header="Customer ID" Binding="{Binding Path=CustomerId}" Width="100"  />
