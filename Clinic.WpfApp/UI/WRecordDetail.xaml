@@ -57,8 +57,6 @@
                 <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left">
                     <Button x:Name="ButtonSave" Content="Save" Height="30" Width="80"
                         Command="{Binding SaveCommand}" Margin="10,0,0,0" Click="ButtonSave_Click"/>
-                    <Button x:Name="ButtonUpdate" Content="Update" Height="30" Width="80"
-                        Command="{Binding UpdateCommand}" Margin="10,0,0,0" Click="ButtonUpdate_Click"/>
                     <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" 
                         Command="{Binding ResetCommand}" Margin="5,0,0,0" Click="ButtonCancel_Click"/>
                 </StackPanel>
@@ -70,7 +68,8 @@
                 <DataGrid x:Name="recordList" AutoGenerateColumns="False" ItemsSource="{Binding RecordDetails}"
               HorizontalAlignment="Stretch" CanUserAddRows="False" Margin="10"
                 materialDesign:DataGridAssist.ColumnHeaderPadding="8,4,8,4"
-                RowDetailsVisibilityMode="VisibleWhenSelected">
+                RowDetailsVisibilityMode="VisibleWhenSelected"
+                MouseDoubleClick="RecordDetail_MouseDouble_Click" SelectionMode="Single" SelectionUnit="FullRow">
                     <DataGrid.Columns>
 
                         <DataGridTextColumn Header="RecordDetailId" Binding="{Binding Path=RecordDetailId}" Width="auto" Visibility="Visible"/>

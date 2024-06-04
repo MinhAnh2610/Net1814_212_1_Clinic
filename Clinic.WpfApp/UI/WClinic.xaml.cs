@@ -60,7 +60,31 @@ namespace Clinic.WpfApp.UI
                 var existingClinic = await _clinicBusiness.GetById(Int32.Parse(ClinicId.Text));
                 if (existingClinic.Data != null)
                 {
-                    MessageBox.Show("Clinic ID already exist", "Warning");
+                    var clinicModel = existingClinic.Data as Data.Models.Clinic;
+                    var clinicUpdate = new Data.Models.Clinic()
+                    {
+                        ClinicId = Int32.Parse(ClinicId.Text),
+                        OwnerName = OwnerName.Text,
+                        Name = Name.Text,
+                        Address = Address.Text,
+                        Contact = Contact.Text,
+                    };
+
+                    clinicModel.OwnerName = clinicUpdate.OwnerName;
+                    clinicModel.Name = clinicUpdate.Name;
+                    clinicModel.Address = clinicUpdate.Address;
+                    clinicModel.Contact = clinicUpdate.Contact;
+
+                    var result = await _clinicBusiness.Update(clinicModel);
+                    MessageBox.Show(result.Message, "Update");
+
+                    ClinicId.Text = string.Empty;
+                    OwnerName.Text = string.Empty;
+                    Name.Text = string.Empty;
+                    Address.Text = string.Empty;
+                    Contact.Text = string.Empty;
+
+                    LoadClinics();
                 }
                 else {
                     var clinic = new Data.Models.Clinic()
@@ -128,51 +152,6 @@ namespace Clinic.WpfApp.UI
             }
         }
 
-        private async void ButtonUpdate_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var existingClinic = await _clinicBusiness.GetById(Int32.Parse(ClinicId.Text));
-                var clinicModel = existingClinic.Data as Data.Models.Clinic;
-                if (existingClinic.Data == null)
-                {
-                    MessageBox.Show("Clinic ID doesn't exist", "Warning");
-                    return;
-                }
-                else if (clinicModel != null)
-                {
-                    var clinicUpdate = new Data.Models.Clinic()
-                    {
-                        ClinicId = Int32.Parse(ClinicId.Text),
-                        OwnerName = OwnerName.Text,
-                        Name = Name.Text,
-                        Address = Address.Text,
-                        Contact = Contact.Text,
-                    };
-
-                    clinicModel.OwnerName = clinicUpdate.OwnerName;
-                    clinicModel.Name = clinicUpdate.Name;
-                    clinicModel.Address = clinicUpdate.Address;
-                    clinicModel.Contact = clinicUpdate.Contact;
-
-                    var result = await _clinicBusiness.Update(clinicModel);
-                    MessageBox.Show(result.Message, "Update");
-
-                    ClinicId.Text = string.Empty;
-                    OwnerName.Text = string.Empty;
-                    Name.Text = string.Empty;
-                    Address.Text = string.Empty;
-                    Contact.Text = string.Empty;
-
-                    LoadClinics();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"{ex.Message}", "Error");
-            }
-        }
-
         private async void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -197,6 +176,34 @@ namespace Clinic.WpfApp.UI
             catch (Exception ex)
             {
                 MessageBox.Show($"{ex.Message}", "Error");
+            }
+        }
+
+        private async void Clinic_MouseDouble_Click(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show("Double Click on Grid");
+            DataGrid clinic = sender as DataGrid;
+            if (clinic != null && clinic.SelectedItems != null && clinic.SelectedItems.Count == 1)
+            {
+                var row = clinic.ItemContainerGenerator.ContainerFromItem(clinic.SelectedItem) as DataGridRow;
+                if (row != null)
+                {
+                    var item = row.Item as Data.Models.Clinic;
+                    if (item != null)
+                    {
+                        var clinicResult = await _clinicBusiness.GetById(item.ClinicId);
+
+                        if (clinicResult.Status > 0 && clinicResult.Data != null)
+                        {
+                            item = clinicResult.Data as Data.Models.Clinic;
+                            ClinicId.Text = item.ClinicId.ToString();
+                            OwnerName.Text = item.OwnerName;
+                            Name.Text = item.Name;
+                            Address.Text = item.Address;
+                            Contact.Text = item.Contact;
+                        }
+                    }
+                }
             }
         }
     }

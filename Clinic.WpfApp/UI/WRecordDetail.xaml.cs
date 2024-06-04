@@ -69,8 +69,33 @@ namespace Clinic.WpfApp.UI
                 var existingRecordDetail = await _recordDetailBusiness.GetById(Int32.Parse(RecordDetailId.Text));
                 if (existingRecordDetail.Data != null)
                 {
-                    MessageBox.Show("Record Detail ID already exist", "Warning");
-                    return;
+                    var recordDetailModel = existingRecordDetail.Data as Data.Models.RecordDetail;
+                    var recordDetailUpdate = new Data.Models.RecordDetail()
+                    {
+                        RecordDetailId = Int32.Parse(RecordDetailId.Text),
+                        AppointmentDetailId = Int32.Parse(AppointmentDetailId.Text),
+                        RecordId = Int32.Parse(RecordId.Text),
+                        Evaluation = Evaluation.Text,
+                        Reccommend = Reccommend.Text,
+                    };
+
+                    recordDetailModel.Evaluation = recordDetailUpdate.Evaluation;
+                    recordDetailModel.Reccommend = recordDetailUpdate.Reccommend;
+
+                    var result = await _recordDetailBusiness.Update(recordDetailModel);
+                    MessageBox.Show(result.Message, "Update");
+
+                    RecordDetailId.Text = string.Empty;
+                    AppointmentDetailId.Text = string.Empty;
+                    RecordId.Text = string.Empty;
+                    Evaluation.Text = string.Empty;
+                    Reccommend.Text = string.Empty;
+
+                    RecordDetailId.IsEnabled = true;
+                    AppointmentDetailId.IsEnabled = true;
+                    RecordId.IsEnabled = true;
+
+                    LoadRecordDetails();
                 }
                 else
                 {
@@ -144,7 +169,7 @@ namespace Clinic.WpfApp.UI
                     {
                         RecordDetailId.Text = recordDetailModel.RecordDetailId.ToString();
                         AppointmentDetailId.Text = recordDetailModel.AppointmentDetailId.ToString();
-                        RecordId.Text = recordDetailModel.RecordDetailId.ToString();
+                        RecordId.Text = recordDetailModel.RecordId.ToString();
                         Evaluation.Text = recordDetailModel.Evaluation;
                         Reccommend.Text = recordDetailModel.Reccommend;
 
@@ -152,52 +177,6 @@ namespace Clinic.WpfApp.UI
                         AppointmentDetailId.IsEnabled = false;
                         RecordId.IsEnabled = false;
                     }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"{ex.Message}", "Error");
-            }
-        }
-
-        private async void ButtonUpdate_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var existingRecordDetail = await _recordDetailBusiness.GetById(Int32.Parse(RecordDetailId.Text));
-                var recordDetailModel = existingRecordDetail.Data as Data.Models.RecordDetail;
-                if (existingRecordDetail.Data == null)
-                {
-                    MessageBox.Show("Record Detail ID doesn't exist", "Warning");
-                }
-                else if (recordDetailModel != null)
-                {
-                    var recordDetailUpdate = new Data.Models.RecordDetail()
-                    {
-                        RecordDetailId = Int32.Parse(RecordDetailId.Text),
-                        AppointmentDetailId = Int32.Parse(AppointmentDetailId.Text),
-                        RecordId = Int32.Parse(RecordId.Text),
-                        Evaluation = Evaluation.Text,
-                        Reccommend = Reccommend.Text,
-                    };
-
-                    recordDetailModel.Evaluation = recordDetailUpdate.Evaluation;
-                    recordDetailModel.Reccommend = recordDetailUpdate.Reccommend;
-
-                    var result = await _recordDetailBusiness.Update(recordDetailModel);
-                    MessageBox.Show(result.Message, "Update");
-
-                    RecordDetailId.Text = string.Empty;
-                    AppointmentDetailId.Text = string.Empty;
-                    RecordId.Text = string.Empty;
-                    Evaluation.Text = string.Empty;
-                    Reccommend.Text = string.Empty;
-
-                    RecordDetailId.IsEnabled = true;
-                    AppointmentDetailId.IsEnabled = true;
-                    RecordId.IsEnabled = true;
-
-                    LoadRecordDetails();
                 }
             }
             catch (Exception ex)
@@ -230,6 +209,37 @@ namespace Clinic.WpfApp.UI
             catch (Exception ex)
             {
                 MessageBox.Show($"{ex.Message}", "Error");
+            }
+        }
+        private async void RecordDetail_MouseDouble_Click(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show("Double Click on Grid");
+            DataGrid recordDetail = sender as DataGrid;
+            if (recordDetail != null && recordDetail.SelectedItems != null && recordDetail.SelectedItems.Count == 1)
+            {
+                var row = recordDetail.ItemContainerGenerator.ContainerFromItem(recordDetail.SelectedItem) as DataGridRow;
+                if (row != null)
+                {
+                    var item = row.Item as Data.Models.RecordDetail;
+                    if (item != null)
+                    {
+                        var recordDetailResult = await _recordDetailBusiness.GetById(item.RecordDetailId);
+
+                        if (recordDetailResult.Status > 0 && recordDetailResult.Data != null)
+                        {
+                            item = recordDetailResult.Data as Data.Models.RecordDetail;
+                            RecordDetailId.Text = item.RecordDetailId.ToString();
+                            AppointmentDetailId.Text = item.AppointmentDetailId.ToString();
+                            RecordId.Text = item.RecordId.ToString();
+                            Evaluation.Text = item.Evaluation;
+                            Reccommend.Text = item.Reccommend;
+
+                            RecordDetailId.IsEnabled = false;
+                            AppointmentDetailId.IsEnabled = false;
+                            RecordId.IsEnabled = false;
+                        }
+                    }
+                }
             }
         }
     }

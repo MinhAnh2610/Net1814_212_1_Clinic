@@ -55,11 +55,11 @@
                 </GroupBox>
                 <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left">
                     <Button x:Name="ButtonSave" Content="Save" Height="30" Width="80"
-                        Command="{Binding SaveCommand}" Margin="10,0,0,0" Click="ButtonSave_Click"/>
-                    <Button x:Name="ButtonUpdate" Content="Update" Height="30" Width="80"
-                        Command="{Binding UpdateCommand}" Margin="10,0,0,0" Click="ButtonUpdate_Click"/>
+                        Command="{Binding SaveCommand}" Margin="10,0,0,0" Click="ButtonSave_Click"
+                            Background="Green" Foreground="AliceBlue"/>
                     <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" 
-                        Command="{Binding ResetCommand}" Margin="5,0,0,0" Click="ButtonCancel_Click"/>
+                        Command="{Binding ResetCommand}" Margin="5,0,0,0" Click="ButtonCancel_Click"
+                            Background="Orange" Foreground="AliceBlue"/>
                 </StackPanel>
             </StackPanel>
         </materialDesign:Card>
@@ -69,7 +69,8 @@
             <DataGrid x:Name="clinicList" AutoGenerateColumns="False" ItemsSource="{Binding Clinics}"
                       HorizontalAlignment="Stretch" CanUserAddRows="False" Margin="10"
                       materialDesign:DataGridAssist.ColumnHeaderPadding="8,4,8,4"
-                    RowDetailsVisibilityMode="VisibleWhenSelected">
+                      RowDetailsVisibilityMode="VisibleWhenSelected"
+                      MouseDoubleClick="Clinic_MouseDouble_Click" SelectionMode="Single" SelectionUnit="FullRow">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ClinicId" Binding="{Binding Path=ClinicId}" Visibility="Visible"/>
                     <DataGridTextColumn Header="OwnerName" Binding="{Binding Path=OwnerName}" Visibility="Visible"/>
@@ -81,7 +82,8 @@
                             <DataTemplate>
                                 <Button Content="Select" x:Name="ButtonEdit" CommandParameter="{Binding Path=ClinicId}"
                                         Command="{Binding Path=DataContext.EditCommand,RelativeSource={RelativeSource FindAncestor,
-                                                AncestorType=Window}}" Click="ButtonGetData_Click"/>
+                                                AncestorType=Window}}" Click="ButtonGetData_Click"
+                                        Background="Aqua" Foreground="AliceBlue"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -90,7 +92,8 @@
                             <DataTemplate>
                                 <Button Content="X" x:Name="ButtonDelete" CommandParameter="{Binding Path=ClinicId}"
                                         Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor,
-                                                AncestorType=Window}}" Click="ButtonDelete_Click"/>
+                                                AncestorType=Window}}" Click="ButtonDelete_Click" 
+                                        Background="Red" Foreground="AliceBlue"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
