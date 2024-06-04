@@ -361,4 +361,3 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/Clinic.Data/Models/Net1814_212_1_ClinicContext.cs
