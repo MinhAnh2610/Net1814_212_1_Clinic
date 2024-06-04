@@ -45,12 +45,12 @@ namespace Clinic.WpfApp.UI
             {
                 if (System.Text.RegularExpressions.Regex.IsMatch(CustomerID.Text, "[^0-9]"))
                 {
-                    MessageBox.Show("Please enter only numbers.");
+                    MessageBox.Show("Please enter only numbers in Customer ID .");
                     CustomerID.Text = CustomerID.Text.Remove(CustomerID.Text.Length - 1);
                 }
-                if (System.Text.RegularExpressions.Regex.IsMatch(Total.Text, "[^0-9]"))
+                if (System.Text.RegularExpressions.Regex.IsMatch(Total.Text, "[^0-9.]"))
                 {
-                    MessageBox.Show("Please enter only numbers.");
+                    MessageBox.Show("Please enter only numbers in Total .");
                     Total.Text = Total.Text.Remove(Total.Text.Length - 1);
                 }
             }
@@ -63,9 +63,9 @@ namespace Clinic.WpfApp.UI
         {
             try
             {
-                var appointments =  await _business.GetAll();
+                var appointments = await _business.GetAll();
                 var result = appointments.Data as List<Appointment>;
-                if(appointments.Status >0 && appointments != null )
+                if (appointments.Status > 0 && appointments != null)
                 {
 
                     w_appointments.ItemsSource = result;
@@ -93,7 +93,7 @@ namespace Clinic.WpfApp.UI
                     var appointment = selectedRow as Appointment;
                     if (selectedRow != null)
                     {
-                        
+
                         var result =
                             await _business.DeleteById(appointment.AppointmentId);
                         MessageBox.Show(result.Message, "Deleted");
@@ -102,46 +102,65 @@ namespace Clinic.WpfApp.UI
                     else
                     {
                         MessageBox.Show("Please select a row to delete", "Warning");
-                    }   
+                    }
 
 
                 }
-                
+
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error");
             }
-            
-        }
-
-        private int RandomIDGen ()
-        {
-            //int appid = new Random().Next(1000);
-            int appid = RandomNumberGenerator.GetInt32(int.MinValue, int.MaxValue);
-            return appid;
-
-               
 
         }
+
         private async void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var appointment = new Appointment();
+                var item = await _business.GetById(Convert.ToInt32(AppointmentID.Text));
 
-                appointment.AppointmentId = RandomIDGen();
-                appointment.CustomerId = Convert.ToInt32(CustomerID.Text);
-                DateTime date = Convert.ToDateTime(Date.SelectedDate);
-                appointment.Date = DateOnly.FromDateTime(date);
-                appointment.Total = Convert.ToDecimal(Total.Text);
-                appointment.PaymentMethod = PaymentMethod.Text;
-                appointment.PaymentStatus = Convert.ToBoolean(PaymentStatus.IsChecked);
-                appointment.DentistName = DentistName.Text;
-                var result = await _business.Save(appointment);
-                MessageBox.Show(result.Message, "Saved");
-                await ListLoader();
+                if (item.Data == null)
+                {
+                    var appointment = new Appointment();
+                    appointment.AppointmentId = Convert.ToInt32(AppointmentID.Text);
+                        appointment.CustomerId = Convert.ToInt32(CustomerID.Text);
+                        DateTime date = Convert.ToDateTime(Date.SelectedDate);
+                        appointment.Date = DateOnly.FromDateTime(date);
+                        appointment.Total = Convert.ToDecimal(Total.Text);
+                        appointment.PaymentMethod = PaymentMethod.Text;
+                        appointment.PaymentStatus = Convert.ToBoolean(PaymentStatus.IsChecked);
+                        appointment.DentistName = DentistName.Text;
+                   
+
+                    var result = await _business.Save(appointment);
+                    MessageBox.Show(result.Message, "Save");
+                    await ListLoader();
+                }
+                else
+                {
+                    var appointment = item.Data as Appointment;
+                    appointment.CustomerId = Convert.ToInt32(CustomerID.Text);
+                    DateTime date = Convert.ToDateTime(Date.SelectedDate);
+                    appointment.Date = DateOnly.FromDateTime(date);
+                    appointment.Total = Convert.ToDecimal(Total.Text);
+                    appointment.PaymentMethod = PaymentMethod.Text;
+                    appointment.PaymentStatus = Convert.ToBoolean(PaymentStatus.IsChecked);
+                    appointment.DentistName = DentistName.Text;
+
+                    var result = await _business.Update(appointment);
+                    MessageBox.Show(result.Message, "Update");
+                    await ListLoader();
+                }
+
+                CustomerID.Text = string.Empty;
+                Date.SelectedDate = null;
+                Total.Text = string.Empty;
+                PaymentMethod.Text = string.Empty;
+                PaymentStatus.IsChecked = false;
+                DentistName.Text = string.Empty;
 
                 // Empty all textboxes
                 CustomerID.Text = string.Empty;
@@ -168,7 +187,7 @@ namespace Clinic.WpfApp.UI
 
                     // Determine which property to update
                     if (column.Header.ToString() == "Customer ID")
-                    {    
+                    {
                         editedRow.CustomerId = Convert.ToInt32(newCellContent);
                     }
                     else if (column.Header.ToString() == "Total")
@@ -187,8 +206,6 @@ namespace Clinic.WpfApp.UI
                     {
                         editedRow.DentistName = newCellContent;
                     }
-                    // Add more else if statements for other properties as needed
-                    MessageBox.Show(column.Header.ToString()); 
                     var result = await _business.Update(editedRow);
                     MessageBox.Show(result.Message, "Updated");
                     await ListLoader();
@@ -216,6 +233,38 @@ namespace Clinic.WpfApp.UI
         {
 
         }
+        private async void grdAppointment_MouseDouble_Click(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show("Double Click on Grid");
+            DataGrid grd = sender as DataGrid;
+            if (grd != null && grd.SelectedItems != null && grd.SelectedItems.Count == 1)
+            {
+                var row = grd.ItemContainerGenerator.ContainerFromItem(grd.SelectedItem) as DataGridRow;
+                if (row != null)
+                {
+                    var item = row.Item as Appointment;
+                    if (item != null)
+                    {
+                        var currencyResult = await _business.GetById(item.AppointmentId);
 
+                        if (currencyResult.Status > 0 && currencyResult.Data != null)
+                        {
+                            item = currencyResult.Data as Appointment;
+                            if (item != null)
+                            {
+                                AppointmentID.Text = item.AppointmentId.ToString();
+                                CustomerID.Text =item.CustomerId.ToString();
+                                Date.Text= item.Date.ToString();
+                                Total.Text = item.Total.ToString();
+                                PaymentMethod.Text = item.PaymentMethod;
+                                PaymentStatus.IsChecked = item.PaymentStatus;
+                                DentistName.Text = item.DentistName;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
     }
 }
