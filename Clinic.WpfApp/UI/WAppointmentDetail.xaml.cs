@@ -27,8 +27,8 @@ namespace Clinic.WpfApp.UI
     public partial class WAppointmentDetail : Window
     {
         private readonly IAppointmentDetailBusiness _appointmentDetailBusiness;
-        /*private readonly IAppointmentBusiness _appointmentBusiness;
-        private readonly IServiceBusiness _serviceBusiness;*/
+        private readonly IAppointmentBusiness _appointmentBusiness;
+        private readonly IServiceBusiness _serviceBusiness;
         public WAppointmentDetail()
         {
             InitializeComponent();
@@ -60,18 +60,18 @@ namespace Clinic.WpfApp.UI
                     System.Windows.MessageBox.Show("Appointment Detail ID already exists");
                     return;
                 }
-                /*temp = await _appointmentBusiness.GetById(AppointmentDetail.AppointmentId);
-                if(temp.Data == null)
+                temp = await _appointmentBusiness.GetById(AppointmentDetail.AppointmentId);
+                if (temp.Data == null)
                 {
-                    System.Windows.MessageBox.Show("Clinic Id not found");
+                    System.Windows.MessageBox.Show("Appointment Id not found");
                     return;
                 }
                 temp = await _serviceBusiness.GetById(AppointmentDetail.ServiceId);
-                if(temp.Data == null)
+                if (temp.Data == null)
                 {
-                    System.Windows.MessageBox.Show("Customer Id not found");
+                    System.Windows.MessageBox.Show("Service Id not found");
                     return;
-                }*/
+                }
 
                 var result = await _appointmentDetailBusiness.Save(AppointmentDetail);
                 System.Windows.MessageBox.Show(result.Message, "Save");
@@ -94,7 +94,7 @@ namespace Clinic.WpfApp.UI
 
         private async void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-            /*AppointmentDetail appointmentDetail = AppointmentDetailList.SelectedItem as AppointmentDetail;
+            AppointmentDetail appointmentDetail = AppointmentDetailList.SelectedItem as AppointmentDetail;
             if (appointmentDetail == null)
             {
                 System.Windows.MessageBox.Show("AppointmentDetailID not found", "Warning");
@@ -103,7 +103,7 @@ namespace Clinic.WpfApp.UI
 
             var result = await _appointmentDetailBusiness.DeleteById(appointmentDetail.AppointmentDetailId);
             System.Windows.MessageBox.Show(result.Message, "Delete");
-            GetAllData();*/
+            GetAllData();
 
             try
             {
@@ -117,7 +117,7 @@ namespace Clinic.WpfApp.UI
                 MessageBoxResult confirm = System.Windows.MessageBox.Show("Are you sure you want to delete this record?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (confirm == MessageBoxResult.Yes)
                 {
-                    var result = await _appointmentDetailBusiness.DeleteById(appointmentDetailId);
+                    var apointmentDetail = await _appointmentDetailBusiness.DeleteById(appointmentDetailId);
                     System.Windows.MessageBox.Show(result.Message, "Delete");
                 }
                 //refresh list
@@ -201,42 +201,30 @@ namespace Clinic.WpfApp.UI
 
                 var existingAppointmentDetail = await _appointmentDetailBusiness.GetById(appointmentDetailUpdate.AppointmentDetailId);
                 var appointmentDetail = existingAppointmentDetail.Data as AppointmentDetail;
-                /*if (existingRecord.Data == null)
+                if (existingAppointmentDetail.Data == null)
                 {
-                    System.Windows.MessageBox.Show("Record ID doesn't exist", "Warning");
+                    System.Windows.MessageBox.Show("Appointemnt Detail ID doesn't exist", "Warning");
                     return;
                 }
-                var temp = await _clinicBusiness.GetById(recordUpdate.ClinicId);
+                var temp = await _appointmentDetailBusiness.GetById(appointmentDetailUpdate.AppointmentId);
                 if (temp.Data == null)
                 {
-                    MessageBox.Show("Clinic ID doesn't exist", "Warning");
+                    System.Windows.MessageBox.Show("Appointment ID doesn't exist", "Warning");
                     return;
                 }
-                temp = await _customerBusiness.GetById(recordUpdate.CustomerId);
+                temp = await _appointmentDetailBusiness.GetById(appointmentDetailUpdate.ServiceId);
                 if (temp.Data == null)
                 {
-                    MessageBox.Show("Customer ID doesn't exist", "Warning");
+                    System.Windows.MessageBox.Show("Service ID doesn't exist", "Warning");
                     return;
-                }*/
+                }
 
-                var temp = await _appointmentDetailBusiness.GetById(appointmentDetail.AppointmentDetailId);
+                temp = await _appointmentDetailBusiness.GetById(appointmentDetailUpdate.AppointmentDetailId);
                 if (temp.Data != null)
                 {
                     System.Windows.MessageBox.Show("Appointment ID doesn't exist\", \"Warning");
                     return;
                 }
-                /*temp = await _appointmentBusiness.GetById(AppointmentDetail.AppointmentId);
-                if(temp.Data == null)
-                {
-                    System.Windows.MessageBox.Show("Clinic Id not found");
-                    return;
-                }
-                temp = await _serviceBusiness.GetById(AppointmentDetail.ServiceId);
-                if(temp.Data == null)
-                {
-                    System.Windows.MessageBox.Show("Customer Id not found");
-                    return;
-                }*/
 
                 //update
                 appointmentDetail.AppointmentDetailId = appointmentDetailUpdate.AppointmentDetailId;
