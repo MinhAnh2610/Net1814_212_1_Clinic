@@ -39,16 +39,16 @@ namespace Clinic.Business
 
                 //var currencies = _DAO.GetAll();
                 //var currencies = await _AppointmentDetailRepository.GetAllAsync();
-                var currencies = await _unitOfWork.AppointmentDetailRepository.GetAllAsync();
+                var appointmentDetails = await _unitOfWork.AppointmentDetailRepository.GetAllAsync();
 
 
-                if (currencies == null)
+                if (appointmentDetails == null)
                 {
                     return new BusinessResult(Const.WARNING_NO_DATA_CODE, Const.WARNING_NO_DATA_MSG);
                 }
                 else
                 {
-                    return new BusinessResult(Const.SUCCESS_READ_CODE, Const.SUCCESS_READ_MSG, currencies);
+                    return new BusinessResult(Const.SUCCESS_READ_CODE, Const.SUCCESS_READ_MSG, appointmentDetails);
                 }
             }
             catch (Exception ex)
