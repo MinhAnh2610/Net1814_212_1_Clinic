@@ -1,6 +1,7 @@
 ﻿using Clinic.Business;
 using Clinic.Business.Clinic;
 using Clinic.Data.Models;
+using Clinic.WpfApp.UI.DetailWindow;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,12 +27,14 @@ namespace Clinic.WpfApp.UI
         private readonly IRecordDetailBusiness _recordDetailBusiness;
         private readonly IRecordBusiness _recordBusiness;
         private readonly IAppointmentDetailBusiness _appointmentDetailBusiness;
+        private readonly IAppointmentBusiness _appointmentBusiness;
         public WRecordDetail()
         {
             InitializeComponent();
             _recordDetailBusiness = new RecordDetailBusiness();
             _recordBusiness = new RecordBusiness();
             _appointmentDetailBusiness = new AppointmentDetailBusiness();
+            _appointmentBusiness = new AppointmentBusiness();
             LoadRecordDetails();    
         }
 
@@ -119,6 +122,17 @@ namespace Clinic.WpfApp.UI
                             }
                         }
                     }
+                    // Get the record
+                    var existingRecord = record.Data as Record;
+                    // Get the appointment from appointmentDetail
+                    var existingAppointmentDetail = appointmentDetail.Data as AppointmentDetail;
+                    var appointment = await _appointmentBusiness.GetById(existingAppointmentDetail!.AppointmentId);
+                    var existingAppointment = appointment.Data as Appointment;
+                    if (existingAppointment!.CustomerId != existingRecord!.CustomerId)
+                    {
+                        MessageBox.Show("This Record ID is invalid as it does not belong to this customer of the appointment", "Warning");
+                        return;
+                    }
 
                     var result = await _recordDetailBusiness.Save(recordDetail);
                     MessageBox.Show(result.Message, "Save");
@@ -151,32 +165,17 @@ namespace Clinic.WpfApp.UI
             RecordId.IsEnabled = true;
         }
 
-        private async void ButtonGetData_Click(object sender, RoutedEventArgs e)
+        private void ButtonGetData_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 var button = sender as Button;
-                if (button != null)
+                var selectedRecordDetail = button?.DataContext as RecordDetail;
+
+                if (selectedRecordDetail != null)
                 {
-                    int recordDetailId = (int)button.CommandParameter;
-
-                    // Fetch the clinic details using the ClinicId
-                    var existingRecordDetail = await _recordDetailBusiness.GetById(recordDetailId);
-                    var recordDetailModel = existingRecordDetail.Data as Data.Models.RecordDetail;
-
-                    // Update the form fields with the recordDetail details
-                    if (recordDetailModel != null)
-                    {
-                        RecordDetailId.Text = recordDetailModel.RecordDetailId.ToString();
-                        AppointmentDetailId.Text = recordDetailModel.AppointmentDetailId.ToString();
-                        RecordId.Text = recordDetailModel.RecordId.ToString();
-                        Evaluation.Text = recordDetailModel.Evaluation;
-                        Reccommend.Text = recordDetailModel.Reccommend;
-
-                        RecordDetailId.IsEnabled = false;
-                        AppointmentDetailId.IsEnabled = false;
-                        RecordId.IsEnabled = false;
-                    }
+                    var recordDetailWindow = new WRecordDetailWindow(selectedRecordDetail);
+                    recordDetailWindow.Show();
                 }
             }
             catch (Exception ex)

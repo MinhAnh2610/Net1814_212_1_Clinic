@@ -1,6 +1,7 @@
 ﻿using Clinic.Business.Base;
 using Clinic.Business.Clinic;
 using Clinic.Data.Models;
+using Clinic.WpfApp.UI.DetailWindow;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -122,28 +123,17 @@ namespace Clinic.WpfApp.UI
             Contact.Text = string.Empty;
         }
 
-        private async void ButtonGetData_Click(object sender, RoutedEventArgs e)
+        private void ButtonGetData_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 var button = sender as Button;
-                if (button != null)
+                var selectedClinic = button?.DataContext as Data.Models.Clinic;
+
+                if (selectedClinic != null)
                 {
-                    int clinicId = (int)button.CommandParameter;
-
-                    // Fetch the clinic details using the ClinicId
-                    var existingClinic = await _clinicBusiness.GetById(clinicId);
-                    var clinicModel = existingClinic.Data as Data.Models.Clinic;
-
-                    // Update the form fields with the clinic details
-                    if (clinicModel != null)
-                    {
-                        ClinicId.Text = clinicModel.ClinicId.ToString();
-                        OwnerName.Text = clinicModel.OwnerName;
-                        Name.Text = clinicModel.Name;
-                        Address.Text = clinicModel.Address;
-                        Contact.Text = clinicModel.Contact;
-                    }
+                    var clinicWindow = new WClinicWindow(selectedClinic);
+                    clinicWindow.Show();
                 }
             }
             catch (Exception ex)

@@ -85,13 +85,6 @@
                         <DataGridTemplateColumn Width="50">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="View" x:Name="ButtonView" CommandParameter="{Binding ServiceId}" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Click="grdService_ButtonView_Click" Style="{StaticResource ViewButtonStyle}"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Width="50">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
                                     <Button Content="X" x:Name="ButtonDelete" CommandParameter="{Binding ServiceId}" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Click="grdService_ButtonDelete_Click" Style="{StaticResource DeleteButtonStyle}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

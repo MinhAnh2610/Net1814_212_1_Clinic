@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Clinic.WpfApp.UI"
         mc:Ignorable="d"
-        Title="WRecordDetail" Height="auto" Width="auto"
+        Title="WRecordDetail" Height="auto" Width="1350"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -56,9 +56,11 @@
                 </GroupBox>
                 <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left">
                     <Button x:Name="ButtonSave" Content="Save" Height="30" Width="80"
-                        Command="{Binding SaveCommand}" Margin="10,0,0,0" Click="ButtonSave_Click"/>
+                        Command="{Binding SaveCommand}" Margin="10,0,0,0" Click="ButtonSave_Click"
+                            Background="Green" Foreground="AliceBlue"/>
                     <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" 
-                        Command="{Binding ResetCommand}" Margin="5,0,0,0" Click="ButtonCancel_Click"/>
+                        Command="{Binding ResetCommand}" Margin="5,0,0,0" Click="ButtonCancel_Click"
+                            Background="Orange" Foreground="AliceBlue"/>
                 </StackPanel>
             </StackPanel>
         </materialDesign:Card>
@@ -82,7 +84,8 @@
                                 <DataTemplate>
                                     <Button Content="Select" x:Name="ButtonEdit" CommandParameter="{Binding Path=RecordDetailId}"
                         Command="{Binding Path=DataContext.EditCommand,RelativeSource={RelativeSource FindAncestor,
-                                AncestorType=Window}}" Click="ButtonGetData_Click"/>
+                                AncestorType=Window}}" Click="ButtonGetData_Click"
+                                            Background="Aqua" Foreground="AliceBlue"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -91,7 +94,8 @@
                                 <DataTemplate>
                                     <Button Content="X" x:Name="ButtonDelete" CommandParameter="{Binding Path=RecordDetailId}"
                         Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor,
-                                AncestorType=Window}}" Click="ButtonDelete_Click"/>
+                                AncestorType=Window}}" Click="ButtonDelete_Click"
+                                            Background="Red" Foreground="AliceBlue"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
