@@ -17,7 +17,7 @@
     <StackPanel Orientation="Horizontal">
         <materialDesign:Card Padding="20" Margin="10">
             <StackPanel>
-                <GroupBox Header="Record Detail Form" Margin="10">
+                <GroupBox Header="Record Detail Form" FontWeight="Bold" Margin="10">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -28,28 +28,28 @@
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="210"/>
                         </Grid.ColumnDefinitions>
 
                         <!-- Record Detail ID -->
-                        <Label Content="Record Detail ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="5"/>
+                        <Label FontWeight="Bold" Content="Record Detail ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="5"/>
                         <TextBox Grid.Row="0" Grid.Column="1" x:Name="RecordDetailId" Height="25" Text="{Binding Path=RecordDetailId, Mode=TwoWay}" Margin="5"/>
 
                         <!-- Appointment Detail ID -->
-                        <Label Content="Appointment Detail ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="1" Margin="5"/>
+                        <Label FontWeight="Bold" Content="Appointment Detail ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="1" Margin="5"/>
                         <TextBox Grid.Row="1" Grid.Column="1" x:Name="AppointmentDetailId" Height="25" Text="{Binding Path=AppointmentDetailId, Mode=TwoWay}" Margin="5"/>
 
                         <!-- Record ID -->
-                        <Label Content="Record ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="2" Margin="5"/>
+                        <Label FontWeight="Bold" Content="Record ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="2" Margin="5"/>
                         <TextBox Grid.Row="2" Grid.Column="1" x:Name="RecordId" Height="25" Text="{Binding Path=RecordId, Mode=TwoWay}" Margin="5"/>
 
                         <!-- Evaluation -->
-                        <Label Content="Evaluation" HorizontalAlignment="Left" VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="3" Margin="5"/>
+                        <Label FontWeight="Bold" Content="Evaluation" HorizontalAlignment="Left" VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="3" Margin="5"/>
                         <TextBox Grid.Row="3" Grid.Column="1" x:Name="Evaluation" Height="100" Text="{Binding Path=Evaluation, Mode=TwoWay}" Margin="5"
                                  AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
 
                         <!-- Reccommend -->
-                        <Label Content="Reccommend" HorizontalAlignment="Left" VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="4" Margin="5"/>
+                        <Label FontWeight="Bold" Content="Reccommend" HorizontalAlignment="Left" VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="4" Margin="5"/>
                         <TextBox Grid.Row="4" Grid.Column="1" x:Name="Reccommend" Height="100" Text="{Binding Path=Reccommend, Mode=TwoWay}" Margin="5"
                                  AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
                     </Grid>

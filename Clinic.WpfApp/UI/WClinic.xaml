@@ -17,7 +17,7 @@
     <StackPanel Orientation="Horizontal">
         <materialDesign:Card Padding="20" Margin="10">
             <StackPanel>
-                <GroupBox Header="Clinic Form" Margin="10">
+                <GroupBox Header="Clinic Form" FontWeight="Bold" Margin="10">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -32,24 +32,24 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- Clinic ID -->
-                        <Label Content="Clinic ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="5"/>
+                        <Label FontWeight="Bold" Content="Clinic ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="5"/>
                         <TextBox Grid.Row="0" Grid.Column="1" x:Name="ClinicId" Height="25" Text="{Binding Path=ClinicId, Mode=TwoWay}" Margin="5"/>
 
                         <!-- Owner Name -->
-                        <Label Content="Owner Name" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="1" Margin="5"/>
+                        <Label FontWeight="Bold" Content="Owner Name" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="1" Margin="5"/>
                         <TextBox Grid.Row="1" Grid.Column="1" x:Name="OwnerName" Height="25" Text="{Binding Path=OwnerName, Mode=TwoWay}" Margin="5"/>
 
                         <!-- Name -->
-                        <Label Content="Name" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="2" Margin="5"/>
+                        <Label FontWeight="Bold" Content="Name" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="2" Margin="5"/>
                         <TextBox Grid.Row="2" Grid.Column="1" x:Name="Name" Height="25" Text="{Binding Path=Name, Mode=TwoWay}" Margin="5"/>
 
                         <!-- Address -->
-                        <Label Content="Address" HorizontalAlignment="Left" VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="3" Margin="5"/>
+                        <Label FontWeight="Bold" Content="Address" HorizontalAlignment="Left" VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="3" Margin="5"/>
                         <TextBox Grid.Row="3" Grid.Column="1" x:Name="Address" Height="50" Text="{Binding Path=Address, Mode=TwoWay}" Margin="5"
                                  AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
 
                         <!-- Contact -->
-                        <Label Content="Contact" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="4" Margin="5"/>
+                        <Label FontWeight="Bold" Content="Contact" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="4" Margin="5"/>
                         <TextBox Grid.Row="4" Grid.Column="1" x:Name="Contact" Height="25" Text="{Binding Path=Contact, Mode=TwoWay}" Margin="5"/>
                     </Grid>
                 </GroupBox>
