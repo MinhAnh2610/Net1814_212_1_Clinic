@@ -5,109 +5,546 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Clinic.WpfApp.UI"
         mc:Ignorable="d"
-        Title="WAppointmentDetail" Height="auto" Width="1300"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        TextElement.FontWeight="Regular"
-        TextElement.FontSize="13"
-        TextOptions.TextFormattingMode="Ideal"
-        TextOptions.TextRenderingMode="Auto"
-        Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}">
-    <StackPanel Orientation="Horizontal">
-        <materialDesign:Card Padding="20" Margin="10">
-            <StackPanel>
-                <GroupBox Header="Appointment Detail Form" Margin="10">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="200"/>
-                        </Grid.ColumnDefinitions>
+        Title="WAppointmentDetail"
+        Height="650"
+        Width="1020">
+    <StackPanel
+        Orientation="Vertical"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center">
+        <Grid
+            Width="920"
+            Height="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition
+                    Width="Auto" />
+                <ColumnDefinition
+                    Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-                        <!-- Appointment Detail ID -->
-                        <Label Content="Appointment Detail ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="5"/>
-                        <TextBox Grid.Row="0" Grid.Column="1" x:Name="AppointmentDetailId" Height="25" Text="{Binding Path=AppointmentDetailId, Mode=TwoWay}" Margin="5"/>
+            <Grid
+                Height="Auto"
+                Grid.Column="0">
+                <Grid.RowDefinitions>
 
-                        <!-- Appointment ID -->
-                        <Label Content="Appointment ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="1" Margin="5"/>
-                        <TextBox Grid.Row="1" Grid.Column="1" x:Name="AppointmentId" Height="25" Text="{Binding Path=AppointmentId, Mode=TwoWay}" Margin="5"/>
+                    <!--Detail Id-->
+                    <RowDefinition
+                        Height="Auto" />
 
-                        <!-- Service ID -->
-                        <Label Content="Service ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="2" Margin="5"/>
-                        <TextBox Grid.Row="2" Grid.Column="1" x:Name="ServiceId" Height="25" Text="{Binding Path=ServiceId, Mode=TwoWay}" Margin="5"/>
-                        
-                        <!-- Is Periodic -->
-                        <Label Content="Is Periodic" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="3" Margin="5"/>
-                        <TextBox Grid.Row="3" Grid.Column="1" x:Name="isPeriodic" Height="25" Text="{Binding Path=isPeriodic, Mode=TwoWay}" Margin="5"/>
+                    <!--Appointment Id-->
+                    <RowDefinition
+                        Height="Auto" />
 
-                        <!-- Day -->
-                        <Label Content="Day" HorizontalAlignment="Left" VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="4" Margin="5"/>
-                        <TextBox Grid.Row="4" Grid.Column="1" x:Name="Day" Height="50" Text="{Binding Path=Day, Mode=TwoWay}" Margin="5" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
+                    <!--Service Id-->
+                    <RowDefinition
+                        Height="Auto" />
 
-                        <!-- Month -->
-                        <Label Content="Month" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="5" Margin="5"/>
-                        <TextBox Grid.Row="5" Grid.Column="1" x:Name="Month" Height="25" Text="{Binding Path=Month, Mode=TwoWay}" Margin="5"/>
-                        
-                        <!-- Year -->
-                        <Label Content="Year" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="6" Margin="5"/>
-                        <TextBox Grid.Row="6" Grid.Column="1" x:Name="Year" Height="25" Text="{Binding Path=Year, Mode=TwoWay}" Margin="5"/>
-                    </Grid>
-                </GroupBox>
-                <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button x:Name="ButtonSave" Content="Save" Height="30" Width="80"
-                        Command="{Binding SaveCommand}" Margin="10,0,0,0" Click="ButtonSave_Click"/>
-                    <Button x:Name="ButtonUpdate" Content="Update" Height="30" Width="80"
-                        Command="{Binding UpdateCommand}" Margin="10,0,0,0" Click="ButtonUpdate_Click"/>
-                    <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" 
-                        Command="{Binding ResetCommand}" Margin="5,0,0,0" Click="ButtonCancel_Click"/>
-                </StackPanel>
+                    <!--IsPeriodic-->
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+
+                    <!--Day-->
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+
+                    <!--Month-->
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+
+                    <!--Year-->
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+
+                    <!--Button Save-->
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+
+                    <!--Button Update-->
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+
+                    <!--Button Cancel-->
+                    <RowDefinition
+                        Height="Auto" />
+                    <RowDefinition
+                        Height="Auto" />
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <!--Detail Id-->
+                    <ColumnDefinition
+                        Width="Auto" />
+                    <ColumnDefinition
+                        Width="Auto" />
+
+                    <!--Appointment Id-->
+                    <ColumnDefinition
+                        Width="Auto" />
+
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <!--Detail Id-->
+                <Grid
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Margin="7">
+                    <TextBox
+                        x:Name="AppointmentDetailId"
+                        Height="40"
+                        Text="{Binding AppointmentDetailId, Mode=TwoWay}"
+                        Width="150"
+                        FontSize="13"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        TextChanged="txtInput_TextChanged">
+                        <TextBox.Resources>
+                            <Style
+                                TargetType="{x:Type Border}">
+                                <Setter
+                                    Property="CornerRadius"
+                                    Value="6" />
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                    <TextBlock
+                        Text="Detail ID"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        Foreground="LightGray"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Margin="15,0,0,0"
+                        Panel.ZIndex="1"
+                        x:Name="tbPlaceholder1" />
+                </Grid>
+
+                <!--Appointment Id-->
+                <Grid
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    Background="White"
+                    Margin="7">
+                    <TextBox
+                        x:Name="AppointmentId"
+                        Height="40"
+                        Text="{Binding AppointmentId, Mode=TwoWay}"
+                        Margin="5,5,5,5"
+                        Width="150"
+                        FontSize="13"
+                        HorizontalAlignment="Center"
+                        Background="Transparent"
+                        TextChanged="txtInput_TextChanged"
+                        Panel.ZIndex="-1">
+                        <TextBox.Resources>
+                            <Style
+                                TargetType="{x:Type Border}">
+                                <Setter
+                                    Property="CornerRadius"
+                                    Value="6" />
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                    <TextBlock
+                        Text="Appointment ID"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        Foreground="LightGray"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Margin="15,0,0,0"
+                        Panel.ZIndex="1"
+                        x:Name="tbPlaceholder2" />
+                </Grid>
+
+                <!--Service Id-->
+                <Grid
+                    Grid.Column="0"
+                    Grid.Row="4"
+                    Margin="2,7,0,7">
+                    <TextBox
+                        Grid.Row="5"
+                        Grid.Column="0"
+                        x:Name="ServiceId"
+                        Height="40"
+                        Text="{Binding ServiceId, Mode=TwoWay}"
+                        Margin="10,0,0,0"
+                        Width="75"
+                        FontSize="13"
+                        TextChanged="txtInput_TextChanged"
+                        HorizontalAlignment="Left">
+                        <TextBox.Resources>
+                            <Style
+                                TargetType="{x:Type Border}">
+                                <Setter
+                                    Property="CornerRadius"
+                                    Value="6" />
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                    <TextBlock
+                        Text="Service Id"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        Foreground="LightGray"
+                        Margin="20,0,0,0"
+                        Panel.ZIndex="1"
+                        x:Name="tbPlaceholder3" />
+                </Grid>
+
+                <!--Periodic-->
+                <Grid
+                    Grid.Column="0"
+                    Grid.Row="4"
+                    Margin="97,0,0,0">
+                    <TextBox
+                        Grid.Row="5"
+                        Grid.Column="0"
+                        x:Name="isPeriodic"
+                        Height="40"
+                        Text="{Binding IsPeriodic, Mode=TwoWay}"
+                        Width="65"
+                        FontSize="13"
+                        TextChanged="txtInput_TextChanged"
+                        HorizontalAlignment="Left">
+                        <TextBox.Resources>
+                            <Style
+                                TargetType="{x:Type Border}">
+                                <Setter
+                                    Property="CornerRadius"
+                                    Value="6" />
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                    <TextBlock
+                        Text="Periodic"
+                        HorizontalAlignment="Left"
+                        FontSize="13"
+                        Margin="10,0,0,0"
+                        FontWeight="SemiBold"
+                        Foreground="LightGray"
+                        VerticalAlignment="Center"
+                        Panel.ZIndex="1"
+                        x:Name="tbPlaceholder4" />
+                </Grid>
+
+                <!--Day-->
+                <Grid
+                    Grid.Column="0"
+                    Grid.Row="8"
+                    Margin="7">
+                    <TextBox
+                        Grid.Row="9"
+                        Grid.Column="0"
+                        x:Name="Day"
+                        Height="40"
+                        Text="{Binding Day, Mode=TwoWay}"
+                        Margin="5"
+                        Width="150"
+                        FontSize="13"
+                        TextChanged="txtInput_TextChanged"
+                        HorizontalAlignment="Center">
+                        <TextBox.Resources>
+                            <Style
+                                TargetType="{x:Type Border}">
+                                <Setter
+                                    Property="CornerRadius"
+                                    Value="6" />
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                    <TextBlock
+                        Text="Day"
+                        HorizontalAlignment="Left"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        Foreground="LightGray"
+                        VerticalAlignment="Center"
+                        Margin="15,0,0,0"
+                        Panel.ZIndex="1"
+                        x:Name="tbPlaceholder5" />
+                </Grid>
+
+                <!--Month-->
+                <Grid
+                    Grid.Column="0"
+                    Grid.Row="10"
+                    Margin="12,7,0,7">
+                    <TextBox
+                        Grid.Row="11"
+                        Grid.Column="0"
+                        x:Name="Month"
+                        Height="40"
+                        Text="{Binding Month, Mode=TwoWay}"
+                        Width="80"
+                        FontSize="13"
+                        TextChanged="txtInput_TextChanged"
+                        HorizontalAlignment="Left">
+                        <TextBox.Resources>
+                            <Style
+                                TargetType="{x:Type Border}">
+                                <Setter
+                                    Property="CornerRadius"
+                                    Value="6" />
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                    <TextBlock
+                        Text="Month"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        Foreground="LightGray"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Margin="20,0,0,0"
+                        Panel.ZIndex="1"
+                        x:Name="tbPlaceholder6" />
+                </Grid>
+
+                <!--Year-->
+                <Grid
+                    Grid.Column="0"
+                    Grid.Row="10"
+                    Margin="100,0,0,0">
+                    <TextBox
+                        Grid.Row="11"
+                        Grid.Column="0"
+                        x:Name="Year"
+                        Height="40"
+                        Text="{Binding Year, Mode=TwoWay}"
+                        Width="60"
+                        FontSize="13"
+                        TextChanged="txtInput_TextChanged"
+                        HorizontalAlignment="Left">
+                        <TextBox.Resources>
+                            <Style
+                                TargetType="{x:Type Border}">
+                                <Setter
+                                    Property="CornerRadius"
+                                    Value="6" />
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                    <TextBlock
+                        Text="Year"
+                        FontSize="13"
+                        FontWeight="SemiBold"
+                        Foreground="LightGray"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Margin="19,0,0,0"
+                        Panel.ZIndex="1"
+                        x:Name="tbPlaceholder7" />
+                </Grid>
+
+                <!--Button Save-->
+                <Button
+                    x:Name="myButtonSave"
+                    Content="Save"
+                    FontSize="13"
+                    FontWeight="SemiBold"
+                    Foreground="white"
+                    Background="CornflowerBlue"
+                    BorderThickness="0"
+                    Padding="65,10,65,10"
+                    Margin="0,20,0,5"
+                    Grid.Row="13"
+                    Grid.Column="0"
+                    Click="ButtonSave_Click">
+
+                    <Button.Resources>
+                        <Style
+                            TargetType="{x:Type Border}">
+                            <Setter
+                                Property="CornerRadius"
+                                Value="6" />
+                        </Style>
+                    </Button.Resources>
+
+                </Button>
+
+                <!--Button Update-->
+                <Button
+                    x:Name="ButtonUpdate"
+                    Content="Update"
+                    FontSize="13"
+                    FontWeight="SemiBold"
+                    Foreground="white"
+                    Background="CornflowerBlue"
+                    BorderThickness="0"
+                    Padding="65,10,65,10"
+                    Margin="0,20,0,5"
+                    Grid.Row="14"
+                    Grid.Column="0"
+                    Command="{Binding UpdateCommand}"
+                    Click="ButtonUpdate_Click">
+
+                    <Button.Resources>
+                        <Style
+                            TargetType="{x:Type Border}">
+                            <Setter
+                                Property="CornerRadius"
+                                Value="6" />
+                        </Style>
+                    </Button.Resources>
+
+                </Button>
+
+                <!--Button Cancel-->
+                <Button
+                    x:Name="myButtonCancel"
+                    Content="Cancel"
+                    FontSize="13"
+                    FontWeight="SemiBold"
+                    Foreground="Black"
+                    Background="Transparent"
+                    BorderThickness="1"
+                    Padding="65,10,65,10"
+                    Margin="0,5,0,5"
+                    Grid.Row="15"
+                    Grid.Column="0"
+                    Command="{Binding ResetCommand}"
+                    Click="ButtonCancel_Click">
+
+                    <Button.Resources>
+                        <Style
+                            TargetType="{x:Type Border}">
+                            <Setter
+                                Property="CornerRadius"
+                                Value="6" />
+                        </Style>
+                    </Button.Resources>
+
+                </Button>
+
+            </Grid>
+
+
+            <Image
+                Source="/Image/donate.png"
+                Width="150"
+                Height="150"
+                Grid.Column="1"
+                Margin="0,0,10,0" />
+
+            <StackPanel
+                Height="310"
+                Grid.Column="3">
+                <DataGrid
+                    x:Name="AppointmentDetailList"
+                    AutoGenerateColumns="False"
+                    GridLinesVisibility="None"
+                    ItemsSource="{Binding AppointmentDetail}"
+                    CanUserAddRows="False"
+                    Height="310"
+                    CanUserResizeColumns="False"
+                    AlternatingRowBackground="LightGray">
+                    <DataGrid.Columns>
+
+                        <DataGridTextColumn
+                            Header="Detail ID"
+                            Binding="{Binding Path=AppointmentDetailId}"
+                            Width="60"
+                            Visibility="Visible" />
+                        <DataGridTextColumn
+                            Header="Appointment ID"
+                            Binding="{Binding Path=AppointmentId}"
+                            Width="100"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Header="Service ID"
+                            Binding="{Binding Path=ServiceId}"
+                            Width="65"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Header="Periodic"
+                            Binding="{Binding Path=IsPeriodic}"
+                            Width="55"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Header="Day"
+                            Binding="{Binding Path=Day}"
+                            Width="35"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Header="Month"
+                            Binding="{Binding Path=Month}"
+                            Width="50"
+                            IsReadOnly="True" />
+                        <DataGridTextColumn
+                            Header="Year"
+                            Binding="{Binding Path=Year}"
+                            Width="50"
+                            IsReadOnly="True" />
+                        <DataGridTemplateColumn
+                            Width="Auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <Button
+                                            x:Name="ButtonEdit"
+                                            CommandParameter="{Binding Path=AppointmentDetailId}"
+                                            Command="{Binding Path=DataContext.EditCommand,RelativeSource={RelativeSource FindAncestor,
+                                            AncestorType=Window}}"
+                                            BorderThickness="0"
+                                            BorderBrush="CornflowerBlue"
+                                            Background="CornflowerBlue"
+                                            Click="ButtonGetData_Click">
+                                            <Image
+                                                Source="/Image/choose-alt.png"
+                                                Width="15"
+                                                Height="15" />
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn
+                            Width="Auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <Button
+                                            x:Name="ButtonDelete"
+                                            CommandParameter="{Binding Path=AppointmentDetailId}"
+                                            Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor,
+                                            AncestorType=Window}}"
+                                            BorderThickness="0"
+                                            BorderBrush="#ff99a4"
+                                            Background="#ff99a4"
+                                            Height="40"
+                                            Width="40"
+                                            Click="ButtonDelete_Click">
+                                            <Image
+                                                Source="/Image/trash.png"
+                                                Width="15"
+                                                Height="15" />
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
             </StackPanel>
-        </materialDesign:Card>
 
-        <materialDesign:Card Padding="20" Margin="10">
-        <StackPanel>
-            <DataGrid x:Name="AppointmentDetailList" AutoGenerateColumns="False" ItemsSource="{Binding AppointmentDetailLists}"
-                      HorizontalAlignment="Stretch" CanUserAddRows="False" Margin="10"
-                      materialDesign:DataGridAssist.ColumnHeaderPadding="8,4,8,4"
-                    RowDetailsVisibilityMode="VisibleWhenSelected">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="AppointmentDetailId" Binding="{Binding Path=AppointmentDetailId}" Visibility="Visible"/>
-                    <DataGridTextColumn Header="AppointmentId" Binding="{Binding Path=AppointmentId}" Visibility="Visible"/>
-                    <DataGridTextColumn Header="ServiceId" Binding="{Binding Path=ServiceId}" Width="auto"  IsReadOnly="True"/>
-                    <DataGridTextColumn Header="isPeriodic" Binding="{Binding Path=isPeriodic}" Width="auto"  IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Day" Binding="{Binding Path=Day}" Width="auto"  IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Month" Binding="{Binding Path=Month}" Width="auto"  IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Year" Binding="{Binding Path=Year}" Width="auto"  IsReadOnly="True"/>
-                    <DataGridTemplateColumn Header="Edit" Width="100">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="Select" x:Name="ButtonEdit" CommandParameter="{Binding Path=AppointmentDetailId}"
-                                        Command="{Binding Path=DataContext.EditCommand,RelativeSource={RelativeSource FindAncestor,
-                                                AncestorType=Window}}" Click="ButtonGetData_Click"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Delete" Width="100">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="Delete" x:Name="ButtonDelete" CommandParameter="{Binding Path=AppointmentDetailId}"
-                                        Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor,
-                                                AncestorType=Window}}" Click="ButtonDelete_Click"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </StackPanel>
-        </materialDesign:Card>
+        </Grid>
+
     </StackPanel>
 </Window>
