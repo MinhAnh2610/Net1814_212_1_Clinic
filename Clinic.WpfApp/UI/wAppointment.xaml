@@ -1,8 +1,10 @@
 ﻿<Window x:Class="Clinic.WpfApp.UI.wAppointment"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
         xmlns:local="clr-namespace:Clinic.WpfApp.UI"
         mc:Ignorable="d"
         Title="wAppointment" Height="640" Width="1024" 
@@ -10,7 +12,9 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <GroupBox Header="Appointment Form" Margin="10" Height="161">
+                
                 <Grid Height="125">
+                    
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
@@ -26,6 +30,7 @@
                         <ColumnDefinition Width="170"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
+
                     <Label Content="Customer ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0"/>
                     <TextBox Grid.Row="0" Grid.Column="1" x:Name="CustomerID" Height="25" Text=""  Margin="5"  Width="150" HorizontalAlignment="Left" TextChanged="NumberValidation">
                         <TextBox.Style>
@@ -146,25 +151,25 @@
                         <DataGridTextColumn Header="Payment Method" Binding="{Binding Path=PaymentMethod}" Width="100" />
                         <DataGridTextColumn Header="Payment Status" Binding="{Binding Path=PaymentStatus}" Width="100" />
                         <DataGridTextColumn Header="Dentist Name" Binding="{Binding Path=DentistName}" Width="100" />
-
+    
                         <DataGridTemplateColumn Width="120">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button x:Name="ButtonDelete" Content="Delete" Width="100" Click="ButtonDelete_Click"/>
                                     <!--<Button Content="Edit" Click="ButtonEdit_Click"/>-->
                                 </DataTemplate>
+                                
                             </DataGridTemplateColumn.CellTemplate>
+                            
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Width="120">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <!--<Button Content="Edit" Click="ButtonEdit_Click"/>-->
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+                        
+                        
                     </DataGrid.Columns>
+
                 </DataGrid>
+
             </StackPanel>
+            <Image gif:AnimationBehavior.SourceUri="/Image/herta.gif" Width="100" Height="100"/>
         </StackPanel>
     </Grid>
 </Window>

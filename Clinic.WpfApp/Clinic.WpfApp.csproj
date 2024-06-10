@@ -35,6 +35,7 @@
 
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="5.0.0" />
+    <PackageReference Include="XamlAnimatedGif" Version="2.3.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,6 +47,7 @@
     <Resource Include="Image\down-1.png" />
     <Resource Include="Image\goal-net.png" />
     <Resource Include="Image\hospitals.png" />
+    <Resource Include="Image\herta.gif" />
     <Resource Include="Image\icon-1.png" />
     <Resource Include="Image\rectangle-list.png" />
     <Resource Include="Image\room-service.png" />
