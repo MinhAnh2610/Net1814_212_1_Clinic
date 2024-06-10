@@ -82,10 +82,8 @@ namespace Clinic.WpfApp.UI
                         CustomerId = Int32.Parse(RecordCustomerId.Text),
                         NumOfVisits = Int32.Parse(NumOfVisits.Text)
                     };
-
                     var result = await _recordBusiness.Save(record);
                     MessageBox.Show(result.Message, "Save");
-
                     //reset text box
                     RecordId.Text = string.Empty;
                     RecordClinicId.Text = string.Empty;
@@ -120,6 +118,8 @@ namespace Clinic.WpfApp.UI
                     var result = await _recordBusiness.Update(record);
                     MessageBox.Show(result.Message, "Update");
 
+
+
                     //reset text box
                     RecordId.Text = string.Empty;
                     RecordClinicId.Text = string.Empty;
@@ -127,13 +127,16 @@ namespace Clinic.WpfApp.UI
                     NumOfVisits.Text = string.Empty;
                     LoadRecords();
                 }
-
-                
+            }
+            catch(FormatException fe)
+            {
+                MessageBox.Show("Wrong input format", "Invalid input");
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error");
             }
+            
         }
 
         private async void ButtonDelete_Click(object sender, RoutedEventArgs e)

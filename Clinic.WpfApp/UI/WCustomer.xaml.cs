@@ -106,6 +106,10 @@ namespace Clinic.WpfApp.UI
                 return;
 
             }
+            catch(FormatException fe)
+            {
+                MessageBox.Show("Wrong input format", "Invalid input");
+            }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Error");
