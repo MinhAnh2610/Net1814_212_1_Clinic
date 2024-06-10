@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Clinic.WpfApp.UI.DetailWindow"
         mc:Ignorable="d"
-        Title="WClinicWindow" Height="400" Width="400"
+        Title="WClinicWindow" Height="600" Width="400"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -33,6 +33,18 @@
 
                 <TextBlock Text="Contact:" FontWeight="Bold"/>
                 <Label Content="{Binding Contact}" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Email:" FontWeight="Bold"/>
+                <Label Content="{Binding Email}" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Website:" FontWeight="Bold"/>
+                <Label Content="{Binding Website}" Margin="0,0,0,10"/>
+
+                <TextBlock Text="ClinicType:" FontWeight="Bold"/>
+                <Label Content="{Binding ClinicType}" Margin="0,0,0,10"/>
+
+                <TextBlock Text="IsActive:" FontWeight="Bold"/>
+                <Label Content="{Binding IsActive}" Margin="0,0,0,10"/>
             </StackPanel>
         </materialDesign:Card>
     </Grid>

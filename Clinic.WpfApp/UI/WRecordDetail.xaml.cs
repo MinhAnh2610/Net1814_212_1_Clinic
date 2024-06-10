@@ -80,10 +80,14 @@ namespace Clinic.WpfApp.UI
                         RecordId = Int32.Parse(RecordId.Text),
                         Evaluation = Evaluation.Text,
                         Reccommend = Reccommend.Text,
+                        Diagnosis = Diagnosis.Text,
+                        Prescriptions = Prescriptions.Text
                     };
 
                     recordDetailModel.Evaluation = recordDetailUpdate.Evaluation;
                     recordDetailModel.Reccommend = recordDetailUpdate.Reccommend;
+                    recordDetailModel.Diagnosis = recordDetailUpdate.Diagnosis;
+                    recordDetailModel.Prescriptions = recordDetailUpdate.Prescriptions;
 
                     var result = await _recordDetailBusiness.Update(recordDetailModel);
                     MessageBox.Show(result.Message, "Update");
@@ -93,6 +97,8 @@ namespace Clinic.WpfApp.UI
                     RecordId.Text = string.Empty;
                     Evaluation.Text = string.Empty;
                     Reccommend.Text = string.Empty;
+                    Diagnosis.Text = string.Empty;
+                    Prescriptions.Text = string.Empty;
 
                     RecordDetailId.IsEnabled = true;
                     AppointmentDetailId.IsEnabled = true;
@@ -109,6 +115,8 @@ namespace Clinic.WpfApp.UI
                         RecordId = Int32.Parse(RecordId.Text),
                         Evaluation = Evaluation.Text,
                         Reccommend = Reccommend.Text,
+                        Diagnosis = Diagnosis.Text,
+                        Prescriptions = Prescriptions.Text
                     };
                     var existingRecordDetails = await _recordDetailBusiness.GetAll();
                     if (existingRecordDetails.Data != null)
@@ -142,6 +150,8 @@ namespace Clinic.WpfApp.UI
                     RecordId.Text = string.Empty;
                     Evaluation.Text = string.Empty;
                     Reccommend.Text = string.Empty;
+                    Diagnosis.Text = string.Empty;
+                    Prescriptions.Text = string.Empty;
 
                     LoadRecordDetails();
                 }
@@ -159,6 +169,8 @@ namespace Clinic.WpfApp.UI
             RecordId.Text = string.Empty;
             Evaluation.Text = string.Empty;
             Reccommend.Text = string.Empty;
+            Diagnosis.Text = string.Empty;
+            Prescriptions.Text = string.Empty;
 
             RecordDetailId.IsEnabled = true;
             AppointmentDetailId.IsEnabled = true;
@@ -232,6 +244,8 @@ namespace Clinic.WpfApp.UI
                             RecordId.Text = item.RecordId.ToString();
                             Evaluation.Text = item.Evaluation;
                             Reccommend.Text = item.Reccommend;
+                            Diagnosis.Text = item.Diagnosis;
+                            Prescriptions.Text = item.Prescriptions;
 
                             RecordDetailId.IsEnabled = false;
                             AppointmentDetailId.IsEnabled = false;

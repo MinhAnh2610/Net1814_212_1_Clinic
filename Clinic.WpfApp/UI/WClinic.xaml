@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Clinic.WpfApp.UI"
         mc:Ignorable="d"
-        Title="WClinic" Height="auto" Width="1300"
+        Title="WClinic" Height="1080" Width="1920"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -20,6 +20,10 @@
                 <GroupBox Header="Clinic Form" FontWeight="Bold" Margin="10">
                     <Grid>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -53,20 +57,20 @@
                         <TextBox Grid.Row="4" Grid.Column="1" x:Name="Contact" Height="25" Text="{Binding Path=Contact, Mode=TwoWay}" Margin="5"/>
 
                         <!-- Email -->
-                        <Label FontWeight="Bold" Content="Email" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="4" Margin="5"/>
-                        <TextBox Grid.Row="4" Grid.Column="1" x:Name="Email" Height="25" Text="{Binding Path=Email, Mode=TwoWay}" Margin="5"/>
+                        <Label FontWeight="Bold" Content="Email" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="5" Margin="5"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" x:Name="Email" Height="25" Text="{Binding Path=Email, Mode=TwoWay}" Margin="5"/>
 
                         <!-- Website -->
-                        <Label FontWeight="Bold" Content="Website" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="4" Margin="5"/>
-                        <TextBox Grid.Row="4" Grid.Column="1" x:Name="Website" Height="25" Text="{Binding Path=Website, Mode=TwoWay}" Margin="5"/>
+                        <Label FontWeight="Bold" Content="Website" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="6" Margin="5"/>
+                        <TextBox Grid.Row="6" Grid.Column="1" x:Name="Website" Height="25" Text="{Binding Path=Website, Mode=TwoWay}" Margin="5"/>
 
                         <!-- ClinicType -->
-                        <Label FontWeight="Bold" Content="ClinicType" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="4" Margin="5"/>
-                        <TextBox Grid.Row="4" Grid.Column="1" x:Name="ClinicType" Height="25" Text="{Binding Path=ClinicType, Mode=TwoWay}" Margin="5"/>
+                        <Label FontWeight="Bold" Content="ClinicType" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="7" Margin="5"/>
+                        <TextBox Grid.Row="7" Grid.Column="1" x:Name="ClinicType" Height="25" Text="{Binding Path=ClinicType, Mode=TwoWay}" Margin="5"/>
 
                         <!-- IsActive -->
-                        <Label FontWeight="Bold" Content="IsActive" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="4" Margin="5"/>
-                        <TextBox Grid.Row="4" Grid.Column="1" x:Name="IsActive" Height="25" Text="{Binding Path=IsActive, Mode=TwoWay}" Margin="5"/>
+                        <Label FontWeight="Bold" Content="IsActive" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="8" Margin="5"/>
+                        <TextBox Grid.Row="8" Grid.Column="1" x:Name="IsActive" Height="25" Text="{Binding Path=IsActive, Mode=TwoWay}" Margin="5"/>
                     </Grid>
                 </GroupBox>
                 <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left">
@@ -103,7 +107,7 @@
                                 <Button Content="Select" x:Name="ButtonEdit" CommandParameter="{Binding Path=ClinicId}"
                                         Command="{Binding Path=DataContext.EditCommand,RelativeSource={RelativeSource FindAncestor,
                                                 AncestorType=Window}}" Click="ButtonGetData_Click"
-                                        Background="Aqua" Foreground="AliceBlue"/>
+                                        Background="Aqua" Foreground="Black" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

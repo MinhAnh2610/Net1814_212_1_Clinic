@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Clinic.WpfApp.UI
 {
@@ -69,6 +71,10 @@ namespace Clinic.WpfApp.UI
                         Name = Name.Text,
                         Address = Address.Text,
                         Contact = Contact.Text,
+                        Email = Email.Text,
+                        Website = Website.Text,
+                        ClinicType = ClinicType.Text,
+                        IsActive = Boolean.Parse(IsActive.Text)
                     };
 
                     clinicModel.OwnerName = clinicUpdate.OwnerName;
@@ -84,6 +90,10 @@ namespace Clinic.WpfApp.UI
                     Name.Text = string.Empty;
                     Address.Text = string.Empty;
                     Contact.Text = string.Empty;
+                    Email.Text = string.Empty;
+                    Website.Text = string.Empty;
+                    ClinicType.Text = string.Empty;
+                    IsActive.Text = string.Empty;
 
                     LoadClinics();
                 }
@@ -95,6 +105,10 @@ namespace Clinic.WpfApp.UI
                         Name = Name.Text,
                         Address = Address.Text,
                         Contact = Contact.Text,
+                        Email = Email.Text,
+                        Website = Website.Text,
+                        ClinicType = ClinicType.Text,
+                        IsActive = Boolean.Parse(IsActive.Text)
                     };
                     var result = await _clinicBusiness.Save(clinic);
                     MessageBox.Show(result.Message, "Save");
@@ -104,6 +118,10 @@ namespace Clinic.WpfApp.UI
                     Name.Text = string.Empty;
                     Address.Text = string.Empty;
                     Contact.Text = string.Empty;
+                    Email.Text = string.Empty;
+                    Website.Text = string.Empty;
+                    ClinicType.Text = string.Empty;
+                    IsActive.Text = string.Empty;
 
                     LoadClinics();
                 }
@@ -121,6 +139,10 @@ namespace Clinic.WpfApp.UI
             Name.Text = string.Empty;
             Address.Text = string.Empty;
             Contact.Text = string.Empty;
+            Email.Text = string.Empty;
+            Website.Text = string.Empty;
+            ClinicType.Text = string.Empty;
+            IsActive.Text = string.Empty;
         }
 
         private void ButtonGetData_Click(object sender, RoutedEventArgs e)
@@ -191,6 +213,10 @@ namespace Clinic.WpfApp.UI
                             Name.Text = item.Name;
                             Address.Text = item.Address;
                             Contact.Text = item.Contact;
+                            Email.Text = item.Email;
+                            Website.Text = item.Website;
+                            ClinicType.Text = item.ClinicType;
+                            IsActive.Text = item.IsActive.ToString();
                         }
                     }
                 }
