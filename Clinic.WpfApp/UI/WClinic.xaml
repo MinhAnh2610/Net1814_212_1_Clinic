@@ -51,6 +51,22 @@
                         <!-- Contact -->
                         <Label FontWeight="Bold" Content="Contact" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="4" Margin="5"/>
                         <TextBox Grid.Row="4" Grid.Column="1" x:Name="Contact" Height="25" Text="{Binding Path=Contact, Mode=TwoWay}" Margin="5"/>
+
+                        <!-- Email -->
+                        <Label FontWeight="Bold" Content="Email" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="4" Margin="5"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" x:Name="Email" Height="25" Text="{Binding Path=Email, Mode=TwoWay}" Margin="5"/>
+
+                        <!-- Website -->
+                        <Label FontWeight="Bold" Content="Website" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="4" Margin="5"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" x:Name="Website" Height="25" Text="{Binding Path=Website, Mode=TwoWay}" Margin="5"/>
+
+                        <!-- ClinicType -->
+                        <Label FontWeight="Bold" Content="ClinicType" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="4" Margin="5"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" x:Name="ClinicType" Height="25" Text="{Binding Path=ClinicType, Mode=TwoWay}" Margin="5"/>
+
+                        <!-- IsActive -->
+                        <Label FontWeight="Bold" Content="IsActive" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="4" Margin="5"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" x:Name="IsActive" Height="25" Text="{Binding Path=IsActive, Mode=TwoWay}" Margin="5"/>
                     </Grid>
                 </GroupBox>
                 <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left">
@@ -76,8 +92,12 @@
                     <DataGridTextColumn Header="OwnerName" Binding="{Binding Path=OwnerName}" Visibility="Visible"/>
                     <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}" Width="auto"  IsReadOnly="True"/>
                     <DataGridTextColumn Header="Address" Binding="{Binding Path=Address}" Width="auto"  IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Contact" Binding="{Binding Path=Contact}" Width="auto"  IsReadOnly="True"/>
-                    <DataGridTemplateColumn Header="Edit" Width="100">
+                        <DataGridTextColumn Header="Contact" Binding="{Binding Path=Contact}" Width="auto"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Email" Binding="{Binding Path=Email}" Width="auto"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Website" Binding="{Binding Path=Website}" Width="auto"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="ClinicType" Binding="{Binding Path=ClinicType}" Width="auto"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="IsActive" Binding="{Binding Path=IsActive}" Width="auto"  IsReadOnly="True"/>
+                        <DataGridTemplateColumn Header="Edit" Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="Select" x:Name="ButtonEdit" CommandParameter="{Binding Path=ClinicId}"

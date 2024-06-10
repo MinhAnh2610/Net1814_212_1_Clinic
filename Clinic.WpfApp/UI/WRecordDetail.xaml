@@ -52,6 +52,16 @@
                         <Label FontWeight="Bold" Content="Reccommend" HorizontalAlignment="Left" VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="4" Margin="5"/>
                         <TextBox Grid.Row="4" Grid.Column="1" x:Name="Reccommend" Height="100" Text="{Binding Path=Reccommend, Mode=TwoWay}" Margin="5"
                                  AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
+
+                        <!-- Diagnosis -->
+                        <Label FontWeight="Bold" Content="Diagnosis" HorizontalAlignment="Left" VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="4" Margin="5"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" x:Name="Diagnosis" Height="100" Text="{Binding Path=Diagnosis, Mode=TwoWay}" Margin="5"
+                                AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
+
+                        <!-- Prescriptions -->
+                        <Label FontWeight="Bold" Content="Prescriptions" HorizontalAlignment="Left" VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="4" Margin="5"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" x:Name="Prescriptions" Height="100" Text="{Binding Path=Prescriptions, Mode=TwoWay}" Margin="5"
+                                AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
                     </Grid>
                 </GroupBox>
                 <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left">
@@ -79,6 +89,8 @@
                         <DataGridTextColumn Header="RecordId" Binding="{Binding Path=RecordId}" Width="auto"  IsReadOnly="True"/>
                         <DataGridTextColumn Header="Evaluation" Binding="{Binding Path=Evaluation}" Width="auto"  IsReadOnly="True"/>
                         <DataGridTextColumn Header="Reccommend" Binding="{Binding Path=Reccommend}" Width="auto"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Diagnosis" Binding="{Binding Path=Diagnosis}" Width="auto"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Prescriptions" Binding="{Binding Path=Prescriptions}" Width="auto"  IsReadOnly="True"/>
                         <DataGridTemplateColumn Header="Edit" Width="50">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

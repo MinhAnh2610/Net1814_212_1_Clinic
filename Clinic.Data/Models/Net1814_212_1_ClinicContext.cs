@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Clinic.Data.Models;
 
@@ -30,12 +31,24 @@ public partial class Net1814_212_1_ClinicContext : DbContext
     public virtual DbSet<RecordDetail> RecordDetails { get; set; }
 
     public virtual DbSet<Service> Services { get; set; }
-    private const string Nhat = "Data Source=SHADOW;Initial Catalog=Net1814_212_1_Clinic;Persist Security Info=True;User ID=jso;Password=0822863716;Encrypt=False";
-    private const string Phuc = "Data Source=PHUC\\PHUC;Initial Catalog=Net1814_212_1_Clinic;User ID=sa;Password=123456789;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
-    private const string Kiet = "Data Source=DESKTOP-UAJ2SJB\\SQLEXPRESS;Initial Catalog=Net1814_212_1_Clinic;User ID=sa;Password=12345;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
+
+    //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+    //        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-3ED3JRS\\SQLEXPRESS;Initial Catalog=Net1814_212_1_Clinic;Persist Security Info=True;User ID=soybean;Password=123456;Encrypt=False");
+
+    public static string GetConnectionString(string connectionStringName)
+    {
+        var config = new ConfigurationBuilder()
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            .AddJsonFile("appsettings.json")
+            .Build();
+
+        string connectionString = config.GetConnectionString(connectionStringName);
+        return connectionString;
+    }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer(Kiet);
+        => optionsBuilder.UseSqlServer(GetConnectionString("DefaultConnection"));
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -95,16 +108,19 @@ public partial class Net1814_212_1_ClinicContext : DbContext
                 .ValueGeneratedNever()
                 .HasColumnName("ClinicID");
             entity.Property(e => e.Address).IsRequired();
+            entity.Property(e => e.ClinicType).HasMaxLength(50);
             entity.Property(e => e.Contact)
                 .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);
+            entity.Property(e => e.Email).HasMaxLength(50);
             entity.Property(e => e.Name)
                 .IsRequired()
                 .HasMaxLength(50);
             entity.Property(e => e.OwnerName)
                 .IsRequired()
                 .HasMaxLength(50);
+            entity.Property(e => e.Website).HasMaxLength(50);
         });
 
         modelBuilder.Entity<Customer>(entity =>
@@ -151,9 +167,11 @@ public partial class Net1814_212_1_ClinicContext : DbContext
                 .ValueGeneratedNever()
                 .HasColumnName("RecordDetailID");
             entity.Property(e => e.AppointmentDetailId).HasColumnName("AppointmentDetailID");
+            entity.Property(e => e.Diagnosis).HasColumnType("text");
             entity.Property(e => e.Evaluation)
                 .IsRequired()
                 .HasColumnType("text");
+            entity.Property(e => e.Prescriptions).HasColumnType("text");
             entity.Property(e => e.Reccommend)
                 .IsRequired()
                 .HasColumnType("text");

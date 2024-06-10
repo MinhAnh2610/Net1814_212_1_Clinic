@@ -17,6 +17,14 @@ public partial class Clinic
 
     public string Contact { get; set; }
 
+    public string Email { get; set; }
+
+    public string Website { get; set; }
+
+    public string ClinicType { get; set; }
+
+    public bool? IsActive { get; set; }
+
     public virtual ICollection<Record> Records { get; set; } = new List<Record>();
 
     public virtual ICollection<Service> Services { get; set; } = new List<Service>();
