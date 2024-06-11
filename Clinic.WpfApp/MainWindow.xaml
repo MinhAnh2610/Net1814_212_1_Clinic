@@ -397,8 +397,7 @@
 
             <Grid
                 Grid.Row="1"
-                Grid.Column="1"
-                Margin="0,10,0,0">
+                Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition
                         Width="Auto" />
@@ -432,7 +431,7 @@
                 <!--Clinic-->
                 <StackPanel
                     Orientation="Vertical"
-                    Margin="50,0,0,0"
+                    Margin="50,10,0,0"
                     Grid.Column="0">
                     <Button
                         Padding="15,7,15,7"
@@ -475,7 +474,7 @@
                 <!--Service-->
                 <StackPanel
                     Orientation="Vertical"
-                    Margin="20,0,0,0"
+                    Margin="20,10,0,0"
                     Grid.Column="1">
                     <Button
                         Padding="15,7,15,7"
@@ -518,7 +517,7 @@
                 <!--Record-->
                 <StackPanel
                     Orientation="Vertical"
-                    Margin="20,0,0,0"
+                    Margin="20,10,0,0"
                     Grid.Column="2">
                     <Button
                         Padding="15,7,15,7"
@@ -561,7 +560,7 @@
                 <!--Customer-->
                 <StackPanel
                     Orientation="Vertical"
-                    Margin="20,0,0,0"
+                    Margin="20,10,0,0"
                     Grid.Column="3">
                     <Button
                         Padding="15,7,15,7"
@@ -604,7 +603,7 @@
                 <!--Appointment-->
                 <StackPanel
                     Orientation="Vertical"
-                    Margin="20,0,0,0"
+                    Margin="20,10,0,0"
                     Grid.Column="4">
                     <Button
                         Padding="15,7,15,7"
@@ -648,7 +647,7 @@
                 <StackPanel
                     Orientation="Vertical"
                     HorizontalAlignment="Left"
-                    Margin="20,0,0,0"
+                    Margin="20,10,0,0"
                     Grid.Column="5">
                     <Button
                         Padding="15,7,15,7"
@@ -692,7 +691,7 @@
                 <StackPanel
                     Orientation="Vertical"
                     HorizontalAlignment="Left"
-                    Margin="20,0,0,0"
+                    Margin="20,10,0,0"
                     Grid.Column="6">
                     <Button
                         Padding="15,7,15,7"
