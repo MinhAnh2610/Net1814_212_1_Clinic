@@ -10,15 +10,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Image\account.png" />
     <None Remove="Image\choose-alt.png" />
     <None Remove="Image\donate.png" />
     <None Remove="Image\down-1.png" />
+    <None Remove="Image\down-arrow.png" />
+    <None Remove="Image\file-circle-info.png" />
     <None Remove="Image\goal-net.png" />
+    <None Remove="Image\home.png" />
     <None Remove="Image\hospitals.png" />
     <None Remove="Image\icon-1.png" />
+    <None Remove="Image\menu-dots.png" />
     <None Remove="Image\mobile.png" />
     <None Remove="Image\rectangle-list.png" />
     <None Remove="Image\room-service.png" />
+    <None Remove="Image\search.png" />
+    <None Remove="Image\settings.png" />
     <None Remove="Image\trash.png" />
     <None Remove="Image\user-headset.png" />
     <None Remove="Image\user-md.png" />
@@ -29,7 +36,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Image\account.png" />
     <Resource Include="Image\donate.png" />
+    <Resource Include="Image\down-arrow.png" />
+    <Resource Include="Image\file-circle-info.png" />
+    <Resource Include="Image\home.png" />
+    <Resource Include="Image\menu-dots.png" />
     <Resource Include="Image\mobile.png" />
   </ItemGroup>
 
@@ -51,6 +63,8 @@
     <Resource Include="Image\icon-1.png" />
     <Resource Include="Image\rectangle-list.png" />
     <Resource Include="Image\room-service.png" />
+    <Resource Include="Image\search.png" />
+    <Resource Include="Image\settings.png" />
     <Resource Include="Image\trash.png" />
     <Resource Include="Image\user-headset.png" />
     <Resource Include="Image\user-md.png" />
