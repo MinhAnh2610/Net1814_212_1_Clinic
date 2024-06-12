@@ -61,6 +61,7 @@ namespace Clinic.WpfApp.UI
             try
             {
                 var existingClinic = await _clinicBusiness.GetById(Int32.Parse(ClinicId.Text));
+                var active = ((bool)YesButton.IsChecked) ? true : false;
                 if (existingClinic.Data != null)
                 {
                     var clinicModel = existingClinic.Data as Data.Models.Clinic;
@@ -74,13 +75,17 @@ namespace Clinic.WpfApp.UI
                         Email = Email.Text,
                         Website = Website.Text,
                         ClinicType = ClinicType.Text,
-                        IsActive = Boolean.Parse(IsActive.Text)
+                        IsActive = active
                     };
 
                     clinicModel.OwnerName = clinicUpdate.OwnerName;
                     clinicModel.Name = clinicUpdate.Name;
                     clinicModel.Address = clinicUpdate.Address;
                     clinicModel.Contact = clinicUpdate.Contact;
+                    clinicModel.Email = clinicUpdate.Email;
+                    clinicModel.Website = clinicUpdate.Website;
+                    clinicModel.ClinicType = clinicUpdate.ClinicType;
+                    clinicModel.IsActive = clinicUpdate.IsActive;
 
                     var result = await _clinicBusiness.Update(clinicModel);
                     MessageBox.Show(result.Message, "Update");
@@ -93,7 +98,8 @@ namespace Clinic.WpfApp.UI
                     Email.Text = string.Empty;
                     Website.Text = string.Empty;
                     ClinicType.Text = string.Empty;
-                    IsActive.Text = string.Empty;
+                    YesButton.IsChecked = false;
+                    NoButton.IsChecked = false;
 
                     LoadClinics();
                 }
@@ -108,7 +114,7 @@ namespace Clinic.WpfApp.UI
                         Email = Email.Text,
                         Website = Website.Text,
                         ClinicType = ClinicType.Text,
-                        IsActive = Boolean.Parse(IsActive.Text)
+                        IsActive = active
                     };
                     var result = await _clinicBusiness.Save(clinic);
                     MessageBox.Show(result.Message, "Save");
@@ -121,7 +127,8 @@ namespace Clinic.WpfApp.UI
                     Email.Text = string.Empty;
                     Website.Text = string.Empty;
                     ClinicType.Text = string.Empty;
-                    IsActive.Text = string.Empty;
+                    YesButton.IsChecked = false;
+                    NoButton.IsChecked = false;
 
                     LoadClinics();
                 }
@@ -142,7 +149,8 @@ namespace Clinic.WpfApp.UI
             Email.Text = string.Empty;
             Website.Text = string.Empty;
             ClinicType.Text = string.Empty;
-            IsActive.Text = string.Empty;
+            YesButton.IsChecked = false;
+            NoButton.IsChecked = false;
         }
 
         private void ButtonGetData_Click(object sender, RoutedEventArgs e)
@@ -216,7 +224,14 @@ namespace Clinic.WpfApp.UI
                             Email.Text = item.Email;
                             Website.Text = item.Website;
                             ClinicType.Text = item.ClinicType;
-                            IsActive.Text = item.IsActive.ToString();
+                            if ((bool)item.IsActive)
+                            {
+                                YesButton.IsChecked = true;
+                            }
+                            else
+                            {
+                                NoButton.IsChecked = true;
+                            }
                         }
                     }
                 }

@@ -70,7 +70,10 @@
 
                         <!-- IsActive -->
                         <Label FontWeight="Bold" Content="IsActive" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="8" Margin="5"/>
-                        <TextBox Grid.Row="8" Grid.Column="1" x:Name="IsActive" Height="25" Text="{Binding Path=IsActive, Mode=TwoWay}" Margin="5"/>
+                        <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.Column="1" Margin="5">
+                            <RadioButton Content="Yes" IsChecked="{Binding Path=IsActive, Mode=TwoWay}" Margin="5" Name="YesButton"></RadioButton>
+                            <RadioButton Content="No" IsChecked="{Binding Path=IsActive, Mode=TwoWay}" Margin="5" Name="NoButton"></RadioButton>
+                        </StackPanel>
                     </Grid>
                 </GroupBox>
                 <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left">

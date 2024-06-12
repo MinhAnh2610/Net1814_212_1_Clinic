@@ -657,7 +657,7 @@
                         BorderThickness="1"
                         BorderBrush="#CDCDCD"
                         FontSize="14"
-                        Click="Open_WRecord_Click"
+                        Click="Open_wRecordDetail_Click"
                         Cursor="Hand">
                         <StackPanel
                             Orientation="Horizontal">
