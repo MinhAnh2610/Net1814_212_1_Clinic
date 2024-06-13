@@ -2,6 +2,7 @@
 using Clinic.Business.Clinic;
 using Clinic.Data.Models;
 using Clinic.WpfApp.UI.DetailWindow;
+using Clinic.WpfApp.UI.SearchWindow;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -190,8 +191,9 @@ namespace Clinic.WpfApp.UI
         }
 
         private void ButtonSearch_Click(object sender, RoutedEventArgs e)
-        { 
-            
+        {
+            var p = new WClinicSearch();
+            p.Show();
         }
 
         private async void Clinic_MouseDouble_Click(object sender, RoutedEventArgs e)

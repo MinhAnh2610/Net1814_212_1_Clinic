@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Clinic.WpfApp.UI"
         mc:Ignorable="d"
-        Title="WClinic" Height="1080" Width="1920"
+        Title="WClinic"
+        WindowState="Maximized"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -90,8 +91,8 @@
                     <Button x:Name="ButtonSave" Content="Save" Height="30" Width="80"
                         Command="{Binding SaveCommand}" Margin="10,0,0,0" Click="ButtonSave_Click"
                             Background="Green" Foreground="AliceBlue"/>
-                    <Button x:Name="ButtonSearch" Content="Cancel" Height="30" Width="80" 
-                        Command="{Binding ResetCommand}" Margin="5,0,0,0" Click="ButtonSearch_Click"
+                    <Button x:Name="ButtonSearch" Content="Search" Height="30" Width="80" 
+                        Command="{Binding SearchCommand}" Margin="5,0,0,0" Click="ButtonSearch_Click"
                             Background="Aquamarine" Foreground="Black"/>
                     <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" 
                         Command="{Binding ResetCommand}" Margin="5,0,0,0" Click="ButtonCancel_Click"
@@ -102,8 +103,8 @@
 
         <materialDesign:Card Padding="20" Margin="10">
             <StackPanel>
-                <!-- Search -->
-                <GroupBox Header="Search" FontWeight="Bold" Margin="10">
+                <!-- Clinic List -->
+                <GroupBox Header="Clinic List" FontWeight="Bold" Margin="10">
                     <DataGrid x:Name="clinicList" AutoGenerateColumns="False" ItemsSource="{Binding Clinics}"
                       HorizontalAlignment="Stretch" CanUserAddRows="False" Margin="10"
                       materialDesign:DataGridAssist.ColumnHeaderPadding="8,4,8,4"

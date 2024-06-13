@@ -2,6 +2,7 @@
 using Clinic.Business.Clinic;
 using Clinic.Data.Models;
 using Clinic.WpfApp.UI.DetailWindow;
+using Clinic.WpfApp.UI.SearchWindow;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -220,7 +221,8 @@ namespace Clinic.WpfApp.UI
         }
         private void ButtonSearch_Click(object sender, RoutedEventArgs e)
         {
-
+            var p = new WRecordDetailSearch();
+            p.Show();
         }
         private async void RecordDetail_MouseDouble_Click(object sender, RoutedEventArgs e)
         {
