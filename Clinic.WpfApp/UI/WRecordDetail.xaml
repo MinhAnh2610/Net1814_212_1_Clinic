@@ -27,6 +27,9 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="150"/>
@@ -47,7 +50,7 @@
 
                         <!-- Evaluation -->
                         <Label FontWeight="Bold" Content="Evaluation" HorizontalAlignment="Left" VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="3" Margin="5"/>
-                        <TextBox Grid.Row="3" Grid.Column="1" x:Name="Evaluation" Height="100" Text="{Binding Path=Evaluation, Mode=TwoWay}" Margin="5"
+                        <TextBox Grid.Row="3" Grid.Column="1" x:Name="Evaluation" Height="50" Text="{Binding Path=Evaluation, Mode=TwoWay}" Margin="5"
                                  AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
 
                         <!-- Reccommend -->
@@ -57,13 +60,28 @@
 
                         <!-- Diagnosis -->
                         <Label FontWeight="Bold" Content="Diagnosis" HorizontalAlignment="Left" VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="5" Margin="5"/>
-                        <TextBox Grid.Row="5" Grid.Column="1" x:Name="Diagnosis" Height="100" Text="{Binding Path=Diagnosis, Mode=TwoWay}" Margin="5"
+                        <TextBox Grid.Row="5" Grid.Column="1" x:Name="Diagnosis" Height="50" Text="{Binding Path=Diagnosis, Mode=TwoWay}" Margin="5"
                                 AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
 
                         <!-- Prescriptions -->
                         <Label FontWeight="Bold" Content="Prescriptions" HorizontalAlignment="Left" VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="6" Margin="5"/>
-                        <TextBox Grid.Row="6" Grid.Column="1" x:Name="Prescriptions" Height="100" Text="{Binding Path=Prescriptions, Mode=TwoWay}" Margin="5"
+                        <TextBox Grid.Row="6" Grid.Column="1" x:Name="Prescriptions" Height="50" Text="{Binding Path=Prescriptions, Mode=TwoWay}" Margin="5"
                                 AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
+
+                        <!-- Symptoms -->
+                        <Label FontWeight="Bold" Content="Symptoms" HorizontalAlignment="Left" VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="7" Margin="5"/>
+                        <TextBox Grid.Row="7" Grid.Column="1" x:Name="Symptoms" Height="50" Text="{Binding Path=Symptoms, Mode=TwoWay}" Margin="5"
+                            AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
+
+                        <!-- TreatmentPlan -->
+                        <Label FontWeight="Bold" Content="TreatmentPlan" HorizontalAlignment="Left" VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="8" Margin="5"/>
+                        <TextBox Grid.Row="8" Grid.Column="1" x:Name="TreatmentPlan" Height="50" Text="{Binding Path=TreatmentPlan, Mode=TwoWay}" Margin="5"
+                            AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
+
+                        <!-- Notes -->
+                        <Label FontWeight="Bold" Content="Notes" HorizontalAlignment="Left" VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="9" Margin="5"/>
+                        <TextBox Grid.Row="9" Grid.Column="1" x:Name="Notes" Height="50" Text="{Binding Path=Notes, Mode=TwoWay}" Margin="5"
+                            AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
                     </Grid>
                 </GroupBox>
                 <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left">
@@ -79,6 +97,10 @@
 
         <materialDesign:Card Padding="20" Margin="10">
             <StackPanel>
+                <!-- Search -->
+                <GroupBox Header="Search by Record Detail's record ID" FontWeight="Bold" Margin="10">
+                    <TextBox x:Name="Search" Height="25" Width="300" Text="{Binding Path=Search, Mode=TwoWay}" HorizontalAlignment="Left" Margin="10"/>
+                </GroupBox>
                 <DataGrid x:Name="recordList" AutoGenerateColumns="False" ItemsSource="{Binding RecordDetails}"
               HorizontalAlignment="Stretch" CanUserAddRows="False" Margin="10"
                 materialDesign:DataGridAssist.ColumnHeaderPadding="8,4,8,4"
@@ -93,6 +115,9 @@
                         <DataGridTextColumn Header="Reccommend" Binding="{Binding Path=Reccommend}" Width="auto"  IsReadOnly="True"/>
                         <DataGridTextColumn Header="Diagnosis" Binding="{Binding Path=Diagnosis}" Width="auto"  IsReadOnly="True"/>
                         <DataGridTextColumn Header="Prescriptions" Binding="{Binding Path=Prescriptions}" Width="auto"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Symptoms" Binding="{Binding Path=Symptoms}" Width="auto"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="TreatmentPlan" Binding="{Binding Path=TreatmentPlan}" Width="auto"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Notes" Binding="{Binding Path=Notes}" Width="auto"  IsReadOnly="True"/>
                         <DataGridTemplateColumn Header="Edit" Width="50">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

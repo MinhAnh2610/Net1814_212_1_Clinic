@@ -81,28 +81,24 @@ namespace Clinic.WpfApp.UI
                         Evaluation = Evaluation.Text,
                         Reccommend = Reccommend.Text,
                         Diagnosis = Diagnosis.Text,
-                        Prescriptions = Prescriptions.Text
+                        Prescriptions = Prescriptions.Text,
+                        Symptoms = Symptoms.Text,
+                        TreatmentPlan = TreatmentPlan.Text,
+                        Notes = Notes.Text,
                     };
 
                     recordDetailModel.Evaluation = recordDetailUpdate.Evaluation;
                     recordDetailModel.Reccommend = recordDetailUpdate.Reccommend;
                     recordDetailModel.Diagnosis = recordDetailUpdate.Diagnosis;
                     recordDetailModel.Prescriptions = recordDetailUpdate.Prescriptions;
+                    recordDetailModel.Symptoms = recordDetailUpdate.Symptoms;
+                    recordDetailModel.TreatmentPlan = recordDetailUpdate.TreatmentPlan;
+                    recordDetailModel.Notes = recordDetailUpdate.Notes;
 
                     var result = await _recordDetailBusiness.Update(recordDetailModel);
                     MessageBox.Show(result.Message, "Update");
 
-                    RecordDetailId.Text = string.Empty;
-                    AppointmentDetailId.Text = string.Empty;
-                    RecordId.Text = string.Empty;
-                    Evaluation.Text = string.Empty;
-                    Reccommend.Text = string.Empty;
-                    Diagnosis.Text = string.Empty;
-                    Prescriptions.Text = string.Empty;
-
-                    RecordDetailId.IsEnabled = true;
-                    AppointmentDetailId.IsEnabled = true;
-                    RecordId.IsEnabled = true;
+                    ButtonCancel_Click(sender, e);
 
                     LoadRecordDetails();
                 }
@@ -116,7 +112,10 @@ namespace Clinic.WpfApp.UI
                         Evaluation = Evaluation.Text,
                         Reccommend = Reccommend.Text,
                         Diagnosis = Diagnosis.Text,
-                        Prescriptions = Prescriptions.Text
+                        Prescriptions = Prescriptions.Text,
+                        Symptoms = Symptoms.Text,
+                        TreatmentPlan = TreatmentPlan.Text,
+                        Notes = Notes.Text,
                     };
                     var existingRecordDetails = await _recordDetailBusiness.GetAll();
                     if (existingRecordDetails.Data != null)
@@ -145,13 +144,7 @@ namespace Clinic.WpfApp.UI
                     var result = await _recordDetailBusiness.Save(recordDetail);
                     MessageBox.Show(result.Message, "Save");
 
-                    RecordDetailId.Text = string.Empty;
-                    AppointmentDetailId.Text = string.Empty;
-                    RecordId.Text = string.Empty;
-                    Evaluation.Text = string.Empty;
-                    Reccommend.Text = string.Empty;
-                    Diagnosis.Text = string.Empty;
-                    Prescriptions.Text = string.Empty;
+                    ButtonCancel_Click(sender, e);
 
                     LoadRecordDetails();
                 }
@@ -171,6 +164,9 @@ namespace Clinic.WpfApp.UI
             Reccommend.Text = string.Empty;
             Diagnosis.Text = string.Empty;
             Prescriptions.Text = string.Empty;
+            Symptoms.Text = string.Empty;
+            TreatmentPlan.Text = string.Empty;
+            Notes.Text = string.Empty;
 
             RecordDetailId.IsEnabled = true;
             AppointmentDetailId.IsEnabled = true;
@@ -246,6 +242,9 @@ namespace Clinic.WpfApp.UI
                             Reccommend.Text = item.Reccommend;
                             Diagnosis.Text = item.Diagnosis;
                             Prescriptions.Text = item.Prescriptions;
+                            Symptoms.Text = item.Symptoms;
+                            TreatmentPlan.Text = item.TreatmentPlan;
+                            Notes.Text = item.Notes;
 
                             RecordDetailId.IsEnabled = false;
                             AppointmentDetailId.IsEnabled = false;

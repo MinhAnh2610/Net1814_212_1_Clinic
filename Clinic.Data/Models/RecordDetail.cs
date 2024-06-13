@@ -21,6 +21,12 @@ public partial class RecordDetail
 
     public string Prescriptions { get; set; }
 
+    public string Symptoms { get; set; }
+
+    public string TreatmentPlan { get; set; }
+
+    public string Notes { get; set; }
+
     public virtual AppointmentDetail AppointmentDetail { get; set; }
 
     public virtual Record Record { get; set; }
