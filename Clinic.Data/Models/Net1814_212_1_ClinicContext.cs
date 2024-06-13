@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Clinic.Data.Models;
 
@@ -125,6 +126,7 @@ public partial class Net1814_212_1_ClinicContext : DbContext
             entity.Property(e => e.OwnerName)
                 .IsRequired()
                 .HasMaxLength(50);
+            entity.Property(e => e.Website).HasMaxLength(50);
         });
 
         modelBuilder.Entity<Customer>(entity =>
