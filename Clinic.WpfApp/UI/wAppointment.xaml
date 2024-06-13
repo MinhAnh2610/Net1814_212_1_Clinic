@@ -9,12 +9,15 @@
         mc:Ignorable="d"
         Title="wAppointment" Height="640" Width="1024" 
         Loaded="List_Loaded">
+    <Window.Background>
+        <SolidColorBrush Color="#d4f5fa"/>
+    </Window.Background>
     <Grid>
         <StackPanel Orientation="Vertical">
-            <GroupBox Header="Appointment Form" Margin="10" Height="161">
-                
-                <Grid Height="125">
-                    
+            <GroupBox Header="Appointment Form" Margin="10" Height="212">
+
+                <Grid Height="171">
+
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
@@ -91,6 +94,27 @@
                             </Style>
                         </TextBox.Style>
                     </TextBox>
+                    <Label Content="Patient Condition" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="3" Grid.Row="4"/>
+                    <ComboBox Grid.Row="4" Grid.Column="4" x:Name="PatientCondition" Height="25" Text=""  Margin="5"  Width="150" HorizontalAlignment="Left">
+                        <ComboBox.Style>
+                            <Style TargetType="ComboBox">
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="">
+                                        <Setter Property="Background" Value="LightPink"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ComboBox.Style>
+                        <ComboBoxItem>
+                            <TextBlock Background="LightGreen">Good</TextBlock>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Background="LightYellow">Fair</TextBlock>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <TextBlock Background="LightCoral">Critical</TextBlock>
+                        </ComboBoxItem>
+                    </ComboBox>
                     <Label Content="Payment Status" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="3" Grid.Row="1"/>
                     <CheckBox Grid.Row="1" Grid.Column="4" x:Name="PaymentStatus" Height="25" Margin="5"  Width="150" HorizontalAlignment="Left"/>
                     <Label Content="Dentist Name" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="3" Grid.Row="0"/>
@@ -105,7 +129,21 @@
                             </Style>
                         </TextBox.Style>
                     </TextBox>
-                    <Button Grid.Row="3" Grid.Column="3" x:Name="ButtonSave" Height="25" Width="100" Margin="35,5,35,0" Click="ButtonSave_Click">
+                    <Label Content="Insurance" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="3" Grid.Row="3"/>
+                    <CheckBox Grid.Row="3" Grid.Column="4" x:Name="Insurance" Height="25" Margin="5,5,0,0"  Width="150" HorizontalAlignment="Left"/>
+                    <Label Content="Notes" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Row="4"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" x:Name="Notes" Text=""  Margin="0,5,0,0"  Width="170" HorizontalAlignment="Center" Grid.RowSpan="2">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="">
+                                        <Setter Property="Background" Value="LightPink"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                    <Button Grid.Row="5" Grid.Column="3" x:Name="ButtonSave" Height="25" Width="100" Margin="35,0,35,-4" Click="ButtonSave_Click">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Content" Value="Save"/>
@@ -124,10 +162,10 @@
                                             </Grid>
                                             <ControlTemplate.Triggers>
                                                 <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter TargetName="ButtonBorder" Property="Background" Value="Lime"/>
+                                                    <Setter TargetName="ButtonBorder" Property="Background" Value="Green"/>
                                                 </Trigger>
                                                 <Trigger Property="IsPressed" Value="True">
-                                                    <Setter TargetName="ButtonBorder" Property="Background" Value="Green"/>
+                                                    <Setter TargetName="ButtonBorder" Property="Background" Value="Darkgreen"/>
                                                 </Trigger>
                                             </ControlTemplate.Triggers>
                                         </ControlTemplate>
@@ -142,28 +180,71 @@
 
             </StackPanel>
             <StackPanel Height="210">
-                <DataGrid x:Name="w_appointments" AutoGenerateColumns="False" CanUserAddRows="False" Height="200" Margin="10" SelectionChanged="w_appointments_SelectionChanged" CellEditEnding="DatagridUpdate" MouseDoubleClick="grdAppointment_MouseDouble_Click" SelectionMode="Single" SelectionUnit="FullRow">
+                <DataGrid x:Name="w_appointments" AutoGenerateColumns="False" CanUserAddRows="False" Height="200" Margin="10" SelectionChanged="w_appointments_SelectionChanged" CellEditEnding="DatagridUpdate" MouseDoubleClick="grdAppointment_MouseDouble_Click" SelectionMode="Single" SelectionUnit="FullRow" Background="#bff5c8">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Appointment ID" Binding="{Binding Path=AppointmentId}" Visibility="Visible" Width="100" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Customer ID" Binding="{Binding Path=CustomerId}" Width="100"  />
-                        <DataGridTextColumn Header="Date" Binding="{Binding Path=Date}" Width="100" />
-                        <DataGridTextColumn Header="Total" Binding="{Binding Path=Total}" Width="100" />
-                        <DataGridTextColumn Header="Payment Method" Binding="{Binding Path=PaymentMethod}" Width="100" />
-                        <DataGridTextColumn Header="Payment Status" Binding="{Binding Path=PaymentStatus}" Width="100" />
-                        <DataGridTextColumn Header="Dentist Name" Binding="{Binding Path=DentistName}" Width="100" />
-    
+                        <DataGridTextColumn Header="Appointment ID" Binding="{Binding Path=AppointmentId}" Visibility="Visible" Width="100" IsReadOnly="True">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Background" Value="LightGray"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Customer ID" Binding="{Binding Path=CustomerId}" Width="100">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Background" Value="LightGray"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Date" Binding="{Binding Path=Date}" Width="100">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Background" Value="LightGray"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Total" Binding="{Binding Path=Total}" Width="100">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Background" Value="LightGray"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Payment Method" Binding="{Binding Path=PaymentMethod}" Width="100">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Background" Value="LightGray"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Payment Status" Binding="{Binding Path=PaymentStatus}" Width="100">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Background" Value="LightGray"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Dentist Name" Binding="{Binding Path=DentistName}" Width="100">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Background" Value="LightGray"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
                         <DataGridTemplateColumn Width="120">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button x:Name="ButtonDelete" Content="Delete" Width="100" Click="ButtonDelete_Click"/>
+                                    <Button x:Name="ButtonDelete" Content="Delete" Width="100" Click="ButtonDelete_Click" Background="Red" Foreground="White"/>
+
                                     <!--<Button Content="Edit" Click="ButtonEdit_Click"/>-->
                                 </DataTemplate>
-                                
+
                             </DataGridTemplateColumn.CellTemplate>
-                            
+
                         </DataGridTemplateColumn>
-                        
-                        
+
+
                     </DataGrid.Columns>
 
                 </DataGrid>
