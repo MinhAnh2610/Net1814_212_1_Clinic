@@ -1,0 +1,129 @@
+﻿<Window x:Class="Clinic.WpfApp.UI.SearchWindow.WClinicSearch"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Clinic.WpfApp.UI.SearchWindow"
+        mc:Ignorable="d"
+        Title="WClinicSearch"
+        WindowState="Maximized"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">  
+    <StackPanel>
+        <materialDesign:Card Padding="20" Margin="10">
+            <StackPanel>
+                <GroupBox Header="Clinic Form" FontWeight="Bold" Margin="10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="300"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="300"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Clinic ID -->
+                        <Label FontWeight="Bold" Content="Clinic ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="5"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" x:Name="ClinicId" Height="25" Text="{Binding Path=ClinicId, Mode=TwoWay}" Margin="5"/>
+
+                        <!-- Owner Name -->
+                        <Label FontWeight="Bold" Content="Owner Name" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="2" Grid.Row="0" Margin="5"/>
+                        <TextBox Grid.Row="0" Grid.Column="3" x:Name="OwnerName" Height="25" Text="{Binding Path=OwnerName, Mode=TwoWay}" Margin="5"/>
+
+                        <!-- Name -->
+                        <Label FontWeight="Bold" Content="Name" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="4" Grid.Row="0" Margin="5"/>
+                        <TextBox Grid.Row="0" Grid.Column="5" x:Name="Name" Height="25" Text="{Binding Path=Name, Mode=TwoWay}" Margin="5"/>
+
+                        <!-- Address -->
+                        <Label FontWeight="Bold" Content="Address" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="6" Grid.Row="0" Margin="5"/>
+                        <TextBox Grid.Row="0" Grid.Column="7" x:Name="Address" Height="25" Text="{Binding Path=Address, Mode=TwoWay}" Margin="5"
+                         AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
+
+                        <!-- Contact -->
+                        <Label FontWeight="Bold" Content="Contact" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="8" Grid.Row="0" Margin="5"/>
+                        <TextBox Grid.Row="0" Grid.Column="9" x:Name="Contact" Height="25" Text="{Binding Path=Contact, Mode=TwoWay}" Margin="5"/>
+
+                        <!-- Email -->
+                        <Label FontWeight="Bold" Content="Email" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="1" Margin="5"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" x:Name="Email" Height="25" Text="{Binding Path=Email, Mode=TwoWay}" Margin="5"/>
+
+                        <!-- Website -->
+                        <Label FontWeight="Bold" Content="Website" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="2" Grid.Row="1" Margin="5"/>
+                        <TextBox Grid.Row="1" Grid.Column="3" x:Name="Website" Height="25" Text="{Binding Path=Website, Mode=TwoWay}" Margin="5"/>
+
+                        <!-- ClinicType -->
+                        <Label FontWeight="Bold" Content="ClinicType" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="4" Grid.Row="1" Margin="5"/>
+                        <TextBox Grid.Row="1" Grid.Column="5" x:Name="ClinicType" Height="25" Text="{Binding Path=ClinicType, Mode=TwoWay}" Margin="5"/>
+
+                        <!-- IsActive -->
+                        <Label FontWeight="Bold" Content="IsActive" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="2" Margin="5"/>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Margin="5">
+                            <RadioButton Content="Yes" IsChecked="{Binding Path=IsActive, Mode=TwoWay}" Margin="5" Name="YesButton"></RadioButton>
+                            <RadioButton Content="No" IsChecked="{Binding Path=IsActive, Mode=TwoWay}" Margin="5" Name="NoButton"></RadioButton>
+                        </StackPanel>
+
+                        <!-- City -->
+                        <Label FontWeight="Bold" Content="City" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="8" Grid.Row="1" Margin="5"/>
+                        <TextBox Grid.Row="1" Grid.Column="9" x:Name="City" Height="25" Text="{Binding Path=City, Mode=TwoWay}" Margin="5"/>
+
+                        <!-- Country -->
+                        <Label FontWeight="Bold" Content="Country" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="6" Grid.Row="1" Margin="5"/>
+                        <TextBox Grid.Row="1" Grid.Column="7" x:Name="Country" Height="25" Text="{Binding Path=Country, Mode=TwoWay}" Margin="5"/>
+                    </Grid>
+                </GroupBox>
+                <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Button x:Name="ButtonAdd" Content="Add a new item" Height="30" Width="200"
+                Command="{Binding SaveCommand}" Margin="10,0,0,0" Click="ButtonAdd_Click"
+                    Background="Green" Foreground="AliceBlue"/>
+                    <Button x:Name="ButtonSearch" Content="Search" Height="30" Width="80" 
+                Command="{Binding SearchCommand}" Margin="5,0,0,0" Click="ButtonSearch_Click"
+                    Background="Aquamarine" Foreground="Black"/>
+                    <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" 
+                Command="{Binding ResetCommand}" Margin="5,0,0,0" Click="ButtonCancel_Click"
+                    Background="Orange" Foreground="AliceBlue"/>
+                </StackPanel>
+            </StackPanel>
+        </materialDesign:Card>
+        <materialDesign:Card Padding="20" Margin="10">
+            <StackPanel>
+                <!-- Search -->
+                <GroupBox Header="Search" FontWeight="Bold" Margin="10">
+                    <DataGrid x:Name="clinicList" AutoGenerateColumns="False" ItemsSource="{Binding Clinics}"
+                          HorizontalAlignment="Stretch" CanUserAddRows="False" Margin="10"
+                          materialDesign:DataGridAssist.ColumnHeaderPadding="8,4,8,4"
+                          RowDetailsVisibilityMode="VisibleWhenSelected">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ClinicId" Binding="{Binding Path=ClinicId}" Visibility="Visible"/>
+                            <DataGridTextColumn Header="OwnerName" Binding="{Binding Path=OwnerName}" Visibility="Visible"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}" Width="auto"  IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Address" Binding="{Binding Path=Address}" Width="auto"  IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Contact" Binding="{Binding Path=Contact}" Width="auto"  IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Path=Email}" Width="auto"  IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Website" Binding="{Binding Path=Website}" Width="auto"  IsReadOnly="True"/>
+                            <DataGridTextColumn Header="ClinicType" Binding="{Binding Path=ClinicType}" Width="auto"  IsReadOnly="True"/>
+                            <DataGridTextColumn Header="IsActive" Binding="{Binding Path=IsActive}" Width="auto"  IsReadOnly="True"/>
+                            <DataGridTextColumn Header="City" Binding="{Binding Path=City}" Width="auto"  IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Country" Binding="{Binding Path=Country}" Width="auto"  IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
+            </StackPanel>
+        </materialDesign:Card>
+    </StackPanel>
+</Window>
