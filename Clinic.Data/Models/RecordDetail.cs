@@ -17,6 +17,9 @@ public partial class RecordDetail
 
     public string Reccommend { get; set; }
 
+    public string Diagnosis { get; set; }
+
+    public string Prescriptions { get; set; }
     public virtual AppointmentDetail AppointmentDetail { get; set; }
 
     public virtual Record Record { get; set; }
