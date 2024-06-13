@@ -11,21 +11,24 @@
 
   <ItemGroup>
     <None Remove="Image\account.png" />
-    <None Remove="Image\donate.png" />
+    <None Remove="Image\address-book.png" />
+    <None Remove="Image\dental-checkup.png" />
+    <None Remove="Image\dental-floss.png" />
     <None Remove="Image\down-1.png" />
     <None Remove="Image\down-arrow.png" />
     <None Remove="Image\eye.png" />
     <None Remove="Image\file-circle-info.png" />
-    <None Remove="Image\goal-net.png" />
+    <None Remove="Image\flag.png" />
     <None Remove="Image\home.png" />
     <None Remove="Image\hospitals.png" />
     <None Remove="Image\icon-1.png" />
     <None Remove="Image\menu-dots.png" />
-    <None Remove="Image\mobile.png" />
     <None Remove="Image\rectangle-list.png" />
     <None Remove="Image\room-service.png" />
     <None Remove="Image\search.png" />
     <None Remove="Image\settings.png" />
+    <None Remove="Image\sparkle.png" />
+    <None Remove="Image\tooth.png" />
     <None Remove="Image\trash.png" />
     <None Remove="Image\user-headset.png" />
     <None Remove="Image\user-md.png" />
@@ -37,13 +40,15 @@
 
   <ItemGroup>
     <Resource Include="Image\account.png" />
-    <Resource Include="Image\donate.png" />
+    <Resource Include="Image\address-book.png" />
+    <Resource Include="Image\dental-checkup.png" />
+    <Resource Include="Image\dental-floss.png" />
     <Resource Include="Image\down-arrow.png" />
     <Resource Include="Image\eye.png" />
     <Resource Include="Image\file-circle-info.png" />
+    <Resource Include="Image\flag.png" />
     <Resource Include="Image\home.png" />
     <Resource Include="Image\menu-dots.png" />
-    <Resource Include="Image\mobile.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -61,7 +66,6 @@
 
   <ItemGroup>
     <Resource Include="Image\down-1.png" />
-    <Resource Include="Image\goal-net.png" />
     <Resource Include="Image\hospitals.png" />
     <Resource Include="Image\herta.gif" />
     <Resource Include="Image\icon-1.png" />
@@ -69,6 +73,8 @@
     <Resource Include="Image\room-service.png" />
     <Resource Include="Image\search.png" />
     <Resource Include="Image\settings.png" />
+    <Resource Include="Image\sparkle.png" />
+    <Resource Include="Image\tooth.png" />
     <Resource Include="Image\trash.png" />
     <Resource Include="Image\user-headset.png" />
     <Resource Include="Image\user-md.png" />
