@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Clinic.WpfApp.UI.DetailWindow"
         mc:Ignorable="d"
-        Title="WRecordDetailWindow" Height="600" Width="400"
+        Title="WRecordDetailWindow" Height="700" Width="400"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -39,6 +39,15 @@
 
                 <TextBlock Text="Prescriptions:" FontWeight="Bold"/>
                 <Label Content="{Binding Prescriptions}" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Symptoms:" FontWeight="Bold"/>
+                <Label Content="{Binding Symptoms}" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Treatment Plan:" FontWeight="Bold"/>
+                <Label Content="{Binding TreatmentPlan}" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Notes:" FontWeight="Bold"/>
+                <Label Content="{Binding Notes}" Margin="0,0,0,10"/>
             </StackPanel>
         </materialDesign:Card>
     </Grid>

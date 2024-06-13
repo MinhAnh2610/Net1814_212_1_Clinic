@@ -29,6 +29,8 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="150"/>
@@ -74,6 +76,14 @@
                             <RadioButton Content="Yes" IsChecked="{Binding Path=IsActive, Mode=TwoWay}" Margin="5" Name="YesButton"></RadioButton>
                             <RadioButton Content="No" IsChecked="{Binding Path=IsActive, Mode=TwoWay}" Margin="5" Name="NoButton"></RadioButton>
                         </StackPanel>
+
+                        <!-- City -->
+                        <Label FontWeight="Bold" Content="City" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="9" Margin="5"/>
+                        <TextBox Grid.Row="9" Grid.Column="1" x:Name="City" Height="25" Text="{Binding Path=City, Mode=TwoWay}" Margin="5"/>
+
+                        <!-- Country -->
+                        <Label FontWeight="Bold" Content="Country" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="10" Margin="5"/>
+                        <TextBox Grid.Row="10" Grid.Column="1" x:Name="Country" Height="25" Text="{Binding Path=Country, Mode=TwoWay}" Margin="5"/>
                     </Grid>
                 </GroupBox>
                 <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left">
@@ -89,7 +99,11 @@
 
         <materialDesign:Card Padding="20" Margin="10">
         <StackPanel>
-            <DataGrid x:Name="clinicList" AutoGenerateColumns="False" ItemsSource="{Binding Clinics}"
+                <!-- Search -->
+                <GroupBox Header="Search by Clinic's name" FontWeight="Bold" Margin="10">
+                    <TextBox x:Name="Search" Height="25" Width="300" Text="{Binding Path=Search, Mode=TwoWay}" HorizontalAlignment="Left" Margin="10"/>
+                </GroupBox>
+                <DataGrid x:Name="clinicList" AutoGenerateColumns="False" ItemsSource="{Binding Clinics}"
                       HorizontalAlignment="Stretch" CanUserAddRows="False" Margin="10"
                       materialDesign:DataGridAssist.ColumnHeaderPadding="8,4,8,4"
                       RowDetailsVisibilityMode="VisibleWhenSelected"
@@ -104,6 +118,8 @@
                         <DataGridTextColumn Header="Website" Binding="{Binding Path=Website}" Width="auto"  IsReadOnly="True"/>
                         <DataGridTextColumn Header="ClinicType" Binding="{Binding Path=ClinicType}" Width="auto"  IsReadOnly="True"/>
                         <DataGridTextColumn Header="IsActive" Binding="{Binding Path=IsActive}" Width="auto"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="City" Binding="{Binding Path=City}" Width="auto"  IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Country" Binding="{Binding Path=Country}" Width="auto"  IsReadOnly="True"/>
                         <DataGridTemplateColumn Header="Edit" Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

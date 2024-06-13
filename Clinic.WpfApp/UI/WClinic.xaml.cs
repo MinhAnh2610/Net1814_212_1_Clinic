@@ -75,7 +75,9 @@ namespace Clinic.WpfApp.UI
                         Email = Email.Text,
                         Website = Website.Text,
                         ClinicType = ClinicType.Text,
-                        IsActive = active
+                        IsActive = active,
+                        City = City.Text,
+                        Country = Country.Text,
                     };
 
                     clinicModel.OwnerName = clinicUpdate.OwnerName;
@@ -86,20 +88,13 @@ namespace Clinic.WpfApp.UI
                     clinicModel.Website = clinicUpdate.Website;
                     clinicModel.ClinicType = clinicUpdate.ClinicType;
                     clinicModel.IsActive = clinicUpdate.IsActive;
+                    clinicModel.City = clinicUpdate.City;
+                    clinicModel.Country = clinicUpdate.Country;
 
                     var result = await _clinicBusiness.Update(clinicModel);
                     MessageBox.Show(result.Message, "Update");
 
-                    ClinicId.Text = string.Empty;
-                    OwnerName.Text = string.Empty;
-                    Name.Text = string.Empty;
-                    Address.Text = string.Empty;
-                    Contact.Text = string.Empty;
-                    Email.Text = string.Empty;
-                    Website.Text = string.Empty;
-                    ClinicType.Text = string.Empty;
-                    YesButton.IsChecked = false;
-                    NoButton.IsChecked = false;
+                    ButtonCancel_Click(sender, e);
 
                     LoadClinics();
                 }
@@ -114,21 +109,14 @@ namespace Clinic.WpfApp.UI
                         Email = Email.Text,
                         Website = Website.Text,
                         ClinicType = ClinicType.Text,
-                        IsActive = active
+                        IsActive = active,
+                        City = City.Text,
+                        Country = Country.Text,
                     };
                     var result = await _clinicBusiness.Save(clinic);
                     MessageBox.Show(result.Message, "Save");
 
-                    ClinicId.Text = string.Empty;
-                    OwnerName.Text = string.Empty;
-                    Name.Text = string.Empty;
-                    Address.Text = string.Empty;
-                    Contact.Text = string.Empty;
-                    Email.Text = string.Empty;
-                    Website.Text = string.Empty;
-                    ClinicType.Text = string.Empty;
-                    YesButton.IsChecked = false;
-                    NoButton.IsChecked = false;
+                    ButtonCancel_Click(sender, e);
 
                     LoadClinics();
                 }
@@ -151,6 +139,8 @@ namespace Clinic.WpfApp.UI
             ClinicType.Text = string.Empty;
             YesButton.IsChecked = false;
             NoButton.IsChecked = false;
+            City.Text = string.Empty;
+            Country.Text = string.Empty;
         }
 
         private void ButtonGetData_Click(object sender, RoutedEventArgs e)
@@ -232,6 +222,8 @@ namespace Clinic.WpfApp.UI
                             {
                                 NoButton.IsChecked = true;
                             }
+                            City.Text = item.City;
+                            Country.Text = item.Country;
                         }
                     }
                 }

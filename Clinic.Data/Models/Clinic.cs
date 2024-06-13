@@ -25,6 +25,10 @@ public partial class Clinic
 
     public bool? IsActive { get; set; }
 
+    public string City { get; set; }
+
+    public string Country { get; set; }
+
     public virtual ICollection<Record> Records { get; set; } = new List<Record>();
 
     public virtual ICollection<Service> Services { get; set; } = new List<Service>();

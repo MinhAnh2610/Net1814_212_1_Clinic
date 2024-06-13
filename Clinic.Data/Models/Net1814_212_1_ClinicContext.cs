@@ -49,7 +49,6 @@ public partial class Net1814_212_1_ClinicContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer(GetConnectionString("DefaultConnection"));
 
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Appointment>(entity =>
@@ -108,11 +107,13 @@ public partial class Net1814_212_1_ClinicContext : DbContext
                 .ValueGeneratedNever()
                 .HasColumnName("ClinicID");
             entity.Property(e => e.Address).IsRequired();
+            entity.Property(e => e.City).HasMaxLength(50);
             entity.Property(e => e.ClinicType).HasMaxLength(50);
             entity.Property(e => e.Contact)
                 .IsRequired()
                 .HasMaxLength(50)
                 .IsUnicode(false);
+            entity.Property(e => e.Country).HasMaxLength(50);
             entity.Property(e => e.Email).HasMaxLength(50);
             entity.Property(e => e.Name)
                 .IsRequired()
@@ -171,11 +172,14 @@ public partial class Net1814_212_1_ClinicContext : DbContext
             entity.Property(e => e.Evaluation)
                 .IsRequired()
                 .HasColumnType("text");
+            entity.Property(e => e.Notes).HasColumnType("text");
             entity.Property(e => e.Prescriptions).HasColumnType("text");
             entity.Property(e => e.Reccommend)
                 .IsRequired()
                 .HasColumnType("text");
             entity.Property(e => e.RecordId).HasColumnName("RecordID");
+            entity.Property(e => e.Symptoms).HasColumnType("text");
+            entity.Property(e => e.TreatmentPlan).HasColumnType("text");
 
             entity.HasOne(d => d.AppointmentDetail).WithMany(p => p.RecordDetails)
                 .HasForeignKey(d => d.AppointmentDetailId)
