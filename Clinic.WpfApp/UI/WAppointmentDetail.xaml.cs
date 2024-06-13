@@ -47,7 +47,7 @@ namespace Clinic.WpfApp.UI
                     AppointmentDetailId = Int32.Parse(AppointmentDetailId.Text),
                     AppointmentId = Int32.Parse(AppointmentId.Text),
                     ServiceId = Int32.Parse(ServiceId.Text),
-                    IsPeriodic = Boolean.Parse(isPeriodic.Text),
+                    IsPeriodic = Boolean.Parse(IsPeriodic.Text),
                     Day = Int32.Parse(Day.Text),
                     Month = Int32.Parse(Month.Text),
                     Year = Int32.Parse(Year.Text),
@@ -79,7 +79,7 @@ namespace Clinic.WpfApp.UI
                 AppointmentDetailId.Text = string.Empty;
                 AppointmentId.Text = string.Empty;
                 ServiceId.Text = string.Empty;
-                isPeriodic.Text = string.Empty;
+                IsPeriodic.Text = string.Empty;
                 Day.Text = string.Empty;
                 Month.Text = string.Empty;
                 Year.Text = string.Empty;
@@ -134,7 +134,7 @@ namespace Clinic.WpfApp.UI
             AppointmentDetailId.Text = string.Empty;
             AppointmentId.Text = string.Empty;
             ServiceId.Text = string.Empty;
-            isPeriodic.Text = string.Empty;
+            IsPeriodic.Text = string.Empty;
             Day.Text = string.Empty;
             Month.Text = string.Empty;
             Year.Text = string.Empty;
@@ -157,7 +157,7 @@ namespace Clinic.WpfApp.UI
                         AppointmentDetailId.Text = appointmentDetail.AppointmentDetailId.ToString();
                         AppointmentId.Text = appointmentDetail.AppointmentId.ToString();
                         ServiceId.Text = appointmentDetail.ServiceId.ToString();
-                        isPeriodic.Text = appointmentDetail.IsPeriodic.ToString();
+                        IsPeriodic.Text = appointmentDetail.IsPeriodic.ToString();
                         Day.Text = appointmentDetail.Day.ToString();
                         Month.Text = appointmentDetail.Month.ToString();
                         Year.Text = appointmentDetail.Year.ToString();
@@ -193,7 +193,7 @@ namespace Clinic.WpfApp.UI
                     AppointmentDetailId = Int32.Parse(AppointmentDetailId.Text),
                     AppointmentId = Int32.Parse(AppointmentId.Text),
                     ServiceId = Int32.Parse(ServiceId.Text),
-                    IsPeriodic = Boolean.Parse(isPeriodic.Text),
+                    IsPeriodic = Boolean.Parse(IsPeriodic.Text),
                     Day = Int32.Parse(Day.Text),
                     Month = Int32.Parse(Month.Text),
                     Year = Int32.Parse(Year.Text),
@@ -235,7 +235,7 @@ namespace Clinic.WpfApp.UI
                 AppointmentDetailId.Text = string.Empty;
                 AppointmentId.Text = string.Empty;
                 ServiceId.Text = string.Empty;
-                isPeriodic.Text = string.Empty;
+                IsPeriodic.Text = string.Empty;
                 Day.Text = string.Empty;
                 Month.Text = string.Empty;
                 Year.Text = string.Empty;
@@ -276,7 +276,7 @@ namespace Clinic.WpfApp.UI
                 tbPlaceholder3.Visibility = Visibility.Hidden;
             }
 
-            if (string.IsNullOrEmpty(isPeriodic.Text))
+            if (string.IsNullOrEmpty(IsPeriodic.Text))
             {
                 tbPlaceholder4.Visibility = Visibility.Visible;
             }

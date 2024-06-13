@@ -11,10 +11,10 @@
 
   <ItemGroup>
     <None Remove="Image\account.png" />
-    <None Remove="Image\choose-alt.png" />
     <None Remove="Image\donate.png" />
     <None Remove="Image\down-1.png" />
     <None Remove="Image\down-arrow.png" />
+    <None Remove="Image\eye.png" />
     <None Remove="Image\file-circle-info.png" />
     <None Remove="Image\goal-net.png" />
     <None Remove="Image\home.png" />
@@ -39,6 +39,7 @@
     <Resource Include="Image\account.png" />
     <Resource Include="Image\donate.png" />
     <Resource Include="Image\down-arrow.png" />
+    <Resource Include="Image\eye.png" />
     <Resource Include="Image\file-circle-info.png" />
     <Resource Include="Image\home.png" />
     <Resource Include="Image\menu-dots.png" />
@@ -47,6 +48,10 @@
 
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="XamlAnimatedGif" Version="2.3.0" />
   </ItemGroup>
 
@@ -55,7 +60,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Image\choose-alt.png" />
     <Resource Include="Image\down-1.png" />
     <Resource Include="Image\goal-net.png" />
     <Resource Include="Image\hospitals.png" />
