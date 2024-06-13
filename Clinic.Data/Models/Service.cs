@@ -17,6 +17,16 @@ public partial class Service
 
     public string Description { get; set; }
 
+    public string Warranty { get; set; }
+
+    public string Duration { get; set; }
+
+    public string Type { get; set; }
+
+    public bool? IsInsuranceAccepted { get; set; }
+
+    public bool? Active { get; set; }
+
     public virtual ICollection<AppointmentDetail> AppointmentDetails { get; set; } = new List<AppointmentDetail>();
 
     public virtual Clinic Clinic { get; set; }

@@ -21,7 +21,7 @@ public partial class AppointmentDetail
 
     public int? Year { get; set; }
 
-    public virtual Appointment AppointmentDetailNavigation { get; set; }
+    public virtual Appointment Appointment { get; set; }
 
     public virtual ICollection<RecordDetail> RecordDetails { get; set; } = new List<RecordDetail>();
 

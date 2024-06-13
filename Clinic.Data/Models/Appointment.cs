@@ -23,11 +23,11 @@ public partial class Appointment
 
     public string Notes { get; set; }
 
+    public bool? Insurance { get; set; }
+
     public string PatientCondition { get; set; }
 
-    public bool Insurance { get; set; }
-
-    public virtual AppointmentDetail AppointmentDetail { get; set; }
+    public virtual ICollection<AppointmentDetail> AppointmentDetails { get; set; } = new List<AppointmentDetail>();
 
     public virtual Customer Customer { get; set; }
 }

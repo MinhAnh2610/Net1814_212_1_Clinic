@@ -90,6 +90,9 @@
                     <Button x:Name="ButtonSave" Content="Save" Height="30" Width="80"
                         Command="{Binding SaveCommand}" Margin="10,0,0,0" Click="ButtonSave_Click"
                             Background="Green" Foreground="AliceBlue"/>
+                    <Button x:Name="ButtonSearch" Content="Cancel" Height="30" Width="80" 
+                        Command="{Binding ResetCommand}" Margin="5,0,0,0" Click="ButtonSearch_Click"
+                            Background="Aquamarine" Foreground="Black"/>
                     <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" 
                         Command="{Binding ResetCommand}" Margin="5,0,0,0" Click="ButtonCancel_Click"
                             Background="Orange" Foreground="AliceBlue"/>
@@ -98,51 +101,50 @@
         </materialDesign:Card>
 
         <materialDesign:Card Padding="20" Margin="10">
-        <StackPanel>
+            <StackPanel>
                 <!-- Search -->
-                <GroupBox Header="Search by Clinic's name" FontWeight="Bold" Margin="10">
-                    <TextBox x:Name="Search" Height="25" Width="300" Text="{Binding Path=Search, Mode=TwoWay}" HorizontalAlignment="Left" Margin="10"/>
-                </GroupBox>
-                <DataGrid x:Name="clinicList" AutoGenerateColumns="False" ItemsSource="{Binding Clinics}"
+                <GroupBox Header="Search" FontWeight="Bold" Margin="10">
+                    <DataGrid x:Name="clinicList" AutoGenerateColumns="False" ItemsSource="{Binding Clinics}"
                       HorizontalAlignment="Stretch" CanUserAddRows="False" Margin="10"
                       materialDesign:DataGridAssist.ColumnHeaderPadding="8,4,8,4"
                       RowDetailsVisibilityMode="VisibleWhenSelected"
                       MouseDoubleClick="Clinic_MouseDouble_Click" SelectionMode="Single" SelectionUnit="FullRow">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="ClinicId" Binding="{Binding Path=ClinicId}" Visibility="Visible"/>
-                    <DataGridTextColumn Header="OwnerName" Binding="{Binding Path=OwnerName}" Visibility="Visible"/>
-                    <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}" Width="auto"  IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Address" Binding="{Binding Path=Address}" Width="auto"  IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Contact" Binding="{Binding Path=Contact}" Width="auto"  IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Email" Binding="{Binding Path=Email}" Width="auto"  IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Website" Binding="{Binding Path=Website}" Width="auto"  IsReadOnly="True"/>
-                        <DataGridTextColumn Header="ClinicType" Binding="{Binding Path=ClinicType}" Width="auto"  IsReadOnly="True"/>
-                        <DataGridTextColumn Header="IsActive" Binding="{Binding Path=IsActive}" Width="auto"  IsReadOnly="True"/>
-                        <DataGridTextColumn Header="City" Binding="{Binding Path=City}" Width="auto"  IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Country" Binding="{Binding Path=Country}" Width="auto"  IsReadOnly="True"/>
-                        <DataGridTemplateColumn Header="Edit" Width="100">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="Select" x:Name="ButtonEdit" CommandParameter="{Binding Path=ClinicId}"
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ClinicId" Binding="{Binding Path=ClinicId}" Visibility="Visible"/>
+                            <DataGridTextColumn Header="OwnerName" Binding="{Binding Path=OwnerName}" Visibility="Visible"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}" Width="auto"  IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Address" Binding="{Binding Path=Address}" Width="auto"  IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Contact" Binding="{Binding Path=Contact}" Width="auto"  IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Path=Email}" Width="auto"  IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Website" Binding="{Binding Path=Website}" Width="auto"  IsReadOnly="True"/>
+                            <DataGridTextColumn Header="ClinicType" Binding="{Binding Path=ClinicType}" Width="auto"  IsReadOnly="True"/>
+                            <DataGridTextColumn Header="IsActive" Binding="{Binding Path=IsActive}" Width="auto"  IsReadOnly="True"/>
+                            <DataGridTextColumn Header="City" Binding="{Binding Path=City}" Width="auto"  IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Country" Binding="{Binding Path=Country}" Width="auto"  IsReadOnly="True"/>
+                            <DataGridTemplateColumn Header="Edit" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Select" x:Name="ButtonEdit" CommandParameter="{Binding Path=ClinicId}"
                                         Command="{Binding Path=DataContext.EditCommand,RelativeSource={RelativeSource FindAncestor,
                                                 AncestorType=Window}}" Click="ButtonGetData_Click"
                                         Background="Aqua" Foreground="Black" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Header="Delete" Width="100">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="X" x:Name="ButtonDelete" CommandParameter="{Binding Path=ClinicId}"
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Delete" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="X" x:Name="ButtonDelete" CommandParameter="{Binding Path=ClinicId}"
                                         Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor,
                                                 AncestorType=Window}}" Click="ButtonDelete_Click" 
                                         Background="Red" Foreground="AliceBlue"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
+            </StackPanel>
         </materialDesign:Card>
     </StackPanel>
 </Window>

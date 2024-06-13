@@ -88,6 +88,9 @@
                     <Button x:Name="ButtonSave" Content="Save" Height="30" Width="80"
                         Command="{Binding SaveCommand}" Margin="10,0,0,0" Click="ButtonSave_Click"
                             Background="Green" Foreground="AliceBlue"/>
+                    <Button x:Name="ButtonSearch" Content="Cancel" Height="30" Width="80" 
+                        Command="{Binding ResetCommand}" Margin="5,0,0,0" Click="ButtonSearch_Click"
+                            Background="Aquamarine" Foreground="Black"/>            
                     <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" 
                         Command="{Binding ResetCommand}" Margin="5,0,0,0" Click="ButtonCancel_Click"
                             Background="Orange" Foreground="AliceBlue"/>
@@ -98,10 +101,8 @@
         <materialDesign:Card Padding="20" Margin="10">
             <StackPanel>
                 <!-- Search -->
-                <GroupBox Header="Search by Record Detail's record ID" FontWeight="Bold" Margin="10">
-                    <TextBox x:Name="Search" Height="25" Width="300" Text="{Binding Path=Search, Mode=TwoWay}" HorizontalAlignment="Left" Margin="10"/>
-                </GroupBox>
-                <DataGrid x:Name="recordList" AutoGenerateColumns="False" ItemsSource="{Binding RecordDetails}"
+                <GroupBox Header="Search" FontWeight="Bold" Margin="10">
+                    <DataGrid x:Name="recordList" AutoGenerateColumns="False" ItemsSource="{Binding RecordDetails}"
               HorizontalAlignment="Stretch" CanUserAddRows="False" Margin="10"
                 materialDesign:DataGridAssist.ColumnHeaderPadding="8,4,8,4"
                 RowDetailsVisibilityMode="VisibleWhenSelected"
@@ -139,7 +140,8 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
-                </DataGrid>
+                    </DataGrid>
+                </GroupBox>
             </StackPanel>
         </materialDesign:Card>
     </StackPanel>

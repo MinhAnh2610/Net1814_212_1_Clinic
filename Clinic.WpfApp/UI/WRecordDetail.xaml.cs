@@ -218,6 +218,10 @@ namespace Clinic.WpfApp.UI
                 MessageBox.Show($"{ex.Message}", "Error");
             }
         }
+        private void ButtonSearch_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
         private async void RecordDetail_MouseDouble_Click(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show("Double Click on Grid");

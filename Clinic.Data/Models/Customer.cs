@@ -15,6 +15,18 @@ public partial class Customer
 
     public string Phone { get; set; }
 
+    public string Address { get; set; }
+
+    public bool? Gender { get; set; }
+
+    public string Email { get; set; }
+
+    public DateOnly? DoB { get; set; }
+
+    public DateOnly? CreatedAt { get; set; }
+
+    public bool? IsActive { get; set; }
+
     public virtual ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
 
     public virtual ICollection<Record> Records { get; set; } = new List<Record>();
