@@ -1,0 +1,486 @@
+﻿<Window x:Class="Clinic.WpfApp.UI.DetailWindow.WAppointmentDetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Clinic.WpfApp.UI.DetailWindow"
+        mc:Ignorable="d"
+        Title="WAppointmentDetailWindow"
+        Height="770"
+        Width="620">
+    <Window.Resources>
+        <Style
+            TargetType="DataGridColumnHeader">
+            <Setter
+                Property="FontWeight"
+                Value="Bold" />
+            <Setter
+                Property="Foreground"
+                Value="Black" />
+            <Setter
+                Property="Height"
+                Value="40" />
+            <Setter
+                Property="Background"
+                Value="#ffffff" />
+            <Setter
+                Property="HorizontalContentAlignment"
+                Value="Center" />
+            <Setter
+                Property="BorderThickness"
+                Value="0" />
+        </Style>
+        <Style
+            TargetType="DataGrid">
+            <Setter
+                Property="Background"
+                Value="White" />
+            <Setter
+                Property="BorderThickness"
+                Value="0" />
+        </Style>
+    </Window.Resources>
+
+    <Border
+        Background="White">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="80" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="75" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <!--Heading-->
+            <Border
+                BorderThickness="0,0,1,0"
+                BorderBrush="#D9D9D9">
+                <StackPanel
+                    Orientation="Horizontal">
+
+                    <Label
+                        BorderThickness="0"
+                        Background="#FFFFFF"
+                        HorizontalContentAlignment="Left"
+                        VerticalContentAlignment="Center"
+                        Margin="20,0,0,0">
+                        <StackPanel
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top">
+                            <Image
+                                Width="30"
+                                Margin="0,0,12,0">
+                                <Image.Source>
+                                    <BitmapImage
+                                        DecodePixelWidth="100"
+                                        UriSource="/Image/icon-1.png" />
+                                </Image.Source>
+                            </Image>
+                        </StackPanel>
+                    </Label>
+                </StackPanel>
+            </Border>
+
+            <!--Something bar-->
+            <Border
+                Grid.Row="1"
+                BorderThickness="0,0,1,0"
+                BorderBrush="#D9D9D9">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+                            Height="Auto" />
+                        <RowDefinition
+                            Height="Auto" />
+                        <RowDefinition
+                            Height="Auto" />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition
+                            Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <!--Home-->
+                    <StackPanel
+                        Orientation="Vertical"
+                        Margin="0,10,0,0"
+                        Grid.Row="0">
+                        <Button
+                            Padding="15,15,15,15"
+                            Foreground="Black"
+                            Background="White"
+                            HorizontalAlignment="Center"
+                            BorderThickness="0"
+                            FontSize="14"
+                            IsEnabled="True"
+                            Cursor="Hand">
+                            <StackPanel
+                                Orientation="Horizontal">
+                                <Image
+                                    Width="20">
+                                    <Image.Source>
+                                        <BitmapImage
+                                            DecodePixelWidth="20"
+                                            UriSource="/Image/home.png" />
+                                    </Image.Source>
+                                </Image>
+                            </StackPanel>
+                            <Button.Resources>
+                                <Style
+                                    TargetType="{x:Type Border}">
+                                    <Setter
+                                        Property="CornerRadius"
+                                        Value="6" />
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </StackPanel>
+
+                    <!--View Detail-->
+                    <StackPanel
+                        Orientation="Vertical"
+                        Margin="0,10,0,0"
+                        Grid.Row="1">
+                        <Button
+                            Padding="15,15,15,15"
+                            Foreground="Black"
+                            Background="White"
+                            HorizontalAlignment="Center"
+                            BorderThickness="0"
+                            FontSize="14"
+                            Cursor="Hand">
+                            <StackPanel
+                                Orientation="Horizontal">
+                                <Image
+                                    Width="20">
+                                    <Image.Source>
+                                        <BitmapImage
+                                            DecodePixelWidth="20"
+                                            UriSource="/Image/file-circle-info.png" />
+                                    </Image.Source>
+                                </Image>
+                            </StackPanel>
+                            <Button.Resources>
+                                <Style
+                                    TargetType="{x:Type Border}">
+                                    <Setter
+                                        Property="CornerRadius"
+                                        Value="6" />
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </StackPanel>
+
+                    <!--More-->
+                    <StackPanel
+                        Orientation="Vertical"
+                        Margin="0,10,0,0"
+                        Grid.Row="2">
+                        <Button
+                            Padding="15,15,15,15"
+                            Foreground="Black"
+                            Background="White"
+                            HorizontalAlignment="Center"
+                            BorderThickness="0"
+                            FontSize="14"
+                            Cursor="Hand">
+                            <StackPanel
+                                Orientation="Horizontal">
+                                <Image
+                                    Width="20">
+                                    <Image.Source>
+                                        <BitmapImage
+                                            DecodePixelWidth="20"
+                                            UriSource="/Image/menu-dots.png" />
+                                    </Image.Source>
+                                </Image>
+                            </StackPanel>
+                            <Button.Resources>
+                                <Style
+                                    TargetType="{x:Type Border}">
+                                    <Setter
+                                        Property="CornerRadius"
+                                        Value="6" />
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </StackPanel>
+
+                    <!--Settings-->
+                    <StackPanel
+                        Orientation="Vertical"
+                        Margin="0,10,0,10"
+                        Grid.Row="7">
+                        <Button
+                            Padding="15,15,15,15"
+                            Foreground="Black"
+                            Background="Transparent"
+                            HorizontalAlignment="Center"
+                            BorderThickness="0"
+                            FontSize="14"
+                            Cursor="Hand">
+                            <StackPanel
+                                Orientation="Horizontal">
+                                <Image
+                                    Width="20">
+                                    <Image.Source>
+                                        <BitmapImage
+                                            DecodePixelWidth="20"
+                                            UriSource="/Image/settings.png" />
+                                    </Image.Source>
+                                </Image>
+                            </StackPanel>
+                            <Button.Resources>
+                                <Style
+                                    TargetType="{x:Type Border}">
+                                    <Setter
+                                        Property="CornerRadius"
+                                        Value="6" />
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </StackPanel>
+
+                </Grid>
+            </Border>
+
+            <!--Top Box-->
+            <Grid
+                Grid.Column="1"
+                Background="#F6F7FA">
+            </Grid>
+
+            <!--Search Box-->
+            <Grid
+                HorizontalAlignment="Left"
+                Margin="0,0,0,0"
+                Grid.Column="1">
+                <Image
+                    Width="18"
+                    Margin="60,0,0,0"
+                    HorizontalAlignment="Left"
+                    Panel.ZIndex="2">
+                    <Image.Source>
+                        <BitmapImage
+                            DecodePixelWidth="20"
+                            UriSource="/Image/search.png" />
+                    </Image.Source>
+                </Image>
+
+                <Border
+                    BorderThickness="1"
+                    BorderBrush="#D9D9D9"
+                    Background="White"
+                    CornerRadius="10"
+                    Padding="35,10,10,10"
+                    Margin="50,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center">
+                    <TextBox
+                        x:Name="Search"
+                        Width="200"
+                        Height="20"
+                        FontSize="14"
+                        BorderThickness="0"
+                        Background="Transparent" />
+
+                </Border>
+            </Grid>
+
+            <!--Profile-->
+            <StackPanel
+                Orientation="Horizontal"
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                Margin="0,0,30,0">
+                <Button
+                    BorderThickness="0"
+                    Background="Transparent"
+                    Padding="0,0,10,0"
+                    Height="35"
+                    Grid.Column="1"
+                    Cursor="Hand">
+                    <Button.Resources>
+                        <Style
+                            TargetType="{x:Type Border}">
+                            <Setter
+                                Property="CornerRadius"
+                                Value="20" />
+                        </Style>
+                    </Button.Resources>
+                    <StackPanel
+                        Orientation="Horizontal">
+                        <Image
+                            Width="35"
+                            HorizontalAlignment="Right">
+                            <Image.Source>
+                                <BitmapImage
+                                    DecodePixelWidth="90"
+                                    UriSource="/Image/account.png" />
+                            </Image.Source>
+                        </Image>
+                        <TextBlock
+                            Text="Tom Cruse"
+                            FontSize="15"
+                            FontWeight="SemiBold"
+                            VerticalAlignment="Center"
+                            Margin="10,0,0,0" />
+                        <Image
+                            Width="12"
+                            VerticalAlignment="Center"
+                            Margin="8,0,0,0">
+                            <Image.Source>
+                                <BitmapImage
+                                    DecodePixelWidth="90"
+                                    UriSource="/Image/down-arrow.png" />
+                            </Image.Source>
+                        </Image>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <StackPanel
+                Orientation="Vertical"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Grid.Row="1"
+                Grid.Column="1">
+                <StackPanel
+                    Orientation="Vertical">
+                    <Label
+                        Margin="0,0,0,20"
+                        FontSize="30"
+                        FontWeight="SemiBold"
+                        Content="Appointment Detail" />
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                Height="Auto" />
+                            <RowDefinition
+                                Height="Auto" />
+                            <RowDefinition
+                                Height="Auto" />
+                            <RowDefinition
+                                Height="Auto" />
+                            <RowDefinition
+                                Height="Auto" />
+                            <RowDefinition
+                                Height="Auto" />
+                            <RowDefinition
+                                Height="Auto" />
+                        </Grid.RowDefinitions>
+                        
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Grid.Row="0"
+                            Margin="0,0,0,15">
+                            <TextBlock
+                                Text="AppointmentDetail ID:"
+                                FontSize="15"
+                                FontWeight="Medium" />
+                            <Label
+                                FontSize="15"
+                                Margin="10,-4,0,0"
+                                Content="{Binding AppointmentDetailId}" />
+                        </StackPanel>
+
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Grid.Row="1"
+                            Margin="0,0,0,15">
+                            <TextBlock
+                                Text="Appointment ID:"
+                                FontSize="15"
+                                FontWeight="Medium" />
+                            <Label
+                                FontSize="15"
+                                Margin="10,-4,0,0"
+                                Content="{Binding AppointmentId}" />
+                        </StackPanel>
+
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Grid.Row="2"
+                            Margin="0,0,0,15">
+                            <TextBlock
+                                Text="Service ID:"
+                                FontSize="15"
+                                FontWeight="Medium" />
+                            <Label
+                                FontSize="15"
+                                Margin="10,-4,0,0"
+                                Content="{Binding ServiceId}" />
+                        </StackPanel>
+
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Grid.Row="3"
+                            Margin="0,0,0,15">
+                            <TextBlock
+                                Text="Is Periodic:"
+                                FontSize="15"
+                                FontWeight="Medium" />
+                            <Label
+                                FontSize="15"
+                                Margin="10,-4,0,0"
+                                Content="{Binding IsPeriodic}" />
+                        </StackPanel>
+
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Grid.Row="4"
+                            Margin="0,0,0,15">
+                            <TextBlock
+                                Text="Day:"
+                                FontSize="15"
+                                FontWeight="Medium" />
+                            <Label
+                                FontSize="15"
+                                Margin="10,-4,0,0"
+                                Content="{Binding Day}" />
+                        </StackPanel>
+
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Grid.Row="5"
+                            Margin="0,0,0,15">
+                            <TextBlock
+                                Text="Month:"
+                                FontSize="15"
+                                FontWeight="Medium" />
+                            <Label
+                                FontSize="15"
+                                Margin="10,-4,0,0"
+                                Content="{Binding Month}" />
+                        </StackPanel>
+
+                        <StackPanel
+                            Orientation="Horizontal"
+                            Grid.Row="6"
+                            Margin="0,0,0,15">
+                            <TextBlock
+                                Text="Year:"
+                                FontSize="15"
+                                FontWeight="Medium" />
+                            <Label
+                                FontSize="15"
+                                Margin="10,-4,0,0"
+                                Content="{Binding Year}" />
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

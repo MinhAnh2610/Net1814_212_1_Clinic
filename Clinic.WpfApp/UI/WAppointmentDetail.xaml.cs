@@ -2,6 +2,7 @@
 using Clinic.Business.Base;
 using Clinic.Business.Clinic;
 using Clinic.Data.Models;
+using Clinic.WpfApp.UI.DetailWindow;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -240,6 +241,25 @@ namespace Clinic.WpfApp.UI
                 Month.Text = string.Empty;
                 Year.Text = string.Empty;
                 GetAllData();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show($"{ex.Message}", "Error");
+            }
+        }
+
+        private void Open_WAppointmentDetailWindow_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var button = sender as System.Windows.Controls.Button;
+                var selectedAppointmentDetail = button?.DataContext as AppointmentDetail;
+
+                if (selectedAppointmentDetail != null)
+                {
+                    var appointmentDetailWindow = new WAppointmentDetailWindow(selectedAppointmentDetail);
+                    appointmentDetailWindow.Show();
+                }
             }
             catch (Exception ex)
             {

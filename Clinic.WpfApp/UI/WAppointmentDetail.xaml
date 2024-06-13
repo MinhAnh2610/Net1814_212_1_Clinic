@@ -33,13 +33,22 @@
         </Style>
         <Style
             TargetType="DataGrid">
-            <Setter 
+            <Setter
                 Property="Background"
-                Value="White"/>
-            <Setter 
+                Value="White" />
+            <Setter
                 Property="BorderThickness"
-                Value="0"/>
+                Value="0" />
         </Style>
+        <!--<Style 
+            TargetType="DataGridCell">
+            <Setter 
+                Property="HorizontalAlignment"
+                Value="Center"/>
+            <Setter 
+                Property="Width"
+                Value="Auto"/>
+        </Style>-->
     </Window.Resources>
 
     <Border
@@ -743,7 +752,7 @@
 
                         </Button>
 
-                        <!--Button ViewDetail-->
+                        <!--Button ViewDetail--><!--
                         <Button
                             x:Name="myButtonViewDetail"
                             Content="View Detail"
@@ -758,7 +767,7 @@
                             Grid.Column="1"
                             Grid.ColumnSpan="2"
                             Cursor="Hand"
-                            Click="ButtonSave_Click">
+                            Click="Open_WAppointmentDetailWindow_Click">
 
                             <Button.Resources>
                                 <Style
@@ -769,7 +778,7 @@
                                 </Style>
                             </Button.Resources>
 
-                        </Button>
+                        </Button>-->
 
                         <!--Button Cancel-->
                         <Button
@@ -854,13 +863,13 @@
                                 Binding="{Binding Path=Year}"
                                 Width="50"
                                 IsReadOnly="True" />
-                            <!--<DataGridTemplateColumn
+                            <DataGridTemplateColumn
                                 Width="Auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel>
                                             <Button
-                                                x:Name="ButtonEdit"
+                                                x:Name="Open_WAppointmentDetailWindow_Click"
                                                 CommandParameter="{Binding Path=AppointmentDetailId}"
                                                 Command="{Binding Path=DataContext.EditCommand,RelativeSource={RelativeSource FindAncestor,
                                                 AncestorType=Window}}"
@@ -869,7 +878,7 @@
                                                 Background="#eaf4fe"
                                                 Width="35"
                                                 Height="35"
-                                                Click="ButtonGetData_Click">
+                                                Click="Open_WAppointmentDetailWindow_Click">
                                                 <Image
                                                     Source="/Image/eye.png"
                                                     Width="15"
@@ -878,7 +887,7 @@
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>-->
+                            </DataGridTemplateColumn>
                             <DataGridTemplateColumn
                                 Width="Auto">
                                 <DataGridTemplateColumn.CellTemplate>
@@ -891,6 +900,7 @@
                                                 Background="#FFD5D5"
                                                 Height="35"
                                                 Width="40"
+                                                Cursor="Hand"
                                                 Click="ButtonDelete_Click">
                                                 <Image
                                                     Source="/Image/trash.png"

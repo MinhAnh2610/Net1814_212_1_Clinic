@@ -123,6 +123,7 @@
                         <RowDefinition
                             Height="Auto" />
                     </Grid.RowDefinitions>
+                    
                     <!--Home-->
                     <StackPanel
                         Orientation="Vertical"
@@ -329,18 +330,9 @@
                         Height="20"
                         FontSize="14"
                         BorderThickness="0"
-                        Background="Transparent"/>
+                        Background="Transparent" />
 
                 </Border>
-                <!--<TextBlock 
-                Text="Search..."
-                FontSize="14"
-                FontWeight="SemiBold"
-                Foreground="#8F8F8F"
-                VerticalAlignment="Center"
-                Margin="100,0,0,0"
-                Panel.ZIndex="1"
-                x:Name="tbPlaceholder"/>-->
             </Grid>
 
             <!--Profile-->
