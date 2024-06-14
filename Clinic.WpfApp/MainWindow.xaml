@@ -744,7 +744,7 @@
                     Orientation="Horizontal"
                     Margin="0,0,0,10">
                     <Border
-                        Width="650"
+                        Width="750"
                         Height="250">
 
                         <Border.Background>
@@ -764,7 +764,7 @@
                             <RectangleGeometry
                                 RadiusX="10"
                                 RadiusY="10"
-                                Rect="0,0,650,250" />
+                                Rect="0,0,750,250" />
                         </Border.Clip>
 
                         <Grid>
@@ -1018,7 +1018,7 @@
                         <Button
                             Width="150"
                             Height="150"
-                            Margin="0,0,15,0"
+                            Margin="15,0,15,0"
                             BorderThickness="0"
                             Cursor="Hand"
                             Click="Open_wClinic_Click">

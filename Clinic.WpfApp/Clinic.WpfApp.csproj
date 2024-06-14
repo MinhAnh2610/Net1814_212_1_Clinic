@@ -14,7 +14,6 @@
     <None Remove="Image\address-book.png" />
     <None Remove="Image\dental-checkup.png" />
     <None Remove="Image\dental-floss.png" />
-    <None Remove="Image\down-1.png" />
     <None Remove="Image\down-arrow.png" />
     <None Remove="Image\eye.png" />
     <None Remove="Image\file-circle-info.png" />
@@ -65,7 +64,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Image\down-1.png" />
     <Resource Include="Image\hospitals.png" />
     <Resource Include="Image\herta.gif" />
     <Resource Include="Image\icon-1.png" />
