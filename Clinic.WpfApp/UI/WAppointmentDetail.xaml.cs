@@ -34,6 +34,7 @@ namespace Clinic.WpfApp.UI
         private readonly IAppointmentDetailBusiness _appointmentDetailBusiness;
         private readonly IAppointmentBusiness _appointmentBusiness;
         private readonly IServiceBusiness _serviceBusiness;
+
         public WAppointmentDetail()
         {
             InitializeComponent();
@@ -43,6 +44,7 @@ namespace Clinic.WpfApp.UI
             GetAllData();
         }
 
+        //################### Save Button ##################
         private async void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -97,6 +99,7 @@ namespace Clinic.WpfApp.UI
 
         }
 
+        //################### Delete Button ##################
         private async void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
             AppointmentDetail appointmentDetail = AppointmentDetailList.SelectedItem as AppointmentDetail;
@@ -134,6 +137,7 @@ namespace Clinic.WpfApp.UI
             }
         }
 
+        //################### Cancel Button ##################
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             AppointmentDetailId.Text = string.Empty;
@@ -145,6 +149,7 @@ namespace Clinic.WpfApp.UI
             Year.Text = string.Empty;
         }
 
+        //################### Get Data ##################
         private async void ButtonGetData_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -175,6 +180,7 @@ namespace Clinic.WpfApp.UI
             }
         }
 
+        //################### Get All Data ##################
         private async void GetAllData()
         {
             var result = await _appointmentDetailBusiness.GetAll();
@@ -189,6 +195,7 @@ namespace Clinic.WpfApp.UI
             }
         }
 
+        //################### Update Button ##################
         private async void ButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -252,6 +259,7 @@ namespace Clinic.WpfApp.UI
             }
         }
 
+        //################### Double Click in DataGrid Button ##################
         private async void AppointmentDetail_MouseDouble_Click(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show("Double Click on Grid");
@@ -282,6 +290,7 @@ namespace Clinic.WpfApp.UI
             }
         }
 
+        //################### Open WAppointmentDetail Window Button ##################
         private void Open_WAppointmentDetailWindow_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -301,6 +310,7 @@ namespace Clinic.WpfApp.UI
             }
         }
 
+        //################### Text changed while hover ##################
         private void txtInput_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(AppointmentDetailId.Text))

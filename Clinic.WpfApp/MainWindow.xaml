@@ -104,7 +104,7 @@
                 </StackPanel>
             </Border>
 
-            <!--Something bar-->
+            <!--Side bar-->
             <Border
                 Grid.Row="1"
                 BorderThickness="0,0,1,0"
@@ -124,7 +124,7 @@
                             Height="Auto" />
                     </Grid.RowDefinitions>
                     
-                    <!--Home-->
+                    <!--Home Button-->
                     <StackPanel
                         Orientation="Vertical"
                         Margin="0,10,0,0"
@@ -166,7 +166,7 @@
                         </Button>
                     </StackPanel>
 
-                    <!--Add Detail-->
+                    <!--Add Detail Button-->
                     <StackPanel
                         Orientation="Vertical"
                         Margin="10,10,0,0"
@@ -207,7 +207,7 @@
                         </Button>
                     </StackPanel>
 
-                    <!--More-->
+                    <!--More Button-->
                     <StackPanel
                         Orientation="Vertical"
                         Margin="10,10,0,0"
@@ -248,7 +248,7 @@
                         </Button>
                     </StackPanel>
 
-                    <!--Settings-->
+                    <!--Settings Button-->
                     <StackPanel
                         Orientation="Vertical"
                         Margin="10,10,0,10"
@@ -387,335 +387,7 @@
                 </Button>
             </StackPanel>
 
-            <!--<Grid
-                Grid.Row="1"
-                Grid.Column="1"
-                Height="Auto"
-                VerticalAlignment="Top">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition
-                        Width="Auto" />
-                    <ColumnDefinition
-                        Width="Auto" />
-                    <ColumnDefinition
-                        Width="Auto" />
-                    <ColumnDefinition
-                        Width="Auto" />
-                    <ColumnDefinition
-                        Width="Auto" />
-                    <ColumnDefinition
-                        Width="Auto" />
-                    <ColumnDefinition
-                        Width="Auto" />
-                    <ColumnDefinition
-                        Width="Auto" />
-                </Grid.ColumnDefinitions>
-
-                --><!--Clinic--><!--
-                <StackPanel
-                    Orientation="Vertical"
-                    Margin="50,10,0,0"
-                    Grid.Column="0">
-                    <Button
-                        Padding="15,7,15,7"
-                        Foreground="Black"
-                        Background="#F6F7FA"
-                        HorizontalAlignment="Center"
-                        BorderThickness="1"
-                        BorderBrush="#CDCDCD"
-                        FontSize="14"
-                        Click="Open_wClinic_Click"
-                        Cursor="Hand">
-                        <StackPanel
-                            Orientation="Horizontal">
-                            <Image
-                                Width="18">
-                                <Image.Source>
-                                    <BitmapImage
-                                        DecodePixelWidth="45"
-                                        UriSource="/Image/hospitals.png" />
-                                </Image.Source>
-                            </Image>
-                            <TextBlock
-                                Text="Clinic"
-                                FontSize="14"
-                                FontWeight="Regular"
-                                VerticalAlignment="Center"
-                                Margin="10,0,0,0" />
-                        </StackPanel>
-                        <Button.Resources>
-                            <Style
-                                TargetType="{x:Type Border}">
-                                <Setter
-                                    Property="CornerRadius"
-                                    Value="16" />
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                </StackPanel>
-
-                --><!--Service--><!--
-                <StackPanel
-                    Orientation="Vertical"
-                    Margin="20,10,0,0"
-                    Grid.Column="1">
-                    <Button
-                        Padding="15,7,15,7"
-                        Foreground="Black"
-                        Background="#F6F7FA"
-                        HorizontalAlignment="Center"
-                        BorderThickness="1"
-                        BorderBrush="#CDCDCD"
-                        FontSize="14"
-                        Click="Open_wServices_Click"
-                        Cursor="Hand">
-                        <StackPanel
-                            Orientation="Horizontal">
-                            <Image
-                                Width="18">
-                                <Image.Source>
-                                    <BitmapImage
-                                        DecodePixelWidth="45"
-                                        UriSource="/Image/room-service.png" />
-                                </Image.Source>
-                            </Image>
-                            <TextBlock
-                                Text="Service"
-                                FontSize="14"
-                                FontWeight="Regular"
-                                VerticalAlignment="Center"
-                                Margin="10,0,0,0" />
-                        </StackPanel>
-                        <Button.Resources>
-                            <Style
-                                TargetType="{x:Type Border}">
-                                <Setter
-                                    Property="CornerRadius"
-                                    Value="16" />
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                </StackPanel>
-
-                --><!--Record--><!--
-                <StackPanel
-                    Orientation="Vertical"
-                    Margin="20,10,0,0"
-                    Grid.Column="2">
-                    <Button
-                        Padding="15,7,15,7"
-                        Foreground="Black"
-                        Background="#F6F7FA"
-                        HorizontalAlignment="Center"
-                        BorderThickness="1"
-                        BorderBrush="#CDCDCD"
-                        FontSize="14"
-                        Click="Open_WRecord_Click"
-                        Cursor="Hand">
-                        <StackPanel
-                            Orientation="Horizontal">
-                            <Image
-                                Width="18">
-                                <Image.Source>
-                                    <BitmapImage
-                                        DecodePixelWidth="45"
-                                        UriSource="/Image/address-book.png" />
-                                </Image.Source>
-                            </Image>
-                            <TextBlock
-                                Text="Record"
-                                FontSize="14"
-                                FontWeight="Regular"
-                                VerticalAlignment="Center"
-                                Margin="10,0,0,0" />
-                        </StackPanel>
-                        <Button.Resources>
-                            <Style
-                                TargetType="{x:Type Border}">
-                                <Setter
-                                    Property="CornerRadius"
-                                    Value="16" />
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                </StackPanel>
-
-                --><!--Customer--><!--
-                <StackPanel
-                    Orientation="Vertical"
-                    Margin="20,10,0,0"
-                    Grid.Column="3">
-                    <Button
-                        Padding="15,7,15,7"
-                        Foreground="Black"
-                        Background="#F6F7FA"
-                        HorizontalAlignment="Center"
-                        BorderThickness="1"
-                        BorderBrush="#CDCDCD"
-                        FontSize="14"
-                        Click="Open_WCustomer_Click"
-                        Cursor="Hand">
-                        <StackPanel
-                            Orientation="Horizontal">
-                            <Image
-                                Width="18">
-                                <Image.Source>
-                                    <BitmapImage
-                                        DecodePixelWidth="45"
-                                        UriSource="/Image/user-headset.png" />
-                                </Image.Source>
-                            </Image>
-                            <TextBlock
-                                Text="Customer"
-                                FontSize="14"
-                                FontWeight="Regular"
-                                VerticalAlignment="Center"
-                                Margin="10,0,0,0" />
-                        </StackPanel>
-                        <Button.Resources>
-                            <Style
-                                TargetType="{x:Type Border}">
-                                <Setter
-                                    Property="CornerRadius"
-                                    Value="16" />
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                </StackPanel>
-
-                --><!--Appointment--><!--
-                <StackPanel
-                    Orientation="Vertical"
-                    Margin="20,10,0,0"
-                    Grid.Column="4">
-                    <Button
-                        Padding="15,7,15,7"
-                        Foreground="Black"
-                        Background="#F6F7FA"
-                        HorizontalAlignment="Center"
-                        BorderThickness="1"
-                        BorderBrush="#CDCDCD"
-                        FontSize="14"
-                        Click="Open_wAppointment_Click"
-                        Cursor="Hand">
-                        <StackPanel
-                            Orientation="Horizontal">
-                            <Image
-                                Width="18">
-                                <Image.Source>
-                                    <BitmapImage
-                                        DecodePixelWidth="45"
-                                        UriSource="/Image/user-md.png" />
-                                </Image.Source>
-                            </Image>
-                            <TextBlock
-                                Text="Appointment"
-                                FontSize="14"
-                                FontWeight="Regular"
-                                VerticalAlignment="Center"
-                                Margin="10,0,0,0" />
-                        </StackPanel>
-                        <Button.Resources>
-                            <Style
-                                TargetType="{x:Type Border}">
-                                <Setter
-                                    Property="CornerRadius"
-                                    Value="16" />
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                </StackPanel>
-
-                --><!--Record Detail--><!--
-                <StackPanel
-                    Orientation="Vertical"
-                    HorizontalAlignment="Left"
-                    Margin="20,10,0,0"
-                    Grid.Column="5">
-                    <Button
-                        Padding="15,7,15,7"
-                        Foreground="Black"
-                        Background="#F6F7FA"
-                        HorizontalAlignment="Center"
-                        BorderThickness="1"
-                        BorderBrush="#CDCDCD"
-                        FontSize="14"
-                        Click="Open_wRecordDetail_Click"
-                        Cursor="Hand">
-                        <StackPanel
-                            Orientation="Horizontal">
-                            <Image
-                                Width="18">
-                                <Image.Source>
-                                    <BitmapImage
-                                        DecodePixelWidth="45"
-                                        UriSource="/Image/flag.png" />
-                                </Image.Source>
-                            </Image>
-                            <TextBlock
-                                Text="Record Detail"
-                                FontSize="14"
-                                FontWeight="Regular"
-                                VerticalAlignment="Center"
-                                Margin="10,0,0,0" />
-                        </StackPanel>
-                        <Button.Resources>
-                            <Style
-                                TargetType="{x:Type Border}">
-                                <Setter
-                                    Property="CornerRadius"
-                                    Value="16" />
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                </StackPanel>
-
-                --><!--AppointmentDetail--><!--
-                <StackPanel
-                    Orientation="Vertical"
-                    HorizontalAlignment="Left"
-                    Margin="20,10,0,0"
-                    Grid.Column="6">
-                    <Button
-                        Padding="15,7,15,7"
-                        Foreground="Black"
-                        Background="#F6F7FA"
-                        HorizontalAlignment="Center"
-                        BorderThickness="1"
-                        BorderBrush="#CDCDCD"
-                        FontSize="14"
-                        Click="Open_WAppointmentDetail_Click"
-                        Cursor="Hand">
-                        <StackPanel
-                            Orientation="Horizontal">
-                            <Image
-                                Width="18">
-                                <Image.Source>
-                                    <BitmapImage
-                                        DecodePixelWidth="45"
-                                        UriSource="/Image/rectangle-list.png" />
-                                </Image.Source>
-                            </Image>
-                            <TextBlock
-                                Text="Appointment Detail"
-                                FontSize="14"
-                                FontWeight="Regular"
-                                VerticalAlignment="Center"
-                                Margin="10,0,0,0" />
-                        </StackPanel>
-                        <Button.Resources>
-                            <Style
-                                TargetType="{x:Type Border}">
-                                <Setter
-                                    Property="CornerRadius"
-                                    Value="16" />
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                </StackPanel>
-
-            </Grid>-->
-
+            <!--Home Dashboard-->
             <StackPanel
                 Grid.Row="1"
                 Grid.Column="1"
@@ -730,6 +402,7 @@
                     </Style>
                 </StackPanel.Resources>
 
+                <!--Discover-->
                 <TextBlock
                     Text="Discover"
                     Foreground="Black"
@@ -743,6 +416,8 @@
                 <StackPanel
                     Orientation="Horizontal"
                     Margin="0,0,0,10">
+                    
+                    <!--Upgrade plan Box-->
                     <Border
                         Width="570"
                         Height="250">
@@ -776,6 +451,7 @@
                                     FontWeight="SemiBold"
                                     Margin="30,20,10,0" />
 
+                                <!--Upgrade-->
                                 <Button
                                     Margin="30,90,10,0"
                                     Width="120"
@@ -900,6 +576,7 @@
 
                     </Border>
 
+                    <!--Book a dentist box-->
                     <Border
                         Width="415"
                         Height="250"
@@ -919,6 +596,7 @@
                             </LinearGradientBrush>
                         </Border.Background>
 
+                        
                         <StackPanel>
                             <TextBlock
                                 Text="Book the best dentist&#x0a;for you"
@@ -933,6 +611,7 @@
                                 Source="/Image/dental-checkup.png"
                                 Margin="190,15,-50,-102" />
 
+                            <!--Book now Button-->
                             <Button
                                 Margin="30,-100,10,0"
                                 Width="120"
@@ -1000,6 +679,8 @@
                 </StackPanel>
 
                 <StackPanel>
+                    
+                    <!--Most used service-->
                     <TextBlock
                         Text="Most Used Services"
                         Foreground="Black"
