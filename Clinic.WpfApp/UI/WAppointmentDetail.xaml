@@ -31,7 +31,7 @@
                 Property="BorderThickness"
                 Value="0" />
         </Style>
-        <Style
+        <!--<Style
             TargetType="DataGrid">
             <Setter
                 Property="Background"
@@ -39,8 +39,8 @@
             <Setter
                 Property="BorderThickness"
                 Value="0" />
-        </Style>
-        <!--<Style 
+        </Style>-->
+        <Style 
             TargetType="DataGridCell">
             <Setter 
                 Property="HorizontalAlignment"
@@ -48,7 +48,7 @@
             <Setter 
                 Property="Width"
                 Value="Auto"/>
-        </Style>-->
+        </Style>
     </Window.Resources>
 
     <Border
@@ -398,15 +398,18 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Grid.Row="1"
-                Grid.Column="1">
+                Grid.Column="1"
+                Width="1040">
                 <StackPanel
                     Orientation="Vertical"
+                    VerticalAlignment="Center"
                     Margin="50,0,100,0">
                     <Label
                         Margin="0,0,0,20"
                         FontSize="30"
                         FontWeight="SemiBold"
-                        Content="Appointment Detail" />
+                        Content="Appointment Detail" 
+                        HorizontalAlignment="Center"/>
                     <Grid
                         HorizontalAlignment="Left"
                         Grid.Column="0"
@@ -752,7 +755,8 @@
 
                         </Button>
 
-                        <!--Button ViewDetail--><!--
+                        <!--Button ViewDetail-->
+                        <!--
                         <Button
                             x:Name="myButtonViewDetail"
                             Content="View Detail"
@@ -817,7 +821,7 @@
                     <DataGrid
                         x:Name="AppointmentDetailList"
                         AutoGenerateColumns="False"
-                        GridLinesVisibility="None"
+                        GridLinesVisibility="none"
                         ItemsSource="{Binding AppointmentDetail}"
                         CanUserAddRows="False"
                         HeadersVisibility="Column"
@@ -825,8 +829,11 @@
                         Height="650"
                         CanUserResizeColumns="False"
                         CanUserResizeRows="False"
-                        CanUserSortColumns="False"
-                        AlternatingRowBackground="#E6E7EA">
+                        CanUserSortColumns="True"
+                        AlternatingRowBackground="#E6E7EA"
+                        MouseDoubleClick="AppointmentDetail_MouseDouble_Click"
+                        SelectionMode="Single"
+                        SelectionUnit="FullRow">
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Header="Detail ID"

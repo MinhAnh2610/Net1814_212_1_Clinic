@@ -7,7 +7,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,6 +21,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace Clinic.WpfApp.UI
 {
@@ -245,6 +249,36 @@ namespace Clinic.WpfApp.UI
             catch (Exception ex)
             {
                 System.Windows.MessageBox.Show($"{ex.Message}", "Error");
+            }
+        }
+
+        private async void AppointmentDetail_MouseDouble_Click(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show("Double Click on Grid");
+            DataGrid appointmentDetail = sender as DataGrid;
+            if (appointmentDetail != null && appointmentDetail.SelectedItems != null && appointmentDetail.SelectedItems.Count == 1)
+            {
+                var row = appointmentDetail.ItemContainerGenerator.ContainerFromItem(appointmentDetail.SelectedItem) as DataGridRow;
+                if (row != null)
+                {
+                    var item = row.Item as Data.Models.AppointmentDetail;
+                    if (item != null)
+                    {
+                        var appointmentDetailResult = await _appointmentDetailBusiness.GetById(item.AppointmentDetailId);
+
+                        if (appointmentDetailResult.Status > 0 && appointmentDetailResult.Data != null)
+                        {
+                            item = appointmentDetailResult.Data as Data.Models.AppointmentDetail;
+                            AppointmentDetailId.Text = item.AppointmentDetailId.ToString();
+                            AppointmentId.Text = item.AppointmentId.ToString();
+                            ServiceId.Text = item.ServiceId.ToString();
+                            IsPeriodic.Text = item.IsPeriodic.ToString();
+                            Day.Text = item.Day.ToString();
+                            Month.Text = item.Year.ToString();
+                            Year.Text = item.Year.ToString();
+                        }
+                    }
+                }
             }
         }
 
