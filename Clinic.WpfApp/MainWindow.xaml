@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:Clinic.WpfApp"
         mc:Ignorable="d"
     Title="Clinic Booking App"
-    Height="740"
-    Width="1450">
+    Height="780"
+    Width="1250">
     <!--<Grid>
         <Menu Height="30" Name="menu1" Margin="0,0,0,0" VerticalAlignment="Top" BorderThickness="2" FontSize="16" FontWeight="Bold">
             <MenuItem Header="Menu" IsCheckable="False" FontSize="16">
@@ -744,7 +744,7 @@
                     Orientation="Horizontal"
                     Margin="0,0,0,10">
                     <Border
-                        Width="750"
+                        Width="570"
                         Height="250">
 
                         <Border.Background>
@@ -764,7 +764,7 @@
                             <RectangleGeometry
                                 RadiusX="10"
                                 RadiusY="10"
-                                Rect="0,0,750,250" />
+                                Rect="0,0,570,250" />
                         </Border.Clip>
 
                         <Grid>
@@ -901,10 +901,10 @@
                     </Border>
 
                     <Border
-                        Width="425"
+                        Width="415"
                         Height="250"
                         CornerRadius="10"
-                        Margin="45,0,0,0">
+                        Margin="15,0,0,0">
 
                         <Border.Background>
                             <LinearGradientBrush
@@ -921,7 +921,7 @@
 
                         <StackPanel>
                             <TextBlock
-                                Text="Book the first dentist for you"
+                                Text="Book the best dentist&#x0a;for you"
                                 Foreground="#1a2122"
                                 FontSize="28"
                                 FontWeight="SemiBold"
@@ -931,7 +931,7 @@
                                 Width="250"
                                 Height="250"
                                 Source="/Image/dental-checkup.png"
-                                Margin="200,52,-50,-102" />
+                                Margin="190,15,-50,-102" />
 
                             <Button
                                 Margin="30,-100,10,0"
@@ -975,7 +975,7 @@
                                                 Value="True">
                                                 <Setter
                                                     Property="Background"
-                                                    Value="#1a2122" />
+                                                    Value="#242D2F" />
                                             </Trigger>
                                         </Style.Triggers>
                                     </Style>
@@ -1017,7 +1017,7 @@
                         <!--Clinic-->
                         <Button
                             Width="150"
-                            Height="150"
+                            Height="250"
                             Margin="15,0,15,0"
                             BorderThickness="0"
                             Cursor="Hand"
@@ -1083,287 +1083,298 @@
                             </StackPanel>
                         </Button>
 
-                        <!--Service-->
-                        <Button
-                            Width="150"
-                            Height="150"
-                            Margin="0,0,15,0"
-                            BorderThickness="0"
-                            Cursor="Hand"
-                            Click="Open_wServices_Click">
+                        <StackPanel 
+                            Orientation="Vertical"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+                            <!--Service-->
+                            <Button
+                                Width="250"
+                                Height="120"
+                                Margin="0,0,15,10"
+                                BorderThickness="0"
+                                VerticalAlignment="Top"
+                                Cursor="Hand"
+                                Click="Open_wServices_Click">
 
-                            <Button.Resources>
-                                <Style
-                                    TargetType="{x:Type Border}">
-                                    <Setter
-                                        Property="CornerRadius"
-                                        Value="10" />
-                                </Style>
-                            </Button.Resources>
+                                <Button.Resources>
+                                    <Style
+                                        TargetType="{x:Type Border}">
+                                        <Setter
+                                            Property="CornerRadius"
+                                            Value="10" />
+                                    </Style>
+                                </Button.Resources>
 
-                            <Button.Style>
-                                <Style
-                                    TargetType="{x:Type Button}">
-                                    <Setter
-                                        Property="Background"
-                                        Value="#a5abf6" />
-                                    <Setter
-                                        Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate
-                                                TargetType="{x:Type Button}">
-                                                <Border
-                                                    Background="{TemplateBinding Background}">
-                                                    <ContentPresenter
-                                                        HorizontalAlignment="Center"
-                                                        VerticalAlignment="Center" />
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Style.Triggers>
-                                        <Trigger
-                                            Property="IsMouseOver"
-                                            Value="True">
-                                            <Setter
-                                                Property="Background"
-                                                Value="#9DA3F5" />
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
+                                <Button.Style>
+                                    <Style
+                                        TargetType="{x:Type Button}">
+                                        <Setter
+                                            Property="Background"
+                                            Value="#a5abf6" />
+                                        <Setter
+                                            Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate
+                                                    TargetType="{x:Type Button}">
+                                                    <Border
+                                                        Background="{TemplateBinding Background}">
+                                                        <ContentPresenter
+                                                            HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger
+                                                Property="IsMouseOver"
+                                                Value="True">
+                                                <Setter
+                                                    Property="Background"
+                                                    Value="#9DA3F5" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
 
-                            <StackPanel
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center">
-                                <Image
-                                    Width="25"
-                                    Margin="0,0,0,10">
-                                    <Image.Source>
-                                        <BitmapImage
-                                            DecodePixelWidth="55"
-                                            UriSource="/Image/room-service.png" />
-                                    </Image.Source>
-                                </Image>
-                                <TextBlock
-                                    Text="Service"
-                                    FontWeight="SemiBold"
-                                    FontSize="18" />
-                            </StackPanel>
-                        </Button>
+                                <StackPanel
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center">
+                                    <Image
+                                        Width="25"
+                                        Margin="0,0,0,10">
+                                        <Image.Source>
+                                            <BitmapImage
+                                                DecodePixelWidth="55"
+                                                UriSource="/Image/room-service.png" />
+                                        </Image.Source>
+                                    </Image>
+                                    <TextBlock
+                                        Text="Service"
+                                        FontWeight="SemiBold"
+                                        FontSize="18" />
+                                </StackPanel>
+                            </Button>
 
-                        <!--Record-->
-                        <Button
-                            Width="150"
-                            Height="150"
-                            Margin="0,0,15,0"
-                            BorderThickness="0"
-                            Cursor="Hand"
-                            Click="Open_WRecord_Click">
+                            <!--Record-->
+                            <Button
+                                Width="250"
+                                Height="120"
+                                Margin="0,0,15,0"
+                                BorderThickness="0"
+                                Cursor="Hand"
+                                Click="Open_WRecord_Click">
 
-                            <Button.Resources>
-                                <Style
-                                    TargetType="{x:Type Border}">
-                                    <Setter
-                                        Property="CornerRadius"
-                                        Value="10" />
-                                </Style>
-                            </Button.Resources>
+                                <Button.Resources>
+                                    <Style
+                                        TargetType="{x:Type Border}">
+                                        <Setter
+                                            Property="CornerRadius"
+                                            Value="10" />
+                                    </Style>
+                                </Button.Resources>
 
-                            <Button.Style>
-                                <Style
-                                    TargetType="{x:Type Button}">
-                                    <Setter
-                                        Property="Background"
-                                        Value="#1a2122" />
-                                    <Setter
-                                        Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate
-                                                TargetType="{x:Type Button}">
-                                                <Border
-                                                    Background="{TemplateBinding Background}">
-                                                    <ContentPresenter
-                                                        HorizontalAlignment="Center"
-                                                        VerticalAlignment="Center" />
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Style.Triggers>
-                                        <Trigger
-                                            Property="IsMouseOver"
-                                            Value="True">
-                                            <Setter
-                                                Property="Background"
-                                                Value="#242D2F" />
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
+                                <Button.Style>
+                                    <Style
+                                        TargetType="{x:Type Button}">
+                                        <Setter
+                                            Property="Background"
+                                            Value="#1a2122" />
+                                        <Setter
+                                            Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate
+                                                    TargetType="{x:Type Button}">
+                                                    <Border
+                                                        Background="{TemplateBinding Background}">
+                                                        <ContentPresenter
+                                                            HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger
+                                                Property="IsMouseOver"
+                                                Value="True">
+                                                <Setter
+                                                    Property="Background"
+                                                    Value="#242D2F" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
 
-                            <StackPanel
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center">
-                                <Image
-                                    Width="25"
-                                    Margin="0,0,0,10">
-                                    <Image.Source>
-                                        <BitmapImage
-                                            DecodePixelWidth="55"
-                                            UriSource="/Image/address-book.png" />
-                                    </Image.Source>
-                                </Image>
-                                <TextBlock
-                                    Text="Record"
-                                    FontWeight="SemiBold"
-                                    FontSize="18" 
-                                    Foreground="White"/>
-                            </StackPanel>
-                        </Button>
+                                <StackPanel
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center">
+                                    <Image
+                                        Width="25"
+                                        Margin="0,0,0,10">
+                                        <Image.Source>
+                                            <BitmapImage
+                                                DecodePixelWidth="55"
+                                                UriSource="/Image/address-book.png" />
+                                        </Image.Source>
+                                    </Image>
+                                    <TextBlock
+                                        Text="Record"
+                                        FontWeight="SemiBold"
+                                        FontSize="18"
+                                        Foreground="White" />
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
 
-                        <!--Customer-->
-                        <Button
-                            Width="150"
-                            Height="150"
-                            Margin="0,0,15,0"
-                            BorderThickness="0"
-                            Cursor="Hand"
-                            Click="Open_WRecord_Click">
+                        <StackPanel
+                            Orientation="Vertical"
+                            VerticalAlignment="Center">
+                            <!--Customer-->
+                            <Button
+                                Width="150"
+                                Height="120"
+                                Margin="0,0,15,10"
+                                BorderThickness="0"
+                                Cursor="Hand"
+                                Click="Open_WRecord_Click">
 
-                            <Button.Resources>
-                                <Style
-                                    TargetType="{x:Type Border}">
-                                    <Setter
-                                        Property="CornerRadius"
-                                        Value="10" />
-                                </Style>
-                            </Button.Resources>
+                                <Button.Resources>
+                                    <Style
+                                        TargetType="{x:Type Border}">
+                                        <Setter
+                                            Property="CornerRadius"
+                                            Value="10" />
+                                    </Style>
+                                </Button.Resources>
 
-                            <Button.Style>
-                                <Style
-                                    TargetType="{x:Type Button}">
-                                    <Setter
-                                        Property="Background"
-                                        Value="#c5f46c" />
-                                    <Setter
-                                        Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate
-                                                TargetType="{x:Type Button}">
-                                                <Border
-                                                    Background="{TemplateBinding Background}">
-                                                    <ContentPresenter
-                                                        HorizontalAlignment="Center"
-                                                        VerticalAlignment="Center" />
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Style.Triggers>
-                                        <Trigger
-                                            Property="IsMouseOver"
-                                            Value="True">
-                                            <Setter
-                                                Property="Background"
-                                                Value="#BCE968" />
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
+                                <Button.Style>
+                                    <Style
+                                        TargetType="{x:Type Button}">
+                                        <Setter
+                                            Property="Background"
+                                            Value="#c5f46c" />
+                                        <Setter
+                                            Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate
+                                                    TargetType="{x:Type Button}">
+                                                    <Border
+                                                        Background="{TemplateBinding Background}">
+                                                        <ContentPresenter
+                                                            HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger
+                                                Property="IsMouseOver"
+                                                Value="True">
+                                                <Setter
+                                                    Property="Background"
+                                                    Value="#BCE968" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
 
-                            <StackPanel
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center">
-                                <Image
-                                    Width="25"
-                                    Margin="0,0,0,10">
-                                    <Image.Source>
-                                        <BitmapImage
-                                            DecodePixelWidth="55"
-                                            UriSource="/Image/user-headset.png" />
-                                    </Image.Source>
-                                </Image>
-                                <TextBlock
-                                    Text="Customer"
-                                    FontWeight="SemiBold"
-                                    FontSize="18" />
-                            </StackPanel>
-                        </Button>
+                                <StackPanel
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center">
+                                    <Image
+                                        Width="25"
+                                        Margin="0,0,0,10">
+                                        <Image.Source>
+                                            <BitmapImage
+                                                DecodePixelWidth="55"
+                                                UriSource="/Image/user-headset.png" />
+                                        </Image.Source>
+                                    </Image>
+                                    <TextBlock
+                                        Text="Customer"
+                                        FontWeight="SemiBold"
+                                        FontSize="18" />
+                                </StackPanel>
+                            </Button>
 
-                        <!--Appointment-->
-                        <Button
-                            Width="150"
-                            Height="150"
-                            Margin="0,0,15,0"
-                            BorderThickness="0"
-                            Cursor="Hand"
-                            Click="Open_WRecord_Click">
+                            <!--Appointment-->
+                            <Button
+                                Width="150"
+                                Height="120"
+                                Margin="0,0,15,0"
+                                BorderThickness="0"
+                                Cursor="Hand"
+                                Click="Open_WRecord_Click">
 
-                            <Button.Resources>
-                                <Style
-                                    TargetType="{x:Type Border}">
-                                    <Setter
-                                        Property="CornerRadius"
-                                        Value="10" />
-                                </Style>
-                            </Button.Resources>
+                                <Button.Resources>
+                                    <Style
+                                        TargetType="{x:Type Border}">
+                                        <Setter
+                                            Property="CornerRadius"
+                                            Value="10" />
+                                    </Style>
+                                </Button.Resources>
 
-                            <Button.Style>
-                                <Style
-                                    TargetType="{x:Type Button}">
-                                    <Setter
-                                        Property="Background"
-                                        Value="#a5abf6" />
-                                    <Setter
-                                        Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate
-                                                TargetType="{x:Type Button}">
-                                                <Border
-                                                    Background="{TemplateBinding Background}">
-                                                    <ContentPresenter
-                                                        HorizontalAlignment="Center"
-                                                        VerticalAlignment="Center" />
-                                                </Border>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Style.Triggers>
-                                        <Trigger
-                                            Property="IsMouseOver"
-                                            Value="True">
-                                            <Setter
-                                                Property="Background"
-                                                Value="#9DA3F5" />
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
+                                <Button.Style>
+                                    <Style
+                                        TargetType="{x:Type Button}">
+                                        <Setter
+                                            Property="Background"
+                                            Value="#a5abf6" />
+                                        <Setter
+                                            Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate
+                                                    TargetType="{x:Type Button}">
+                                                    <Border
+                                                        Background="{TemplateBinding Background}">
+                                                        <ContentPresenter
+                                                            HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <Trigger
+                                                Property="IsMouseOver"
+                                                Value="True">
+                                                <Setter
+                                                    Property="Background"
+                                                    Value="#9DA3F5" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
 
-                            <StackPanel
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center">
-                                <Image
-                                    Width="25"
-                                    Margin="0,0,0,10">
-                                    <Image.Source>
-                                        <BitmapImage
-                                            DecodePixelWidth="55"
-                                            UriSource="/Image/user-md.png" />
-                                    </Image.Source>
-                                </Image>
-                                <TextBlock
-                                    Text="Appointment"
-                                    FontWeight="SemiBold"
-                                    FontSize="18" />
-                            </StackPanel>
-                        </Button>
+                                <StackPanel
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center">
+                                    <Image
+                                        Width="25"
+                                        Margin="0,0,0,10">
+                                        <Image.Source>
+                                            <BitmapImage
+                                                DecodePixelWidth="55"
+                                                UriSource="/Image/user-md.png" />
+                                        </Image.Source>
+                                    </Image>
+                                    <TextBlock
+                                        Text="Appointment"
+                                        FontWeight="SemiBold"
+                                        FontSize="18" />
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        
 
                         <!--Record Detail-->
                         <Button
-                            Width="150"
-                            Height="150"
+                            Width="250"
+                            Height="250"
                             Margin="0,0,15,0"
                             BorderThickness="0"
                             Cursor="Hand"
@@ -1433,7 +1444,7 @@
                         <!--Appointment Detail-->
                         <Button
                             Width="150"
-                            Height="150"
+                            Height="250"
                             BorderThickness="0"
                             Cursor="Hand"
                             Click="Open_WAppointmentDetail_Click">
