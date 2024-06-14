@@ -336,7 +336,7 @@
                         Height="20"
                         FontSize="14"
                         BorderThickness="0"
-                        Background="Transparent" />
+                        Background="Transparent"/>
 
                 </Border>
             </Grid>

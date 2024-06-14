@@ -47,6 +47,7 @@
     <Resource Include="Image\file-circle-info.png" />
     <Resource Include="Image\flag.png" />
     <Resource Include="Image\home.png" />
+    <Resource Include="Image\icon-1.png" />
     <Resource Include="Image\menu-dots.png" />
   </ItemGroup>
 
@@ -66,7 +67,6 @@
   <ItemGroup>
     <Resource Include="Image\hospitals.png" />
     <Resource Include="Image\herta.gif" />
-    <Resource Include="Image\icon-1.png" />
     <Resource Include="Image\rectangle-list.png" />
     <Resource Include="Image\room-service.png" />
     <Resource Include="Image\search.png" />
