@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -49,7 +50,7 @@ namespace Clinic.WpfApp.UI
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                System.Windows.MessageBox.Show(ex.Message, "Error");
             }
         }
 
@@ -65,13 +66,13 @@ namespace Clinic.WpfApp.UI
                     temp = await _clinicBusiness.GetById(Int32.Parse(RecordClinicId.Text));
                     if(temp.Data == null)
                     {
-                        MessageBox.Show("Clinic Id not found");
+                        System.Windows.MessageBox.Show("Clinic Id not found");
                         return;
                     }
                     temp = await _customerBusiness.GetById(Int32.Parse(RecordCustomerId.Text));
                     if(temp.Data == null)
                     {
-                        MessageBox.Show("Customer Id not found");
+                        System.Windows.MessageBox.Show("Customer Id not found");
                         return;
                     }
 
@@ -83,7 +84,7 @@ namespace Clinic.WpfApp.UI
                         NumOfVisits = Int32.Parse(NumOfVisits.Text)
                     };
                     var result = await _recordBusiness.Save(record);
-                    MessageBox.Show(result.Message, "Save");
+                    System.Windows.MessageBox.Show(result.Message, "Save");
                     //reset text box
                     RecordId.Text = string.Empty;
                     RecordClinicId.Text = string.Empty;
@@ -105,18 +106,18 @@ namespace Clinic.WpfApp.UI
                     temp = await _clinicBusiness.GetById(Int32.Parse(RecordClinicId.Text));
                     if(temp.Data == null)
                     {
-                        MessageBox.Show("Clinic Id not found");
+                        System.Windows.MessageBox.Show("Clinic Id not found");
                         return;
                     }
                     temp = await _customerBusiness.GetById(Int32.Parse(RecordCustomerId.Text));
                     if(temp.Data == null)
                     {
-                        MessageBox.Show("Customer Id not found");
+                        System.Windows.MessageBox.Show("Customer Id not found");
                         return;
                     }
 
                     var result = await _recordBusiness.Update(record);
-                    MessageBox.Show(result.Message, "Update");
+                    System.Windows.MessageBox.Show(result.Message, "Update");
 
 
 
@@ -130,11 +131,11 @@ namespace Clinic.WpfApp.UI
             }
             catch(FormatException fe)
             {
-                MessageBox.Show("Wrong input format", "Invalid input");
+                System.Windows.MessageBox.Show("Wrong input format", "Invalid input");
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error");
+                System.Windows.MessageBox.Show(ex.ToString(), "Error");
             }
             
         }
@@ -143,25 +144,25 @@ namespace Clinic.WpfApp.UI
         {
             try
             {
-                var button = sender as Button;
+                var button = sender as System.Windows.Controls.Button;
                 if(button == null)
                 {
-                    MessageBox.Show("Null button", "Error");
+                    System.Windows.MessageBox.Show("Null button", "Error");
                     return;
                 }
                 int recordId = (int)button.CommandParameter;
-                MessageBoxResult confirm = MessageBox.Show("Are you sure you want to delete this record?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                MessageBoxResult confirm = System.Windows.MessageBox.Show("Are you sure you want to delete this record?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if(confirm == MessageBoxResult.Yes)
                 {
                     var result = await _recordBusiness.DeleteById(recordId);
-                    MessageBox.Show(result.Message, "Delete");
+                    System.Windows.MessageBox.Show(result.Message, "Delete");
                 }
                 //refresh list
                 LoadRecords();
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                System.Windows.MessageBox.Show(ex.Message, "Error");
             }
         }
 
@@ -200,6 +201,44 @@ namespace Clinic.WpfApp.UI
             NumOfVisits.Text = string.Empty;
         }
 
+        private void txtInput_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(RecordId.Text))
+            {
+                tbPlaceholder1.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder1.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(RecordClinicId.Text))
+            {
+                tbPlaceholder2.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder2.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(RecordCustomerId.Text))
+            {
+                tbPlaceholder3.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder3.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(NumOfVisits.Text))
+            {
+                tbPlaceholder4.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder4.Visibility = Visibility.Hidden;
+            }
+        }
     }
 }
 

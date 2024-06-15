@@ -950,7 +950,7 @@
                                 Margin="0,0,15,10"
                                 BorderThickness="0"
                                 Cursor="Hand"
-                                Click="Open_WRecord_Click">
+                                Click="Open_WCustomer_Click">
 
                                 <Button.Resources>
                                     <Style
@@ -1019,7 +1019,7 @@
                                 Margin="0,0,15,0"
                                 BorderThickness="0"
                                 Cursor="Hand"
-                                Click="Open_WRecord_Click">
+                                Click="Open_wAppointment_Click">
 
                                 <Button.Resources>
                                     <Style
@@ -1090,7 +1090,7 @@
                             Margin="0,0,15,0"
                             BorderThickness="0"
                             Cursor="Hand"
-                            Click="Open_WRecord_Click">
+                            Click="Open_wRecordDetail_Click">
 
                             <Button.Resources>
                                 <Style
