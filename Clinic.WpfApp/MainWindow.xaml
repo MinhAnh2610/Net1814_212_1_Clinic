@@ -11,7 +11,7 @@
     Width="1250">
 
     <Border
-        Background="White">
+        Background="#fcfcfc">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition
@@ -28,13 +28,13 @@
             <!--Heading-->
             <Border
                 BorderThickness="0,0,1,0"
-                BorderBrush="#D9D9D9">
+                BorderBrush="#e8e8e8">
                 <StackPanel
                     Orientation="Horizontal">
 
                     <Label
                         BorderThickness="0"
-                        Background="#FFFFFF"
+                        Background="#fcfcfc"
                         HorizontalContentAlignment="Left"
                         VerticalContentAlignment="Center"
                         Margin="20,0,0,0">
@@ -74,7 +74,7 @@
             <Border
                 Grid.Row="1"
                 BorderThickness="0,0,1,0"
-                BorderBrush="#D9D9D9">
+                BorderBrush="#e8e8e8">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition
@@ -98,7 +98,7 @@
                         <Button
                             Padding="10,15,60,15"
                             Foreground="Black"
-                            Background="White"
+                            Background="#fcfcfc"
                             HorizontalAlignment="Center"
                             BorderThickness="0"
                             FontSize="14"
@@ -110,7 +110,7 @@
                                     Width="20">
                                     <Image.Source>
                                         <BitmapImage
-                                            DecodePixelWidth="20"
+                                            DecodePixelWidth="50"
                                             UriSource="/Image/home.png" />
                                     </Image.Source>
                                 </Image>
@@ -140,7 +140,7 @@
                         <Button
                             Padding="10,15,28,15"
                             Foreground="Black"
-                            Background="White"
+                            Background="#fcfcfc"
                             HorizontalAlignment="Left"
                             BorderThickness="0"
                             FontSize="14"
@@ -151,7 +151,7 @@
                                     Width="20">
                                     <Image.Source>
                                         <BitmapImage
-                                            DecodePixelWidth="20"
+                                            DecodePixelWidth="50"
                                             UriSource="/Image/file-circle-info.png" />
                                     </Image.Source>
                                 </Image>
@@ -181,7 +181,7 @@
                         <Button
                             Padding="10,15,65,15"
                             Foreground="Black"
-                            Background="White"
+                            Background="#fcfcfc"
                             HorizontalAlignment="Left"
                             BorderThickness="0"
                             FontSize="14"
@@ -192,7 +192,7 @@
                                     Width="20">
                                     <Image.Source>
                                         <BitmapImage
-                                            DecodePixelWidth="20"
+                                            DecodePixelWidth="50"
                                             UriSource="/Image/menu-dots.png" />
                                     </Image.Source>
                                 </Image>
@@ -222,7 +222,7 @@
                         <Button
                             Padding="10,15,45,15"
                             Foreground="Black"
-                            Background="Transparent"
+                            Background="#fcfcfc"
                             HorizontalAlignment="Left"
                             BorderThickness="0"
                             FontSize="14"
@@ -233,7 +233,7 @@
                                     Width="20">
                                     <Image.Source>
                                         <BitmapImage
-                                            DecodePixelWidth="20"
+                                            DecodePixelWidth="50"
                                             UriSource="/Image/settings.png" />
                                     </Image.Source>
                                 </Image>
@@ -260,17 +260,90 @@
 
             <!--Top Box-->
             <Grid
-                Grid.Column="1"
-                Background="#F6F7FA">
+                Grid.Column="1">
             </Grid>
 
+            <!--Greeting text-->
+            <StackPanel
+                Orientation="Horizontal"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                Margin="20,0,0,0">
+                <Label
+                    Content="Welcome back," 
+                    FontSize="25"
+                    FontWeight="Regular"/>
+                <Label 
+                    Content="Tom!"
+                    FontSize="25"
+                    FontWeight="Bold"/>
+            </StackPanel>
+            
             <!--Search Box-->
             <Grid
                 HorizontalAlignment="Left"
-                Margin="0,0,0,0"
                 Grid.Column="1">
                 
             </Grid>
+
+            <!--Notification-->
+            <Button
+                Grid.Column="1"
+                Panel.ZIndex="1"
+                HorizontalAlignment="Right"
+                Margin="0,0,120,0"
+                BorderThickness="0"
+                Height="22"
+                Cursor="Hand">
+                <Button.Resources>
+                    <Style
+                        TargetType="{x:Type Border}">
+                        <Setter
+                            Property="CornerRadius"
+                            Value="10" />
+                    </Style>
+                </Button.Resources>
+                <Button.Style>
+                    <Style
+                        TargetType="{x:Type Button}">
+                        <Setter
+                            Property="Background"
+                            Value="Transparent" />
+                        <Setter
+                            Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate
+                                    TargetType="{x:Type Button}">
+                                    <Border
+                                        Background="{TemplateBinding Background}">
+                                        <ContentPresenter
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger
+                                Property="IsMouseOver"
+                                Value="True">
+                                <Setter
+                                    Property="Background"
+                                    Value="Transparent" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Image
+                    Width="18">
+                    <Image.Source>
+                        <BitmapImage
+                            DecodePixelWidth="50"
+                            UriSource="/Image/bell.png" />
+                    </Image.Source>
+                </Image>
+            </Button>
 
             <!--Profile-->
             <StackPanel
@@ -286,7 +359,7 @@
                         Margin="10,0,0,0">
                         <Image.Source>
                             <BitmapImage
-                                DecodePixelWidth="20"
+                                DecodePixelWidth="50"
                                 UriSource="/Image/search.png" />
                         </Image.Source>
                     </Image>
@@ -295,15 +368,16 @@
                         VerticalAlignment="Center"
                         Margin="40,0,0,0"
                         Text="Search..."
-                        Panel.ZIndex="2"/>
+                        Panel.ZIndex="1"/>
                     <Border
                         BorderThickness="1"
                         BorderBrush="#D9D9D9"
-                        Background="White"
+                        Background="Transparent"
                         CornerRadius="10"
                         Padding="35,10,10,10"
-                        Margin="0,0,0,0"
-                        VerticalAlignment="Center">
+                        Margin="0,0,20,0"
+                        VerticalAlignment="Center"
+                        Panel.ZIndex="1">
                         <TextBox
                             x:Name="Search"
                             Width="250"
@@ -341,12 +415,6 @@
                                     UriSource="/Image/account.png" />
                             </Image.Source>
                         </Image>
-                        <TextBlock
-                            Text="Tom Cruse"
-                            FontSize="15"
-                            FontWeight="SemiBold"
-                            VerticalAlignment="Center"
-                            Margin="10,0,0,0" />
                         <Image
                             Width="12"
                             VerticalAlignment="Center"
@@ -365,27 +433,16 @@
             <StackPanel
                 Grid.Row="1"
                 Grid.Column="1"
-                Margin="20">
+                Margin="25">
 
                 <StackPanel.Resources>
                     <Style
                         TargetType="{x:Type Border}">
                         <Setter
                             Property="Margin"
-                            Value="15,0,0,0" />
+                            Value="0,0,0,0" />
                     </Style>
                 </StackPanel.Resources>
-
-                <!--Discover-->
-                <TextBlock
-                    Text="Discover"
-                    Foreground="Black"
-                    FontSize="28"
-                    FontWeight="SemiBold"
-                    HorizontalAlignment="Left"
-                    Margin="0, 0, 0, 20">
-
-                </TextBlock>
 
                 <StackPanel
                     Orientation="Horizontal"
@@ -494,7 +551,7 @@
                                 </Image.Source>
                                 <Image.RenderTransform>
                                     <RotateTransform
-                                        Angle="30" />
+                                        Angle="20" />
                                 </Image.RenderTransform>
                             </Image>
 
@@ -573,7 +630,7 @@
                         
                         <StackPanel>
                             <TextBlock
-                                Text="Book the best dentist&#x0a;for you"
+                                Text="Book the best dentist&#x0a;for you today!"
                                 Foreground="#1a2122"
                                 FontSize="28"
                                 FontWeight="SemiBold"
@@ -673,7 +730,7 @@
                         <Button
                             Width="150"
                             Height="250"
-                            Margin="15,0,15,0"
+                            Margin="0,0,15,0"
                             BorderThickness="0"
                             Cursor="Hand"
                             Click="Open_wClinic_Click">
