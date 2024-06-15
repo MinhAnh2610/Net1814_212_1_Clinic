@@ -25,6 +25,7 @@ namespace Clinic.WpfApp.UI
         private readonly IRecordBusiness _recordBusiness;
         private readonly IClinicBusiness _clinicBusiness;
         private readonly ICustomerBusiness _customerBusiness;
+
         public WRecord()
         {
             InitializeComponent();
@@ -34,6 +35,7 @@ namespace Clinic.WpfApp.UI
             LoadRecords();
         }
 
+        //###################  Load Records ##################
         private async void LoadRecords()
         {
             try
@@ -54,7 +56,7 @@ namespace Clinic.WpfApp.UI
             }
         }
 
-
+        //################### Save Button ##################
         private async void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -140,6 +142,7 @@ namespace Clinic.WpfApp.UI
             
         }
 
+        //################### Delete Button ##################
         private async void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -166,6 +169,7 @@ namespace Clinic.WpfApp.UI
             }
         }
 
+        //################### Mouse double click ##################
         private async void grdRecord_MouseDouble_Click(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show("Double Click on Grid");
@@ -193,6 +197,7 @@ namespace Clinic.WpfApp.UI
             }
         }
 
+        //################### Cancel Button ##################
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             RecordId.Text = string.Empty;
@@ -201,6 +206,7 @@ namespace Clinic.WpfApp.UI
             NumOfVisits.Text = string.Empty;
         }
 
+        //################### Text change on hover ##################
         private void txtInput_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(RecordId.Text))
