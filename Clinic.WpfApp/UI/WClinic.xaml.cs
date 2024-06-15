@@ -15,6 +15,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -37,6 +38,7 @@ namespace Clinic.WpfApp.UI
             LoadClinics();
         }
 
+        //################### Load Clinic ##################
         private async void LoadClinics()
         {
             try
@@ -53,10 +55,11 @@ namespace Clinic.WpfApp.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                System.Windows.MessageBox.Show(ex.Message, "Error");
             }
         }
 
+        //################### Save Button ##################
         private async void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -93,7 +96,7 @@ namespace Clinic.WpfApp.UI
                     clinicModel.Country = clinicUpdate.Country;
 
                     var result = await _clinicBusiness.Update(clinicModel);
-                    MessageBox.Show(result.Message, "Update");
+                    System.Windows.MessageBox.Show(result.Message, "Update");
 
                     ButtonCancel_Click(sender, e);
 
@@ -115,7 +118,7 @@ namespace Clinic.WpfApp.UI
                         Country = Country.Text,
                     };
                     var result = await _clinicBusiness.Save(clinic);
-                    MessageBox.Show(result.Message, "Save");
+                    System.Windows.MessageBox.Show(result.Message, "Save");
 
                     ButtonCancel_Click(sender, e);
 
@@ -124,10 +127,11 @@ namespace Clinic.WpfApp.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error");
+                System.Windows.MessageBox.Show(ex.ToString(), "Error");
             }
         }
 
+        //################### Cancel button ##################
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             ClinicId.Text = string.Empty;
@@ -144,11 +148,12 @@ namespace Clinic.WpfApp.UI
             Country.Text = string.Empty;
         }
 
+        //################### GetData Button ##################
         private void ButtonGetData_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var button = sender as Button;
+                var button = sender as System.Windows.Controls.Button;
                 var selectedClinic = button?.DataContext as Data.Models.Clinic;
 
                 if (selectedClinic != null)
@@ -159,25 +164,26 @@ namespace Clinic.WpfApp.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"{ex.Message}", "Error");
+                System.Windows.MessageBox.Show($"{ex.Message}", "Error");
             }
         }
 
+        //################### Delete Button ##################
         private async void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var button = sender as Button;
+                var button = sender as System.Windows.Controls.Button;
                 if (button != null)
                 {
                     int clinicId = (int)button.CommandParameter;
 
                     // Show confirmation message box
-                    MessageBoxResult confirm = MessageBox.Show("Are you sure you want to delete this clinic?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    MessageBoxResult confirm = System.Windows.MessageBox.Show("Are you sure you want to delete this clinic?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                     if (confirm == MessageBoxResult.Yes)
                     {
                         var result = await _clinicBusiness.DeleteById(clinicId);
-                        MessageBox.Show(result.Message, "Delete");
+                        System.Windows.MessageBox.Show(result.Message, "Delete");
                     }
 
                     // Update the form fields with the clinic details
@@ -186,16 +192,18 @@ namespace Clinic.WpfApp.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"{ex.Message}", "Error");
+                System.Windows.MessageBox.Show($"{ex.Message}", "Error");
             }
         }
 
+        //################### Search Button ##################
         private void ButtonSearch_Click(object sender, RoutedEventArgs e)
         {
             var p = new WClinicSearch();
             p.Show();
         }
 
+        //################### MouseDouble Click ##################
         private async void Clinic_MouseDouble_Click(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show("Double Click on Grid");
@@ -229,11 +237,106 @@ namespace Clinic.WpfApp.UI
                             {
                                 NoButton.IsChecked = true;
                             }
+                            //IsActive.Text = item.City;
                             City.Text = item.City;
                             Country.Text = item.Country;
                         }
                     }
                 }
+            }
+        }
+
+        //################### Text changed while hover ##################
+        private void txtInput_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(ClinicId.Text))
+            {
+                tbPlaceholder1.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder1.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(OwnerName.Text))
+            {
+                tbPlaceholder2.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder2.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(Name.Text))
+            {
+                tbPlaceholder3.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder3.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(Address.Text))
+            {
+                tbPlaceholder4.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder4.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(Contact.Text))
+            {
+                tbPlaceholder5.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder5.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(Email.Text))
+            {
+                tbPlaceholder6.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder6.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(Website.Text))
+            {
+                tbPlaceholder7.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder7.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(ClinicType.Text))
+            {
+                tbPlaceholder8.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder8.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(City.Text))
+            {
+                tbPlaceholder9.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder9.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(Country.Text))
+            {
+                tbPlaceholder10.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder10.Visibility = Visibility.Hidden;
             }
         }
     }

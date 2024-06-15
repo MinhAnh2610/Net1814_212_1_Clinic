@@ -31,15 +31,6 @@
                 Property="BorderThickness"
                 Value="0" />
         </Style>
-        <!--<Style
-            TargetType="DataGrid">
-            <Setter
-                Property="Background"
-                Value="White" />
-            <Setter
-                Property="BorderThickness"
-                Value="0" />
-        </Style>-->
         <Style
             TargetType="DataGridCell">
             <Setter
