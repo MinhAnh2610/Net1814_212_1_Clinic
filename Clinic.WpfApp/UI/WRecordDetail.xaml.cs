@@ -44,11 +44,11 @@ namespace Clinic.WpfApp.UI
             var recordDetails = await _recordDetailBusiness.GetAll();
             if (recordDetails.Status > 0 && recordDetails.Data != null)
             {
-                recordList.ItemsSource = recordDetails.Data as List<Data.Models.RecordDetail>;
+                recordDetailList.ItemsSource = recordDetails.Data as List<Data.Models.RecordDetail>;
             }
             else
             {
-                recordList.ItemsSource = new List<Data.Models.RecordDetail>();
+                recordDetailList.ItemsSource = new List<Data.Models.RecordDetail>();
             }
         }
 
@@ -258,6 +258,99 @@ namespace Clinic.WpfApp.UI
                         }
                     }
                 }
+            }
+        }
+
+        private void txtInput_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(RecordDetailId.Text))
+            {
+                tbPlaceholder1.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder1.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(AppointmentDetailId.Text))
+            {
+                tbPlaceholder2.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder2.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(RecordId.Text))
+            {
+                tbPlaceholder3.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder3.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(Evaluation.Text))
+            {
+                tbPlaceholder4.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder4.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(Reccommend.Text))
+            {
+                tbPlaceholder5.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder5.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(Diagnosis.Text))
+            {
+                tbPlaceholder6.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder6.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(Prescriptions.Text))
+            {
+                tbPlaceholder7.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder7.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(Symptoms.Text))
+            {
+                tbPlaceholder8.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder8.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(TreatmentPlan.Text))
+            {
+                tbPlaceholder9.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder9.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(Notes.Text))
+            {
+                tbPlaceholder10.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder10.Visibility = Visibility.Hidden;
             }
         }
     }
