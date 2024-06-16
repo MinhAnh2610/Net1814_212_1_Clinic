@@ -95,7 +95,7 @@
     mc:Ignorable="d"
     Title="WRecord"
     Height="770"
-    Width="1220">
+    Width="1520">
     <Window.Resources>
         <Style
             TargetType="DataGridColumnHeader">
@@ -549,7 +549,7 @@
                 VerticalAlignment="Top"
                 Grid.Row="1"
                 Grid.Column="1"
-                Width="1040"
+                Width="1340"
                 Height="670">
                 <StackPanel
                     Orientation="Vertical"
@@ -892,7 +892,7 @@
                             CanUserAddRows="False"
                             HeadersVisibility="Column"
                             FrozenColumnCount="3"
-                            Height="350"
+                            Height="Auto"
                             CanUserResizeColumns="False"
                             CanUserResizeRows="False"
                             CanUserSortColumns="True"
@@ -940,6 +940,48 @@
                                                         Width="15"
                                                         Height="15" />
                                                 </Button>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+
+                    <StackPanel
+    Width="Auto"
+    Height="Auto">
+                        <DataGrid
+        x:Name="recordDetailList"
+        AutoGenerateColumns="False"
+        GridLinesVisibility="none"
+        ItemsSource="{Binding AppointmentDetail}"
+        CanUserAddRows="False"
+        HeadersVisibility="Column"
+        FrozenColumnCount="3"
+        Height="Auto"
+        CanUserResizeColumns="False"
+        CanUserResizeRows="False"
+        CanUserSortColumns="True"
+        AlternatingRowBackground="#E6E7EA"
+        MouseDoubleClick="grdRecord_MouseDouble_Click"
+        SelectionMode="Single"
+        SelectionUnit="FullRow">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="RecordDetailId" Binding="{Binding Path=RecordDetailId}" Width="150" Visibility="Visible"/>
+                                <DataGridTextColumn Header="AppointmentDetailId" Binding="{Binding Path=AppointmentDetailId}" Width="150" Visibility="Visible"/>
+                                <DataGridTextColumn Header="RecordId" Binding="{Binding Path=RecordId}" Width="150"  IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Evaluation" Binding="{Binding Path=Evaluation}" Width="auto"  IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Reccommend" Binding="{Binding Path=Reccommend}" Width="auto"  IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Diagnosis" Binding="{Binding Path=Diagnosis}" Width="auto"  IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Prescriptions" Binding="{Binding Path=Prescriptions}" Width="auto"  IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Symptoms" Binding="{Binding Path=Symptoms}" Width="auto"  IsReadOnly="True"/>
+                                <DataGridTextColumn Header="TreatmentPlan" Binding="{Binding Path=TreatmentPlan}" Width="auto"  IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Notes" Binding="{Binding Path=Notes}" Width="auto"  IsReadOnly="True"/>
+                                <DataGridTemplateColumn Width="Auto">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Height="35">
                                             </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>

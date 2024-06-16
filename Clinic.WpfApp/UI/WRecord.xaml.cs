@@ -25,6 +25,7 @@ namespace Clinic.WpfApp.UI
         private readonly IRecordBusiness _recordBusiness;
         private readonly IClinicBusiness _clinicBusiness;
         private readonly ICustomerBusiness _customerBusiness;
+        private readonly IRecordDetailBusiness _recordDetailBusiness;
 
         public WRecord()
         {
@@ -32,6 +33,7 @@ namespace Clinic.WpfApp.UI
             _recordBusiness = new RecordBusiness();
             _clinicBusiness = new ClinicBusiness();
             _customerBusiness = new CustomerBusiness();
+            _recordDetailBusiness = new RecordDetailBusiness();
             LoadRecords();
         }
 
@@ -41,6 +43,7 @@ namespace Clinic.WpfApp.UI
             try
             {
                 var records = await _recordBusiness.GetAll();
+                var recordDetails = await _recordDetailBusiness.GetAll();
                 if(records.Status > 0 && records.Data != null)
                 {
                     recordList.ItemsSource = records.Data as List<Record>;
@@ -48,6 +51,15 @@ namespace Clinic.WpfApp.UI
                 else
                 {
                     recordList.ItemsSource = new List<Record>();
+                }
+
+                if (recordDetails.Status > 0 && recordDetails.Data != null)
+                {
+                    recordDetailList.ItemsSource = recordDetails.Data as List<RecordDetail>;
+                }
+                else
+                {
+                    recordDetailList.ItemsSource= new List<RecordDetail>();
                 }
             }
             catch(Exception ex)
