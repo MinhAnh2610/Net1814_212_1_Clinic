@@ -271,11 +271,11 @@ namespace Clinic.WpfApp.UI
                             CustomerLastName.Text = item.LastName;
                             CustomerPhone.Text = item.Phone;
                             CustomerAddress.Text = item.Address;
-                            comboGender.SelectedIndex = (item.Gender) ? 0 : 1;
+                            comboGender.SelectedIndex = (bool)(item.Gender) ? 0 : 1;
                             CustomerEmail.Text = item.Email;
                             CustomerDoB.Text = item.DoB.ToString();
                             CustomerCreatedAt.Text = item.CreatedAt.ToString();
-                            comboIsActive.SelectedIndex = (item.IsActive) ? 0 : 1;
+                            comboIsActive.SelectedIndex = (bool)(item.IsActive) ? 0 : 1;
                         }
                     }
                 }
