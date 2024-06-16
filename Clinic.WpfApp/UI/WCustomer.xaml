@@ -5,93 +5,146 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Clinic.WpfApp.UI"
         mc:Ignorable="d"
-        Title="Customer" Height="auto" Width="1300"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        TextElement.FontWeight="Regular"
-        TextElement.FontSize="13"
-        TextOptions.TextFormattingMode="Ideal"
-        TextOptions.TextRenderingMode="Auto"
-        Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}">
-    <StackPanel Orientation="Horizontal">
-        <materialDesign:Card Padding="20" Margin="10">
-            <StackPanel>
-                <GroupBox Header="Customer Form" Margin="10">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="200"/>
-                        </Grid.ColumnDefinitions>
+        Title="Customer"
+        WindowStyle="None"
+        WindowState="Maximized">
+    <Window.Resources>
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+        <Style TargetType="Button" x:Key="SaveButtonStyle">
+            <Setter Property="Background" Value="LightGreen"/>
+        </Style>
+        <Style TargetType="Button" x:Key="SearchButtonStyle">
+            <Setter Property="Background" Value="LightGray"/>
+        </Style>
+        <Style TargetType="Button" x:Key="CancelButtonStyle">
+            <Setter Property="Background" Value="Orange"/>
+        </Style>
+        <Style TargetType="Button" x:Key="DeleteButtonStyle">
+            <Setter Property="Background" Value="LightCoral"/>
+        </Style>
+        <Style TargetType="Button" x:Key="ViewButtonStyle">
+            <Setter Property="Background" Value="CadetBlue"/>
+        </Style>
+        <Style TargetType="GroupBox">
+            <Setter Property="HeaderTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}"
+                                   FontSize="22px"
+                                   Margin="20,0,0,0"
+                                   FontWeight="Bold"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Background="LightSteelBlue">
+        <StackPanel>
+            <GroupBox Header="Customer" Margin="10" Height="99">
+                <Grid Height="50">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
 
-                        <!-- Customer ID -->
-                        <Label Content="Customer ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="5"/>
-                        <TextBox Grid.Row="0" Grid.Column="1" x:Name="CustomerId" Height="25" Text="{Binding Path=CustomerId, Mode=TwoWay}" Margin="5"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="CustomerId" Height="25" Text="{Binding Path=CustomerId, Mode=TwoWay}" Width="53" HorizontalAlignment="Left"/>
 
-                        <!-- Customer First Name -->
-                        <Label Content="First Name" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="1" Margin="5"/>
-                        <TextBox Grid.Row="1" Grid.Column="1" x:Name="CustomerFirstName" Height="25" Text="{Binding Path=FirstName, Mode=TwoWay}" Margin="5"/>
+                    <Label Content="Gender" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="2" Grid.Row="0"/>
+                    <ComboBox x:Name="comboGender" SelectedIndex="0" Grid.Column="3" Height="25" Width="70">
+                        <ComboBoxItem Content="Male"/>
+                        <ComboBoxItem Content="Female"/>
+                    </ComboBox>
 
-                        <!--Customer Last Name -->
-                        <Label Content="Last Name" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="2" Margin="5"/>
-                        <TextBox Grid.Row="2" Grid.Column="1" x:Name="CustomerLastName" Height="25" Text="{Binding Path=LastName, Mode=TwoWay}" Margin="5"/>
+                    <Label Content="First Name" Grid.Column="4" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="0" Grid.Column="5" x:Name="CustomerFirstName" Height="25" Text="{Binding Path=FirstName, Mode=TwoWay}" Width="100" HorizontalAlignment="Left"/>
 
-                        <!--Customer Phone -->
-                        <Label Content="Phone" HorizontalAlignment="Left" VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="3" Margin="5"/>
-                        <TextBox Grid.Row="3" Grid.Column="1" x:Name="CustomerPhone" Height="50" Text="{Binding Path=Phone, Mode=TwoWay}" Margin="5"
-                             AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
-                    </Grid>
-                </GroupBox>
-                <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button x:Name="ButtonSave" Content="Save" Height="30" Width="80"
-                    Command="{Binding SaveCommand}" Margin="10,0,0,0" Click="ButtonSave_Click"/>
-                    <!--<Button x:Name="ButtonUpdate" Content="Update" Height="30" Width="80"
-                    Command="{Binding UpdateCommand}" Margin="10,0,0,0" Click="ButtonUpdate_Click"/>-->
-                    <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" 
-                    Command="{Binding ResetCommand}" Margin="10,0,0,0" Click="ButtonCancel_Click"/>
-                </StackPanel>
+                    <Label Grid.Column="6" Content="LastName" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="0" Grid.Column="7" x:Name="CustomerLastName" Height="25" Text="{Binding Path=LastName, Mode=TwoWay}" Width="100" HorizontalAlignment="Left"/>
+
+                    <Label Grid.Column="8" Content="Phone" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBox Grid.Row="0" Grid.Column="9" x:Name="CustomerPhone" Height="25" Text="{Binding Path=Phone, Mode=TwoWay}" Width="150" HorizontalAlignment="Left"/>
+
+                    <Label Grid.Column="10" Content="Address" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBox Grid.Row="0" Grid.Column="11" x:Name="CustomerAddress" Height="25" Text="{Binding Path=Address, Mode=TwoWay}" Width="150" HorizontalAlignment="Left"/>
+
+
+                    <Label Grid.Column="12" Grid.Row="0" Content="Email" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBox Grid.Row="0" Grid.Column="13" x:Name="CustomerEmail" Height="25" Text="{Binding Path=Email
+, Mode=TwoWay}" Width="150" HorizontalAlignment="Left"/>
+
+                    <Label Grid.Row="0" Grid.Column="14" Content="DoB" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBox Grid.Row="0" Grid.Column="15" x:Name="CustomerDoB" Height="25" Text="{Binding Path=DoB, Mode=TwoWay}" Width="150" HorizontalAlignment="Left"/>
+
+                    <Label Grid.Row="0" Grid.Column="16" Content="CreatedAt" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <TextBox Grid.Row="0" Grid.Column="17" x:Name="CustomerCreatedAt" Height="25" Text="{Binding Path=CreatedAt, Mode=TwoWay}" Width="150" HorizontalAlignment="Left"/>
+
+                    <Label Grid.Row="0" Grid.Column="18" Content="CustomerIsActive" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <ComboBox x:Name="comboIsActive" SelectedIndex="0" Grid.Column="19" Height="25" Width="70">
+                        <ComboBoxItem Content="True"/>
+                        <ComboBoxItem Content="False"/>
+                    </ComboBox>
+                </Grid>
+            </GroupBox>
+            <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="ButtonSearch" Content="Search" Height="30" Width="80" Click="ButtonSearch_Click" Margin="0,0,10,0" Style="{StaticResource SearchButtonStyle}"/>
+                <Button x:Name="ButtonSave" Content="Save" Height="30" Width="80" Click="ButtonSave_Click" Margin="0,0,10,0" Style="{StaticResource SaveButtonStyle}"/>
+                <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" Click="ButtonCancel_Click" Margin="0,0,20,0" Style="{StaticResource CancelButtonStyle}"/>
             </StackPanel>
-        </materialDesign:Card>
-
-        <materialDesign:Card Padding="20" Margin="10">
-            <StackPanel>
-                <DataGrid x:Name="customerList" AutoGenerateColumns="False" MouseDoubleClick="grdCustomer_MouseDouble_Click" SelectionMode="Single" SelectionUnit="FullRow" ItemsSource="{Binding Customers}"
-                  HorizontalAlignment="Stretch" CanUserAddRows="False" Margin="10"
-                  materialDesign:DataGridAssist.ColumnHeaderPadding="8,4,8,4"
-                RowDetailsVisibilityMode="VisibleWhenSelected">
+            <StackPanel Height="890" Margin="0,10,0,0">
+                
+                <DataGrid x:Name="customerList" AutoGenerateColumns="False" ItemsSource="{Binding Customers}" CanUserAddRows="False" Height="890" BorderBrush="#FF181918" Background="#FFFDF5F5" Foreground="Black" FontSize="13" Width="1920" MouseDoubleClick="grdCustomer_MouseDouble_Click" SelectionMode="Single" SelectionUnit="FullRow" HorizontalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="CustomerId" Binding="{Binding Path=CustomerId}" Visibility="Visible"/>
-                        <DataGridTextColumn Header="First Name" Binding="{Binding Path=FirstName}" Visibility="Visible"/>
-                        <DataGridTextColumn Header="Last Name" Binding="{Binding Path=FirstName}" Width="auto"  IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Phone" Binding="{Binding Path=Phone}" Width="auto"  IsReadOnly="True"/>
-                        <!--<DataGridTemplateColumn Header="Edit" Width="100">
+                        <DataGridTextColumn Header="ID" Binding="{Binding CustomerId}" Width="*" Visibility="Visible"/>
+                        <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" Width="*" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" Width="*" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Gender" Binding="{Binding Gender}" Width="*" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Phone" Binding="{Binding Phone}" Width="*" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="*" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="DoB" Binding="{Binding DoB}" Width="*" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="CreatedAt" Binding="{Binding CreatedAt}" Width="*" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="IsActive" Binding="{Binding IsActive}" Width="*" IsReadOnly="True"/>
+                        <DataGridTemplateColumn Width="50">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="Select" x:Name="ButtonEdit" CommandParameter="{Binding Path=CustomerId}"
-                                    Command="{Binding Path=DataContext.EditCommand,RelativeSource={RelativeSource FindAncestor,
-                                            AncestorType=Window}}" Click="ButtonGetData_Click"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>-->
-                        <DataGridTemplateColumn Header="Delete" Width="100">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Content="Delete" x:Name="ButtonDelete" CommandParameter="{Binding Path=CustomerId}"
-                                    Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor,
-                                            AncestorType=Window}}" Click="ButtonDelete_Click"/>
+                                    <Button Content="X" x:Name="ButtonDelete" CommandParameter="{Binding CustomerId}" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Click="ButtonDelete_Click" Style="{StaticResource DeleteButtonStyle}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
-        </materialDesign:Card>
-    </StackPanel>
+        </StackPanel>
+    </Grid>
 </Window>
