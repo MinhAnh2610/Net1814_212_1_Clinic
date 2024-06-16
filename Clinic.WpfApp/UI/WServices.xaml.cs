@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Net;
 using Clinic.Business.Clinic;
-using System.Windows.Forms.Design;
+using Clinic.WpfApp.UI.DetailWindow;
 
 namespace Clinic.WpfApp.UI
 {
@@ -27,6 +27,7 @@ namespace Clinic.WpfApp.UI
     {
         private readonly ServiceBusiness _serviceBusiness;
         private readonly ClinicBusiness _clinicBusiness;
+
         public WServices()
         {
             InitializeComponent();
@@ -34,6 +35,7 @@ namespace Clinic.WpfApp.UI
             this._clinicBusiness = new ClinicBusiness();
             this.LoadGrdServices();
         }
+
         private async void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -53,6 +55,11 @@ namespace Clinic.WpfApp.UI
 
                 String name = ServiceName.Text;
                 String description = Description.Text;
+                String warranty = Warranty.Text;
+                String duration = ServiceDuration.Text;
+                String type = ServiceType.Text;
+                bool active = YesActive.IsChecked == true;
+                bool insurance = YesInsurance.IsChecked == true;
 
                 var item = await _serviceBusiness.GetById(serviceID);
 
@@ -65,6 +72,11 @@ namespace Clinic.WpfApp.UI
                         Price = price,
                         Name = name,
                         Description = description,
+                        Warranty = warranty,
+                        Duration = duration,
+                        Type = type,
+                        Active = active,
+                        IsInsuranceAccepted = insurance,
                     };
 
                     var result = await _serviceBusiness.Save(service);
@@ -79,16 +91,17 @@ namespace Clinic.WpfApp.UI
                     updatedService.Name = name;
                     updatedService.Price = price;
                     updatedService.Description = description;
+                    updatedService.Warranty = warranty;
+                    updatedService.Duration = duration;
+                    updatedService.Type = type;
+                    updatedService.Active = active;
+                    updatedService.IsInsuranceAccepted = insurance;
 
                     var result = await _serviceBusiness.Update(updatedService);
                     MessageBox.Show(result.Message, "Save");
                 }
 
-                ServiceID.Text = string.Empty;
-                ClinicID.Text = string.Empty;
-                ServiceName.Text = string.Empty;
-                Price.Text = string.Empty;
-                Description.Text = string.Empty;
+                this.ButtonCancel_Click(sender, e);
 
                 this.LoadGrdServices();
             }
@@ -108,6 +121,34 @@ namespace Clinic.WpfApp.UI
                 ServiceName.Text = string.Empty;
                 Price.Text = string.Empty;
                 Description.Text = string.Empty;
+                Warranty.Text = string.Empty;
+                ServiceDuration.Text = string.Empty;
+                ServiceType.Text = string.Empty;
+                YesActive.IsChecked = null;
+                YesInsurance.IsChecked = null;
+                NoActive.IsChecked = null;
+                NoInsurance.IsChecked = null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error");
+            }
+        }
+
+        private async void grdService_ButtonDelete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button btn = (Button)sender;
+                int serviceID = (int)btn.CommandParameter;
+
+                MessageBoxResult askDelete = MessageBox.Show("Do you want to delete this?", "Delete", MessageBoxButton.YesNo);
+                if (askDelete == MessageBoxResult.Yes)
+                {
+                    var result = await _serviceBusiness.DeleteById(serviceID);
+                    MessageBox.Show(result.Message, "Delete");
+                    this.LoadGrdServices();
+                }
             }
             catch (Exception ex)
             {
@@ -117,6 +158,7 @@ namespace Clinic.WpfApp.UI
 
         private async void grdService_MouseDouble_Click(object sender, RoutedEventArgs e)
         {
+            //MessageBox.Show("Double Click on Grid");
             DataGrid grd = sender as DataGrid;
             if (grd != null && grd.SelectedItems != null && grd.SelectedItems.Count == 1)
             {
@@ -136,24 +178,29 @@ namespace Clinic.WpfApp.UI
                             ServiceName.Text = item.Name;
                             Price.Text = item.Price.ToString();
                             Description.Text = item.Description;
+                            Warranty.Text = item.Warranty;
+                            ServiceDuration.Text = item.Duration;
+                            ServiceType.Text = item.Type;
+                            YesActive.IsChecked = (item.Active ?? true) ? true : false;
+                            YesInsurance.IsChecked = (item.IsInsuranceAccepted ?? true) ? true : false;
                         }
                     }
                 }
             }
         }
 
-        private async void grdService_ButtonDelete_Click(object sender, RoutedEventArgs e)
+        private async void grdService_ButtonView_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 Button btn = (Button)sender;
                 int serviceID = (int)btn.CommandParameter;
-                MessageBoxResult askDelete = MessageBox.Show("Do you want to delete this?", "Delete", MessageBoxButton.YesNo);
-                if (askDelete == MessageBoxResult.Yes)
+                var result = await _serviceBusiness.GetById(serviceID);
+                if (result.Data != null)
                 {
-                    var result = await _serviceBusiness.DeleteById(serviceID);
-                    MessageBox.Show(result.Message, "Delete");
-                    this.LoadGrdServices();
+                    var service = result.Data as Service;
+                    var p = new WServiceDetail(service);
+                    p.ShowDialog();
                 }
             }
             catch (Exception ex)
@@ -162,7 +209,7 @@ namespace Clinic.WpfApp.UI
             }
         }
 
-        private async void LoadGrdServices ()
+        private async void LoadGrdServices()
         {
             var result = await _serviceBusiness.GetAll();
             if (result.Status > 0 && result.Data != null)

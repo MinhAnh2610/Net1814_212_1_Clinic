@@ -5,46 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Clinic.WpfApp.UI"
         mc:Ignorable="d"
-        Title="wServices" Height="450" Width="1000">
+        Title="wServices" Height="550" Width="1000">
     <Window.Resources>
         <Style TargetType="DataGridColumnHeader">
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Foreground" Value="#FFD21E1E"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        </Style>
-        <Style TargetType="Label">
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="Black"/>
-        </Style>
-        <Style TargetType="Button" x:Key="SaveButtonStyle">
-            <Setter Property="Background" Value="LightGreen"/>
-        </Style>
-        <Style TargetType="Button" x:Key="CancelButtonStyle">
-            <Setter Property="Background" Value="Orange"/>
-        </Style>
-        <Style TargetType="Button" x:Key="DeleteButtonStyle">
-            <Setter Property="Background" Value="LightCoral"/>
-        </Style>
-        <Style TargetType="Button" x:Key="ViewButtonStyle">
-            <Setter Property="Background" Value="CadetBlue"/>
         </Style>
         <Style TargetType="GroupBox">
             <Setter Property="HeaderTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <TextBlock Text="{Binding}"
-                                   FontSize="22px"
-                                   Margin="20,0,0,0"
-                                   FontWeight="Bold"/>
+                        <TextBlock Text="{Binding}" FontSize="25px" Margin="20,0,0,5" FontWeight="Bold"/>
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
     </Window.Resources>
-    <Grid Background="LightSteelBlue">
+    <Grid Background="#FFD7E2F1">
         <StackPanel>
-            <GroupBox Header="Service Form" Margin="10" Height="99">
-                <Grid Height="50">
+            <GroupBox Header="Service Form" Margin="10" Height="214">
+                <Grid Height="189" Margin="0,0,-2,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
@@ -57,35 +42,74 @@
                         <ColumnDefinition Width="200"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="ID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="13,0,0,0"/>
-                    <TextBox Grid.Row="0" x:Name="ServiceID" Height="25" Text="{Binding Path=Service.ServiceId, Mode=TwoWay}" Margin="40,13,0,12" Width="53" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
-                    <Label Content="ClinicID" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="0" Margin="31,0,0,-1"/>
-                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="ClinicID" Height="25" Text="{Binding Path=Service.ClinicId, Mode=TwoWay}" Margin="86,13,0,12" Width="57" HorizontalAlignment="Left"/>
-                    <Label Grid.Column="3" Content="Price" HorizontalAlignment="Left" Margin="134,0,0,0" VerticalAlignment="Center"/>
-                    <TextBox Grid.Row="0" Grid.Column="3" x:Name="Price" Height="25" Text="{Binding Path=Service.Price, Mode=TwoWay}" Margin="177,13,0,12" Width="81" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
-                    <Label Content="ServiceName" Grid.Column="1" HorizontalAlignment="Left" Margin="164,0,0,0" VerticalAlignment="Center" Grid.ColumnSpan="2" Width="86"/>
-                    <TextBox Grid.Row="0" Grid.Column="2" x:Name="ServiceName" Height="25" Text="{Binding Path=Service.Name, Mode=TwoWay}" Margin="55,13,0,12" Width="140" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
-                    <Label Grid.Column="4" Content="Description" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="75,0,0,0"/>
-                    <TextBox Grid.Row="0" Grid.Column="5" x:Name="Description" Height="25" Text="{Binding Path=Service.Description, Mode=TwoWay}" Margin="75,13,0,12" Width="233" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+
+                    <Label Content="Service ID*" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Row="0" Margin="17,2,0,148" Grid.ColumnSpan="2" Width="75"/>
+                    <TextBox Grid.Row="0" x:Name="ServiceID" Height="25" Text="{Binding Path=Service.ServiceId, Mode=TwoWay}" Margin="34,11,0,153" Width="156" HorizontalAlignment="Left" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+                    <Label Content="ClinicID*" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Row="0" Margin="17,49,0,110"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="ClinicID" Text="{Binding Path=Service.ClinicId, Mode=TwoWay}" Margin="34,52,0,112" Width="156" HorizontalAlignment="Left"/>
+
+                    <Label Grid.Column="2" Content="Price*" HorizontalAlignment="Left" Margin="43,11,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <TextBox Grid.Row="0" Grid.Column="3" x:Name="Price" Text="{Binding Path=Service.Price, Mode=TwoWay}" Margin="70,11,0,153" Width="156" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+
+                    <Label Content="ServiceName*" HorizontalAlignment="Left" Margin="17,92,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="92"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="ServiceName" Text="{Binding Path=Service.Name, Mode=TwoWay}" Margin="34,94,0,71" Width="156" HorizontalAlignment="Left"/>
+
+                    <Label Grid.Column="2" Content="Description*" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="43,52,0,0" Grid.ColumnSpan="2"/>
+                    <TextBox Grid.Row="0" Grid.Column="3" x:Name="Description" Text="{Binding Path=Service.Description, Mode=TwoWay}" Margin="70,52,54,112" Width="156" Grid.ColumnSpan="2"/>
+
+                    <Label Grid.Column="2" Content="Warranty" HorizontalAlignment="Left" Margin="43,92,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <TextBox Grid.Row="0" Grid.Column="3" x:Name="Warranty" Text="{Binding Path=Service.Warranty, Mode=TwoWay}" Margin="70,94,54,71" Width="156" Grid.ColumnSpan="2"/>
+
+                    <Label Grid.Column="5" Content="Duration" HorizontalAlignment="Left" Margin="10,9,0,0" VerticalAlignment="Top"/>
+                    <TextBox Grid.Row="0" Grid.Column="5" x:Name="ServiceDuration" Text="{Binding Path=Service.Duration, Mode=TwoWay}" Margin="130,12,44,153" Width="156" Grid.ColumnSpan="2"/>
+
+                    <Label Grid.Column="5" Content="Type" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top"/>
+                    <TextBox Grid.Row="0" Grid.Column="5" x:Name="ServiceType" Text="{Binding Path=Service.Type, Mode=TwoWay}" Margin="130,52,44,113" Width="156" Grid.ColumnSpan="2"/>
+
+                    <Label Grid.Column="5" Content="Is Active?" HorizontalAlignment="Left" Margin="12,92,0,0" VerticalAlignment="Top"/>
+                    <StackPanel Orientation="Horizontal" Grid.Column="5" Margin="139,98,65,67" Grid.ColumnSpan="2">
+                        <RadioButton Grid.Column="2" x:Name="YesActive" Content="Yes" IsChecked="{Binding Path=Service.IsActive, Mode=TwoWay}" Width="44"/>
+                        <RadioButton Grid.Column="2" x:Name="NoActive" Content="No" IsChecked="{Binding Path=Service.IsActive, Mode=TwoWay}" Width="57"/>
+                    </StackPanel>
+
+                    <Label Grid.Column="5" Content="Accept Insurance?" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top"/>
+                    <StackPanel Orientation="Horizontal" Grid.Column="5" Margin="139,138,65,27" Grid.ColumnSpan="2">
+                        <RadioButton Grid.Column="2" x:Name="YesInsurance" Content="Yes" IsChecked="{Binding Path=Service.IsInsuranceAccepted, Mode=TwoWay}" Width="44"/>
+                        <RadioButton Grid.Column="2" x:Name="NoInsurance" Content="Yes" IsChecked="{Binding Path=Service.IsInsuranceAccepted, Mode=TwoWay}" Width="44"/>
+                    </StackPanel>
+
                 </Grid>
             </GroupBox>
             <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button x:Name="ButtonSave" Content="Save" Height="30" Width="80" Click="ButtonSave_Click" Margin="0,0,10,0" Style="{StaticResource SaveButtonStyle}"/>
-                <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" Click="ButtonCancel_Click" Margin="0,0,20,0" Style="{StaticResource CancelButtonStyle}"/>
+                <Button x:Name="ButtonAdd" Content="Save" Height="30" Width="80" Click="ButtonSave_Click" Margin="0,0,10,0" Background="LightGreen"/>
+                <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" Click="ButtonCancel_Click" Margin="0,0,20,0" Background="#FFFAD080"/>
             </StackPanel>
-            <StackPanel Height="230" Margin="0,10,0,0">
-                <DataGrid x:Name="grdService" AutoGenerateColumns="False" ItemsSource="{Binding Service}" CanUserAddRows="False" Height="253" BorderBrush="#FF181918" Background="#FFFDF5F5" Foreground="#FFFF0404" FontSize="13" Width="954" MouseDoubleClick="grdService_MouseDouble_Click" SelectionMode="Single" SelectionUnit="FullRow">
+            <StackPanel Height="230" Margin="0,30,0,0">
+                <DataGrid x:Name="grdService" AutoGenerateColumns="False" ItemsSource="{Binding Service}" CanUserAddRows="False" Height="222" BorderBrush="#FF181918" Background="{x:Null}" Foreground="#FF4D7EFF" FontSize="13" Width="970" MouseDoubleClick="grdService_MouseDouble_Click" SelectionMode="Single" SelectionUnit="FullRow">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Code" Binding="{Binding Id}" Visibility="Hidden"/>
-                        <DataGridTextColumn Header="ID" Binding="{Binding ServiceId}" Width="110" Visibility="Visible"/>
-                        <DataGridTextColumn Header="ClinicID" Binding="{Binding ClinicId}" Width="110" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Service Name" Binding="{Binding Name}" Width="200" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="180" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="296" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="ID" Binding="{Binding ServiceId}" Width="50" Visibility="Visible"/>
+                        <DataGridTextColumn Header="ClinicID" Binding="{Binding ClinicId}" Width="60" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Service Name" Binding="{Binding Name}" Width="100" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="70" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="100" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Warranty" Binding="{Binding Warranty}" Width="80" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" Width="90" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="90" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Insurance Accepted" Binding="{Binding IsInsuranceAccepted}" Width="120" IsReadOnly="True" />
+                        <DataGridTextColumn Header="Active" Binding="{Binding Active}" Width="90" IsReadOnly="True" />
                         <DataGridTemplateColumn Width="50">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="X" x:Name="ButtonDelete" CommandParameter="{Binding ServiceId}" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Click="grdService_ButtonDelete_Click" Style="{StaticResource DeleteButtonStyle}"/>
+                                    <Button Content="View" x:Name="ButtonView" CommandParameter="{Binding ServiceId}" Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Click="grdService_ButtonView_Click" Background="LightBlue"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Width="50">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="X" x:Name="ButtonDelete" CommandParameter="{Binding ServiceId}" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Click="grdService_ButtonDelete_Click" Background="LightCoral"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
