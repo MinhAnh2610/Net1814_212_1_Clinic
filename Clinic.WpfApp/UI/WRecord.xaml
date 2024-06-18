@@ -31,19 +31,27 @@
                             <ColumnDefinition Width="200"/>
                         </Grid.ColumnDefinitions>
 
-                        --><!-- Record Id --><!--
+                        -->
+<!-- Record Id -->
+<!--
                         <Label Content="Record Id" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="5"/>
                         <TextBox Grid.Row="0" Grid.Column="1" x:Name="RecordId" Height="25" Text="{Binding Path=RecordId, Mode=TwoWay}" Margin="5"/>
 
-                        --><!-- Record Clinic Id --><!--
+                        -->
+<!-- Record Clinic Id -->
+<!--
                         <Label Content="Clinic Id" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="1" Margin="5"/>
                         <TextBox Grid.Row="1" Grid.Column="1" x:Name="RecordClinicId" Height="25" Text="{Binding Path=ClinicId, Mode=TwoWay}" Margin="5"/>
 
-                        --><!--Record Customer Id--><!--
+                        -->
+<!--Record Customer Id-->
+<!--
                         <Label Content="Customer Id" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="2" Margin="5"/>
                         <TextBox Grid.Row="2" Grid.Column="1" x:Name="RecordCustomerId" Height="25" Text="{Binding Path=CustomerId, Mode=TwoWay}" Margin="5"/>
 
-                        --><!--Nums Of Visit--><!--
+                        -->
+<!--Nums Of Visit-->
+<!--
                         <Label Content="Number Of Visits" HorizontalAlignment="Left" VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="3" Margin="5"/>
                         <TextBox Grid.Row="3" Grid.Column="1" x:Name="NumOfVisits" Height="50" Text="{Binding Path=NumOfVisits, Mode=TwoWay}" Margin="5"
                          AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
@@ -624,6 +632,16 @@
                                 Panel.ZIndex="-1"
                                 x:Name="tbPlaceholder1"
                                 HorizontalAlignment="Left" />
+                            <Image
+                                Width="6"
+                                HorizontalAlignment="Right"
+                                Margin="0,0,8,0">
+                                <Image.Source>
+                                    <BitmapImage
+                                        DecodePixelWidth="30"
+                                        UriSource="/Image/circle.png" />
+                                </Image.Source>
+                            </Image>
                             <Border
                                 BorderThickness="1"
                                 BorderBrush="#ADADAD"
@@ -661,6 +679,16 @@
                                 Panel.ZIndex="-1"
                                 x:Name="tbPlaceholder2"
                                 HorizontalAlignment="Left" />
+                            <Image
+                                Width="6"
+                                HorizontalAlignment="Right"
+                                Margin="0,0,28,0">
+                                <Image.Source>
+                                    <BitmapImage
+                                        DecodePixelWidth="30"
+                                        UriSource="/Image/circle.png" />
+                                </Image.Source>
+                            </Image>
                             <Border
                                 BorderThickness="1"
                                 BorderBrush="#ADADAD"
@@ -697,6 +725,16 @@
                                 Panel.ZIndex="-1"
                                 x:Name="tbPlaceholder3"
                                 HorizontalAlignment="Left" />
+                            <Image
+                                Width="6"
+                                HorizontalAlignment="Right"
+                                Margin="0,0,28,0">
+                                <Image.Source>
+                                    <BitmapImage
+                                        DecodePixelWidth="30"
+                                        UriSource="/Image/circle.png" />
+                                </Image.Source>
+                            </Image>
                             <Border
                                 BorderThickness="1"
                                 BorderBrush="#ADADAD"
@@ -949,39 +987,81 @@
                     </StackPanel>
 
                     <StackPanel
-    Width="Auto"
-    Height="Auto">
+                        Width="Auto"
+                        Height="Auto">
                         <DataGrid
-        x:Name="recordDetailList"
-        AutoGenerateColumns="False"
-        GridLinesVisibility="none"
-        ItemsSource="{Binding AppointmentDetail}"
-        CanUserAddRows="False"
-        HeadersVisibility="Column"
-        FrozenColumnCount="3"
-        Height="Auto"
-        CanUserResizeColumns="False"
-        CanUserResizeRows="False"
-        CanUserSortColumns="True"
-        AlternatingRowBackground="#E6E7EA"
-        MouseDoubleClick="grdRecord_MouseDouble_Click"
-        SelectionMode="Single"
-        SelectionUnit="FullRow">
+                            x:Name="recordDetailList"
+                            AutoGenerateColumns="False"
+                            GridLinesVisibility="none"
+                            ItemsSource="{Binding AppointmentDetail}"
+                            CanUserAddRows="False"
+                            HeadersVisibility="Column"
+                            FrozenColumnCount="3"
+                            Height="Auto"
+                            CanUserResizeColumns="False"
+                            CanUserResizeRows="False"
+                            CanUserSortColumns="True"
+                            AlternatingRowBackground="#E6E7EA"
+                            MouseDoubleClick="grdRecord_MouseDouble_Click"
+                            SelectionMode="Single"
+                            SelectionUnit="FullRow">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="RecordDetailId" Binding="{Binding Path=RecordDetailId}" Width="150" Visibility="Visible"/>
-                                <DataGridTextColumn Header="AppointmentDetailId" Binding="{Binding Path=AppointmentDetailId}" Width="150" Visibility="Visible"/>
-                                <DataGridTextColumn Header="RecordId" Binding="{Binding Path=RecordId}" Width="150"  IsReadOnly="True"/>
-                                <DataGridTextColumn Header="Evaluation" Binding="{Binding Path=Evaluation}" Width="auto"  IsReadOnly="True"/>
-                                <DataGridTextColumn Header="Reccommend" Binding="{Binding Path=Reccommend}" Width="auto"  IsReadOnly="True"/>
-                                <DataGridTextColumn Header="Diagnosis" Binding="{Binding Path=Diagnosis}" Width="auto"  IsReadOnly="True"/>
-                                <DataGridTextColumn Header="Prescriptions" Binding="{Binding Path=Prescriptions}" Width="auto"  IsReadOnly="True"/>
-                                <DataGridTextColumn Header="Symptoms" Binding="{Binding Path=Symptoms}" Width="auto"  IsReadOnly="True"/>
-                                <DataGridTextColumn Header="TreatmentPlan" Binding="{Binding Path=TreatmentPlan}" Width="auto"  IsReadOnly="True"/>
-                                <DataGridTextColumn Header="Notes" Binding="{Binding Path=Notes}" Width="auto"  IsReadOnly="True"/>
-                                <DataGridTemplateColumn Width="Auto">
+                                <DataGridTextColumn
+                                    Header="RecordDetailId"
+                                    Binding="{Binding Path=RecordDetailId}"
+                                    Width="150"
+                                    Visibility="Visible" />
+                                <DataGridTextColumn
+                                    Header="AppointmentDetailId"
+                                    Binding="{Binding Path=AppointmentDetailId}"
+                                    Width="150"
+                                    Visibility="Visible" />
+                                <DataGridTextColumn
+                                    Header="RecordId"
+                                    Binding="{Binding Path=RecordId}"
+                                    Width="150"
+                                    IsReadOnly="True" />
+                                <DataGridTextColumn
+                                    Header="Evaluation"
+                                    Binding="{Binding Path=Evaluation}"
+                                    Width="auto"
+                                    IsReadOnly="True" />
+                                <DataGridTextColumn
+                                    Header="Reccommend"
+                                    Binding="{Binding Path=Reccommend}"
+                                    Width="auto"
+                                    IsReadOnly="True" />
+                                <DataGridTextColumn
+                                    Header="Diagnosis"
+                                    Binding="{Binding Path=Diagnosis}"
+                                    Width="auto"
+                                    IsReadOnly="True" />
+                                <DataGridTextColumn
+                                    Header="Prescriptions"
+                                    Binding="{Binding Path=Prescriptions}"
+                                    Width="auto"
+                                    IsReadOnly="True" />
+                                <DataGridTextColumn
+                                    Header="Symptoms"
+                                    Binding="{Binding Path=Symptoms}"
+                                    Width="auto"
+                                    IsReadOnly="True" />
+                                <DataGridTextColumn
+                                    Header="TreatmentPlan"
+                                    Binding="{Binding Path=TreatmentPlan}"
+                                    Width="auto"
+                                    IsReadOnly="True" />
+                                <DataGridTextColumn
+                                    Header="Notes"
+                                    Binding="{Binding Path=Notes}"
+                                    Width="auto"
+                                    IsReadOnly="True" />
+                                <DataGridTemplateColumn
+                                    Width="Auto">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <StackPanel Height="35">
+                                            <StackPanel
+                                                Height="35">
                                             </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>

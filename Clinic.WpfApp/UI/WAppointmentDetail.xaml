@@ -537,6 +537,16 @@
                                 Panel.ZIndex="-1"
                                 x:Name="tbPlaceholder1"
                                 HorizontalAlignment="Left" />
+                            <Image
+                                Width="6"
+                                HorizontalAlignment="Right"
+                                Margin="0,0,6,0">
+                                <Image.Source>
+                                    <BitmapImage
+                                        DecodePixelWidth="30"
+                                        UriSource="/Image/circle.png" />
+                                </Image.Source>
+                            </Image>
                             <Border
                                 BorderThickness="1"
                                 BorderBrush="#ADADAD"
@@ -574,6 +584,16 @@
                                 Panel.ZIndex="-1"
                                 x:Name="tbPlaceholder2"
                                 HorizontalAlignment="Left" />
+                            <Image
+                                Width="6"
+                                HorizontalAlignment="Right"
+                                Margin="0,0,25,0">
+                                <Image.Source>
+                                    <BitmapImage
+                                        DecodePixelWidth="30"
+                                        UriSource="/Image/circle.png" />
+                                </Image.Source>
+                            </Image>
                             <Border
                                 BorderThickness="1"
                                 BorderBrush="#ADADAD"
@@ -610,6 +630,16 @@
                                 Panel.ZIndex="-1"
                                 x:Name="tbPlaceholder3"
                                 HorizontalAlignment="Left" />
+                            <Image
+                                Width="6"
+                                HorizontalAlignment="Right"
+                                Margin="0,0,25,0">
+                                <Image.Source>
+                                    <BitmapImage
+                                        DecodePixelWidth="30"
+                                        UriSource="/Image/circle.png" />
+                                </Image.Source>
+                            </Image>
                             <Border
                                 BorderThickness="1"
                                 BorderBrush="#ADADAD"
@@ -778,7 +808,7 @@
                     <StackPanel
                         Orientation="Horizontal"
                         Margin="0,0,0,20">
-                        
+
                         <!--Button Save-->
                         <Button
                             x:Name="myButtonSave"
@@ -959,7 +989,7 @@
 
                         </Button>
                     </StackPanel>
-                    
+
                     <StackPanel
                         Width="Auto"
                         Height="Auto">

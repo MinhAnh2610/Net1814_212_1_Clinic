@@ -13,6 +13,7 @@
     <None Remove="Image\account.png" />
     <None Remove="Image\address-book.png" />
     <None Remove="Image\bell.png" />
+    <None Remove="Image\circle.png" />
     <None Remove="Image\dental-checkup.png" />
     <None Remove="Image\dental-floss.png" />
     <None Remove="Image\down-arrow.png" />
@@ -42,6 +43,7 @@
     <Resource Include="Image\account.png" />
     <Resource Include="Image\address-book.png" />
     <Resource Include="Image\bell.png" />
+    <Resource Include="Image\circle.png" />
     <Resource Include="Image\dental-checkup.png" />
     <Resource Include="Image\dental-floss.png" />
     <Resource Include="Image\down-arrow.png" />

@@ -17,6 +17,8 @@ using System.Windows.Shapes;
 using System.Net;
 using Clinic.Business.Clinic;
 using Clinic.WpfApp.UI.DetailWindow;
+using System.Windows.Forms;
+using Button = System.Windows.Controls.Button;
 
 namespace Clinic.WpfApp.UI
 {
@@ -40,24 +42,24 @@ namespace Clinic.WpfApp.UI
         {
             try
             {
-                if (!int.TryParse(ClinicID.Text, out int clinicID) || !int.TryParse(ServiceID.Text, out int serviceID) || !decimal.TryParse(Price.Text, out decimal price))
+                if (!int.TryParse(ClinicId.Text, out int clinicID) || !int.TryParse(ServiceId.Text, out int serviceID) || !decimal.TryParse(Price.Text, out decimal price))
                 {
-                    MessageBox.Show("Invalid type of input", "Warning");
+                    System.Windows.MessageBox.Show("Invalid type of input", "Warning");
                     return;
                 }
 
                 var existingClinic = await _clinicBusiness.GetById(clinicID);
                 if (existingClinic.Data == null)
                 {
-                    MessageBox.Show("No clinic found", "Warning");
+                    System.Windows.MessageBox.Show("No clinic found", "Warning");
                     return;
                 }
 
-                String name = ServiceName.Text;
+                String name = Name.Text;
                 String description = Description.Text;
                 String warranty = Warranty.Text;
-                String duration = ServiceDuration.Text;
-                String type = ServiceType.Text;
+                String duration = Duration.Text;
+                String type = Type.Text;
                 bool active = YesActive.IsChecked == true;
                 bool insurance = YesInsurance.IsChecked == true;
 
@@ -80,7 +82,7 @@ namespace Clinic.WpfApp.UI
                     };
 
                     var result = await _serviceBusiness.Save(service);
-                    MessageBox.Show(result.Message, "Save");
+                    System.Windows.MessageBox.Show(result.Message, "Save");
                 }
                 else
                 {
@@ -98,7 +100,7 @@ namespace Clinic.WpfApp.UI
                     updatedService.IsInsuranceAccepted = insurance;
 
                     var result = await _serviceBusiness.Update(updatedService);
-                    MessageBox.Show(result.Message, "Save");
+                    System.Windows.MessageBox.Show(result.Message, "Save");
                 }
 
                 this.ButtonCancel_Click(sender, e);
@@ -107,7 +109,7 @@ namespace Clinic.WpfApp.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error");
+                System.Windows.MessageBox.Show(ex.ToString(), "Error");
             }
 
         }
@@ -116,14 +118,14 @@ namespace Clinic.WpfApp.UI
         {
             try
             {
-                ServiceID.Text = string.Empty;
-                ClinicID.Text = string.Empty;
-                ServiceName.Text = string.Empty;
+                ServiceId.Text = string.Empty;
+                ClinicId.Text = string.Empty;
+                Name.Text = string.Empty;
                 Price.Text = string.Empty;
                 Description.Text = string.Empty;
                 Warranty.Text = string.Empty;
-                ServiceDuration.Text = string.Empty;
-                ServiceType.Text = string.Empty;
+                Duration.Text = string.Empty;
+                Type.Text = string.Empty;
                 YesActive.IsChecked = null;
                 YesInsurance.IsChecked = null;
                 NoActive.IsChecked = null;
@@ -131,7 +133,7 @@ namespace Clinic.WpfApp.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error");
+                System.Windows.MessageBox.Show(ex.ToString(), "Error");
             }
         }
 
@@ -142,17 +144,17 @@ namespace Clinic.WpfApp.UI
                 Button btn = (Button)sender;
                 int serviceID = (int)btn.CommandParameter;
 
-                MessageBoxResult askDelete = MessageBox.Show("Do you want to delete this?", "Delete", MessageBoxButton.YesNo);
+                MessageBoxResult askDelete = System.Windows.MessageBox.Show("Do you want to delete this?", "Delete", MessageBoxButton.YesNo);
                 if (askDelete == MessageBoxResult.Yes)
                 {
                     var result = await _serviceBusiness.DeleteById(serviceID);
-                    MessageBox.Show(result.Message, "Delete");
+                    System.Windows.MessageBox.Show(result.Message, "Delete");
                     this.LoadGrdServices();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error");
+                System.Windows.MessageBox.Show(ex.ToString(), "Error");
             }
         }
 
@@ -173,14 +175,14 @@ namespace Clinic.WpfApp.UI
                         if (serviceResult.Status > 0 && serviceResult.Data != null)
                         {
                             item = serviceResult.Data as Service;
-                            ServiceID.Text = item.ServiceId.ToString();
-                            ClinicID.Text = item.ClinicId.ToString();
-                            ServiceName.Text = item.Name;
+                            ServiceId.Text = item.ServiceId.ToString();
+                            ClinicId.Text = item.ClinicId.ToString();
+                            Name.Text = item.Name;
                             Price.Text = item.Price.ToString();
                             Description.Text = item.Description;
                             Warranty.Text = item.Warranty;
-                            ServiceDuration.Text = item.Duration;
-                            ServiceType.Text = item.Type;
+                            Duration.Text = item.Duration;
+                            Type.Text = item.Type;
                             YesActive.IsChecked = (item.Active ?? true) ? true : false;
                             YesInsurance.IsChecked = (item.IsInsuranceAccepted ?? true) ? true : false;
                         }
@@ -205,7 +207,7 @@ namespace Clinic.WpfApp.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "Error");
+                System.Windows.MessageBox.Show(ex.ToString(), "Error");
             }
         }
 
@@ -219,6 +221,81 @@ namespace Clinic.WpfApp.UI
             else
             {
                 grdService.ItemsSource = new List<Service>();
+            }
+        }
+
+        private void txtInput_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(ServiceId.Text))
+            {
+                tbPlaceholder1.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder1.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(ClinicId.Text))
+            {
+                tbPlaceholder2.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder2.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(Name.Text))
+            {
+                tbPlaceholder3.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder3.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(Price.Text))
+            {
+                tbPlaceholder4.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder4.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(Description.Text))
+            {
+                tbPlaceholder5.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder5.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(Description.Text))
+            {
+                tbPlaceholder6.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder6.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(Warranty.Text))
+            {
+                tbPlaceholder7.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder7.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(Duration.Text))
+            {
+                tbPlaceholder8.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder8.Visibility = Visibility.Hidden;
             }
         }
     }

@@ -686,6 +686,16 @@
                                 Panel.ZIndex="-1"
                                 x:Name="tbPlaceholder1"
                                 HorizontalAlignment="Left" />
+                            <Image
+                                Width="6"
+                                HorizontalAlignment="Right"
+                                Margin="0,0,8,0">
+                                <Image.Source>
+                                    <BitmapImage
+                                        DecodePixelWidth="30"
+                                        UriSource="/Image/circle.png" />
+                                </Image.Source>
+                            </Image>
                             <Border
                                 BorderThickness="1"
                                 BorderBrush="#ADADAD"
@@ -723,6 +733,16 @@
                                 Panel.ZIndex="-1"
                                 x:Name="tbPlaceholder2"
                                 HorizontalAlignment="Left" />
+                            <Image
+                                Width="6"
+                                HorizontalAlignment="Right"
+                                Margin="0,0,28,0">
+                                <Image.Source>
+                                    <BitmapImage
+                                        DecodePixelWidth="30"
+                                        UriSource="/Image/circle.png" />
+                                </Image.Source>
+                            </Image>
                             <Border
                                 BorderThickness="1"
                                 BorderBrush="#ADADAD"
@@ -759,6 +779,16 @@
                                 Panel.ZIndex="-1"
                                 x:Name="tbPlaceholder3"
                                 HorizontalAlignment="Left" />
+                            <Image
+                                Width="6"
+                                HorizontalAlignment="Right"
+                                Margin="0,0,28,0">
+                                <Image.Source>
+                                    <BitmapImage
+                                        DecodePixelWidth="30"
+                                        UriSource="/Image/circle.png" />
+                                </Image.Source>
+                            </Image>
                             <Border
                                 BorderThickness="1"
                                 BorderBrush="#ADADAD"
