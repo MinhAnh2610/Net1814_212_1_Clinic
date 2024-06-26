@@ -896,73 +896,73 @@
 
                         <!--Warranty-->
                         <Grid
-                            HorizontalAlignment="Left"
+                            Grid.Row="1"
                             Grid.Column="3"
-                            Grid.Row="1">
+                            Margin="0,0,20,10">
                             <Label
                                 Content="Warranty"
                                 FontSize="13"
                                 FontWeight="SemiBold"
-                                Width="66"
                                 Foreground="LightGray"
+                                Width="187"
                                 VerticalAlignment="Center"
                                 Panel.ZIndex="-1"
-                                x:Name="tbPlaceholder7" />
-                            <Border
-                                BorderThickness="1"
-                                BorderBrush="#ADADAD"
-                                Background="Transparent"
-                                CornerRadius="10"
-                                Padding="10,10,10,10"
-                                Width="80"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center">
-                                <TextBox
-                                    x:Name="Warranty"
-                                    Text="{Binding Warranty, Mode=TwoWay}"
-                                    TextChanged="txtInput_TextChanged"
-                                    Width="60"
-                                    Height="20"
-                                    FontSize="14"
-                                    BorderThickness="0"
-                                    Background="Transparent" />
-                            </Border>
+                                x:Name="tbPlaceholder7"
+                                HorizontalAlignment="Center" />
+                                <Border
+                                    BorderThickness="1"
+                                    BorderBrush="#ADADAD"
+                                    Background="Transparent"
+                                    CornerRadius="10"
+                                    Padding="10,10,10,10"
+                                    Width="209"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center">
+                                    <TextBox
+                                        x:Name="Warranty"
+                                        Text="{Binding Warranty, Mode=TwoWay}"
+                                        TextChanged="txtInput_TextChanged"
+                                        Height="20"
+                                        FontSize="14"
+                                        BorderThickness="0"
+                                        Background="Transparent" Margin="4,0,78,0" />
+                                </Border>
                         </Grid>
 
                         <!--Duration-->
                         <Grid
-                            HorizontalAlignment="Right"
-                            Grid.Column="3"
                             Grid.Row="1"
-                            Margin="0,0,0,0">
+                            Grid.Column="4"
+                            Margin="0,0,0,10">
                             <Label
                                 Content="Duration"
                                 FontSize="13"
                                 FontWeight="SemiBold"
-                                Width="65"
                                 Foreground="LightGray"
+                                Width="182"
+                                Margin="25,0,0,0"
                                 VerticalAlignment="Center"
                                 Panel.ZIndex="-1"
-                                x:Name="tbPlaceholder8" />
-                            <Border
-                                BorderThickness="1"
-                                BorderBrush="#ADADAD"
-                                Background="Transparent"
-                                CornerRadius="10"
-                                Padding="10,10,10,10"
-                                Width="80"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center">
-                                <TextBox
-                                    x:Name="Duration"
-                                    Text="{Binding Duration, Mode=TwoWay}"
-                                    TextChanged="txtInput_TextChanged"
-                                    Width="60"
-                                    Height="20"
-                                    FontSize="14"
-                                    BorderThickness="0"
-                                    Background="Transparent" />
-                            </Border>
+                                x:Name="tbPlaceholder8"
+                                HorizontalAlignment="Left" />
+                                <Border
+                                    BorderThickness="1"
+                                    BorderBrush="#ADADAD"
+                                    Background="Transparent"
+                                    CornerRadius="10"
+                                    Padding="10,10,10,10"
+                                    Width="207"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center" Margin="10,0,0,0">
+                                    <TextBox
+                                        x:Name="Duration"
+                                        Text="{Binding Duration, Mode=TwoWay}"
+                                        TextChanged="txtInput_TextChanged"
+                                        Height="20"
+                                        FontSize="14"
+                                        BorderThickness="0"
+                                        Background="Transparent" Margin="-1,0,-1,0" />
+                                </Border>
                         </Grid>
 
                         <!--IsActive-->
@@ -1010,11 +1010,11 @@
                             <RadioButton
                                 x:Name="YesInsurance"
                                 Content="Yes"
-                                IsChecked="{Binding Path=IsInsuranceAccepted, Mode=TwoWay}"/>
+                                IsChecked="{Binding Path=IsInsuranceAccepted, Mode=TwoWay}" Width="46"/>
                             <RadioButton
                                 Grid.Column="2"
                                 x:Name="NoInsurance"
-                                Content="Yes"
+                                Content="No"
                                 IsChecked="{Binding Path=IsInsuranceAccepted, Mode=TwoWay}"/>
                         </StackPanel>
                     </Grid>
