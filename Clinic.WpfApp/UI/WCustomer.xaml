@@ -121,30 +121,31 @@
                 <Button x:Name="ButtonSave" Content="Save" Height="30" Width="80" Click="ButtonSave_Click" Margin="0,0,10,0" Style="{StaticResource SaveButtonStyle}"/>
                 <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" Click="ButtonCancel_Click" Margin="0,0,20,0" Style="{StaticResource CancelButtonStyle}"/>
             </StackPanel>
-            <StackPanel Height="890" Margin="0,10,0,0">
-                
-                <DataGrid x:Name="customerList" AutoGenerateColumns="False" ItemsSource="{Binding Customers}" CanUserAddRows="False" Height="890" BorderBrush="#FF181918" Background="#FFFDF5F5" Foreground="Black" FontSize="13" Width="1920" MouseDoubleClick="grdCustomer_MouseDouble_Click" SelectionMode="Single" SelectionUnit="FullRow" HorizontalScrollBarVisibility="Auto">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding CustomerId}" Width="*" Visibility="Visible"/>
-                        <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" Width="*" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" Width="*" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Gender" Binding="{Binding Gender}" Width="*" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Phone" Binding="{Binding Phone}" Width="*" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="*" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="DoB" Binding="{Binding DoB}" Width="*" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="CreatedAt" Binding="{Binding CreatedAt}" Width="*" IsReadOnly="True"/>
-                        <DataGridTextColumn Header="IsActive" Binding="{Binding IsActive}" Width="*" IsReadOnly="True"/>
-                        <DataGridTemplateColumn Width="50">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Content="X" x:Name="ButtonDelete" CommandParameter="{Binding CustomerId}" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Click="ButtonDelete_Click" Style="{StaticResource DeleteButtonStyle}"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </StackPanel>
+            <ScrollViewer>
+                <StackPanel Height="500" Margin="0,10,0,0">
+                    <DataGrid x:Name="customerList" AutoGenerateColumns="False" ItemsSource="{Binding Customers}" CanUserAddRows="False" Height="890" BorderBrush="#FF181918" Background="#FFFDF5F5" Foreground="Black" FontSize="13" Width="1920" MouseDoubleClick="grdCustomer_MouseDouble_Click" SelectionMode="Single" SelectionUnit="FullRow" HorizontalScrollBarVisibility="Auto">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding CustomerId}" Width="*" Visibility="Visible"/>
+                            <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" Width="*" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" Width="*" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Gender" Binding="{Binding Gender}" Width="*" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Phone" Binding="{Binding Phone}" Width="*" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="*" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="DoB" Binding="{Binding DoB}" Width="*" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="CreatedAt" Binding="{Binding CreatedAt}" Width="*" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="IsActive" Binding="{Binding IsActive}" Width="*" IsReadOnly="True"/>
+                            <DataGridTemplateColumn Width="50">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="X" x:Name="ButtonDelete" CommandParameter="{Binding CustomerId}" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}" Click="ButtonDelete_Click" Style="{StaticResource DeleteButtonStyle}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </ScrollViewer>
         </StackPanel>
     </Grid>
 </Window>
