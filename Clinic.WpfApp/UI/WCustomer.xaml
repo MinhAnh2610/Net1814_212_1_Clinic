@@ -953,7 +953,6 @@
                                 Margin="12,0,0,0"
                                 VerticalAlignment="Center"
                                 Panel.ZIndex="-1"
-                                x:Name="tbPlaceholder1"
                                 HorizontalAlignment="Left" />
                             <Image
                                 Width="6"
@@ -975,9 +974,8 @@
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center">
                                 <TextBox
-                                    x:Name="AppointmentDetailId"
-                                    Text="{Binding AppointmentDetailId, Mode=TwoWay}"
-                                    TextChanged="txtInput_TextChanged"
+                                    x:Name="CustomerId"
+                                    Text="{Binding CustomerId, Mode=TwoWay}"
                                     Width="220"
                                     Height="20"
                                     FontSize="14"
@@ -1000,7 +998,6 @@
                                 Margin="12,0,0,0"
                                 VerticalAlignment="Center"
                                 Panel.ZIndex="-1"
-                                x:Name="tbPlaceholder2"
                                 HorizontalAlignment="Left" />
                             <Image
                                 Width="6"
@@ -1022,9 +1019,8 @@
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center">
                                 <TextBox
-                                    x:Name="AppointmentId"
-                                    Text="{Binding AppointmentId, Mode=TwoWay}"
-                                    TextChanged="txtInput_TextChanged"
+                                    x:Name="CustomerFirstName"
+                                    Text="{Binding FirstName, Mode=TwoWay}"
                                     Width="220"
                                     Height="20"
                                     FontSize="14"
@@ -1046,7 +1042,6 @@
                                 Margin="12,0,0,0"
                                 VerticalAlignment="Center"
                                 Panel.ZIndex="-1"
-                                x:Name="tbPlaceholder3"
                                 HorizontalAlignment="Left" />
                             <Image
                                 Width="6"
@@ -1068,9 +1063,8 @@
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center">
                                 <TextBox
-                                    x:Name="ServiceId"
-                                    Text="{Binding ServiceId, Mode=TwoWay}"
-                                    TextChanged="txtInput_TextChanged"
+                                    x:Name="CustomerLastName"
+                                    Text="{Binding LastName, Mode=TwoWay}"
                                     Width="220"
                                     Height="20"
                                     FontSize="14"
@@ -1093,7 +1087,6 @@
                                 Margin="12,0,0,0"
                                 VerticalAlignment="Center"
                                 Panel.ZIndex="-1"
-                                x:Name="tbPlaceholder4"
                                 HorizontalAlignment="Left" />
                             <Border
                                 BorderThickness="1"
@@ -1105,9 +1098,8 @@
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center">
                                 <TextBox
-                                    x:Name="IsPeriodic"
+                                    x:Name="CustomerAddress"
                                     Text="{Binding IsPeriodic, Mode=TwoWay}"
-                                    TextChanged="txtInput_TextChanged"
                                     Width="220"
                                     Height="20"
                                     FontSize="14"
@@ -1115,7 +1107,40 @@
                                     Background="Transparent" />
                             </Border>
                         </Grid>
-                        
+
+                        <ComboBox
+                            x:Name="comboGender"
+                            SelectedIndex="0"
+                            Grid.Column="3"
+                            Grid.Row="3"
+                            Height="25"
+                            Width="70" Margin="10,9,170,19">
+                            <ComboBoxItem
+                                Content="Male" />
+                            <ComboBoxItem
+                                Content="Female" />
+                        </ComboBox>
+
+                        <Label
+                            Grid.Row="3"
+                            Grid.Column="3"
+                            Content="IsActive"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top" Margin="114,7,0,0" />
+                        <ComboBox
+                            x:Name="comboIsActive"
+                            SelectedIndex="0"
+                            Grid.Column="3"
+                            Grid.Row="3"
+                        Height="25"
+                            Width="70" Margin="170,9,10,19" RenderTransformOrigin="0.5,0.042">
+                            <ComboBoxItem
+                                Content="True" />
+                            <ComboBoxItem
+                                Content="False" />
+                        </ComboBox>
+
+
                         <!--Email-->
                         <Grid
                             Grid.Row="2"
@@ -1130,7 +1155,6 @@
                                 Margin="12,0,0,0"
                                 VerticalAlignment="Center"
                                 Panel.ZIndex="-1"
-                                x:Name="tbPlaceholder5"
                                 HorizontalAlignment="Left" />
                             <Border
                                 BorderThickness="1"
@@ -1142,9 +1166,8 @@
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center">
                                 <TextBox
-                                    x:Name="Email"
+                                    x:Name="CustomerEmail"
                                     Text="{Binding Email, Mode=TwoWay}"
-                                    TextChanged="txtInput_TextChanged"
                                     Width="220"
                                     Height="20"
                                     FontSize="14"
@@ -1159,7 +1182,7 @@
                             Grid.Column="2"
                             Margin="0,0,0,10">
                             <Label
-                                Content="dob"
+                                Content="DoB"
                                 FontSize="13"
                                 FontWeight="SemiBold"
                                 Foreground="LightGray"
@@ -1167,7 +1190,6 @@
                                 Margin="12,0,0,0"
                                 VerticalAlignment="Center"
                                 Panel.ZIndex="-1"
-                                x:Name="tbPlaceholder6"
                                 HorizontalAlignment="Left" />
                             <Border
                                 BorderThickness="1"
@@ -1179,9 +1201,8 @@
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center">
                                 <TextBox
-                                    x:Name="dob"
-                                    Text="{Binding dob, Mode=TwoWay}"
-                                    TextChanged="txtInput_TextChanged"
+                                    x:Name="CustomerDoB"
+                                    Text="{Binding DoB, Mode=TwoWay}"
                                     Width="220"
                                     Height="20"
                                     FontSize="14"
@@ -1196,7 +1217,7 @@
                             Grid.Column="3"
                             Margin="0,0,0,10">
                             <Label
-                                Content="Create At"
+                                Content="Created At"
                                 FontSize="13"
                                 FontWeight="SemiBold"
                                 Foreground="LightGray"
@@ -1204,7 +1225,6 @@
                                 Margin="12,0,0,0"
                                 VerticalAlignment="Center"
                                 Panel.ZIndex="-1"
-                                x:Name="tbPlaceholder7"
                                 HorizontalAlignment="Left" />
                             <Border
                                 BorderThickness="1"
@@ -1216,9 +1236,8 @@
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center">
                                 <TextBox
-                                    x:Name="createAt"
-                                    Text="{Binding dob, Mode=TwoWay}"
-                                    TextChanged="txtInput_TextChanged"
+                                    x:Name="CustomerCreatedAt"
+                                    Text="{Binding CreatedAt, Mode=TwoWay}"
                                     Width="220"
                                     Height="20"
                                     FontSize="14"
@@ -1226,14 +1245,12 @@
                                     Background="Transparent" />
                             </Border>
                         </Grid>
-
-                        <!--bResult-->
                         <Grid
                             Grid.Row="2"
                             Grid.Column="3"
-                            Margin="0,0,0,10">
+                            Margin="0,0,-20,10" Grid.ColumnSpan="8">
                             <Label
-                                Content="bResult"
+                                Content="Phone"
                                 FontSize="13"
                                 FontWeight="SemiBold"
                                 Foreground="LightGray"
@@ -1241,7 +1258,6 @@
                                 Margin="12,0,0,0"
                                 VerticalAlignment="Center"
                                 Panel.ZIndex="-1"
-                                x:Name="tbPlaceholder8"
                                 HorizontalAlignment="Left" />
                             <Border
                                 BorderThickness="1"
@@ -1253,9 +1269,8 @@
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center">
                                 <TextBox
-                                    x:Name="bResult"
-                                    Text="{Binding dob, Mode=TwoWay}"
-                                    TextChanged="txtInput_TextChanged"
+                                    x:Name="CustomerPhone"
+                                    Text="{Binding Phone, Mode=TwoWay}"
                                     Width="220"
                                     Height="20"
                                     FontSize="14"
@@ -1263,45 +1278,6 @@
                                     Background="Transparent" />
                             </Border>
                         </Grid>
-
-                        <!--customerList-->
-                        <Grid
-                            Grid.Row="3"
-                            Grid.Column="3"
-                            Margin="0,0,0,10">
-                            <Label
-                                Content="customerList"
-                                FontSize="13"
-                                FontWeight="SemiBold"
-                                Foreground="LightGray"
-                                Width="226"
-                                Margin="12,0,0,0"
-                                VerticalAlignment="Center"
-                                Panel.ZIndex="-1"
-                                x:Name="tbPlaceholder9"
-                                HorizontalAlignment="Left" />
-                            <Border
-                                BorderThickness="1"
-                                BorderBrush="#ADADAD"
-                                Background="Transparent"
-                                CornerRadius="10"
-                                Padding="10,10,10,10"
-                                Width="250"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center">
-                                <TextBox
-                                    x:Name="customerList"
-                                    Text="{Binding dob, Mode=TwoWay}"
-                                    TextChanged="txtInput_TextChanged"
-                                    Width="220"
-                                    Height="20"
-                                    FontSize="14"
-                                    BorderThickness="0"
-                                    Background="Transparent" />
-                            </Border>
-                        </Grid>
-
-
                     </Grid>
 
                     <StackPanel
@@ -1368,10 +1344,10 @@
 
                         </Button>
 
-                        <!--Button Update-->
+                        <!--Button Search-->
                         <Button
-                            x:Name="myButtonUpdate"
-                            Content="Update"
+                            x:Name="btnSearch"
+                            Content="Search"
                             FontSize="13"
                             FontWeight="SemiBold"
                             Foreground="White"
@@ -1382,7 +1358,7 @@
                             Grid.Column="1"
                             Grid.ColumnSpan="2"
                             Cursor="Hand"
-                            Click="ButtonUpdate_Click"
+                            Click="ButtonSearch_Click"
                             Command="{Binding UpdateCommand}">
 
                             <Button.Resources>
@@ -1430,7 +1406,7 @@
 
                         <!--Button Cancel-->
                         <Button
-                            x:Name="myButtonCancel"
+                            x:Name="btnCancel"
                             Content="Cancel"
                             FontSize="13"
                             FontWeight="SemiBold"
@@ -1493,10 +1469,10 @@
                         Width="Auto"
                         Height="Auto">
                         <DataGrid
-                            x:Name="AppointmentDetailList"
+                            x:Name="CustomerListDataGrid"
                             AutoGenerateColumns="False"
                             GridLinesVisibility="none"
-                            ItemsSource="{Binding AppointmentDetail}"
+                            ItemsSource="{Binding Customers}"
                             CanUserAddRows="False"
                             HeadersVisibility="Column"
                             FrozenColumnCount="3"
@@ -1505,71 +1481,62 @@
                             CanUserResizeRows="False"
                             CanUserSortColumns="True"
                             AlternatingRowBackground="#E6E7EA"
-                            MouseDoubleClick="AppointmentDetail_MouseDouble_Click"
+                            MouseDoubleClick="grdCustomer_MouseDouble_Click"
                             SelectionMode="Single"
                             SelectionUnit="FullRow">
                             <DataGrid.Columns>
                                 <DataGridTextColumn
-                                    Header="Detail ID"
-                                    Binding="{Binding Path=AppointmentDetailId}"
+                                    Header="Customer Id"
+                                    Binding="{Binding Path=CustomerId}"
                                     Width="125"
                                     Visibility="Visible" />
                                 <DataGridTextColumn
-                                    Header="Appointment ID"
-                                    Binding="{Binding Path=AppointmentId}"
+                                    Header="First Name"
+                                    Binding="{Binding Path=FirstName}"
                                     Width="125"
                                     IsReadOnly="True" />
                                 <DataGridTextColumn
-                                    Header="Service ID"
-                                    Binding="{Binding Path=ServiceId}"
+                                    Header="Last Name"
+                                    Binding="{Binding Path=LastName}"
                                     Width="125"
                                     IsReadOnly="True" />
                                 <DataGridTextColumn
-                                    Header="Periodic"
-                                    Binding="{Binding Path=IsPeriodic}"
+                                    Header="Gender"
+                                    Binding="{Binding Path=Gender}"
                                     Width="125"
                                     IsReadOnly="True" />
                                 <DataGridTextColumn
-                                    Header="Day"
-                                    Binding="{Binding Path=Day}"
+                                    Header="Phone"
+                                    Binding="{Binding Path=Phone}"
                                     Width="125"
                                     IsReadOnly="True" />
                                 <DataGridTextColumn
-                                    Header="Month"
-                                    Binding="{Binding Path=Month}"
+                                    Header="Address"
+                                    Binding="{Binding Path=Address}"
+                                    Width="125"
+                                    IsReadOnly="True" />
+                                <DataGridTextColumn
+                                    Header="Email"
+                                    Binding="{Binding Path=Email}"
                                     Width="150"
                                     IsReadOnly="True" />
                                 <DataGridTextColumn
-                                    Header="Year"
-                                    Binding="{Binding Path=Year}"
+                                    Header="DoB"
+                                    Binding="{Binding Path=DoB}"
                                     Width="125"
                                     IsReadOnly="True" />
-                                <DataGridTemplateColumn
-                                    Width="Auto">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <StackPanel>
-                                                <Button
-                                                    x:Name="Open_WAppointmentDetailWindow_Click"
-                                                    CommandParameter="{Binding Path=AppointmentDetailId}"
-                                                    Command="{Binding Path=DataContext.EditCommand,RelativeSource={RelativeSource FindAncestor,
-                                                    AncestorType=Window}}"
-                                                    BorderThickness="0"
-                                                    BorderBrush="#eaf4fe"
-                                                    Background="Transparent"
-                                                    Width="35"
-                                                    Height="35"
-                                                    Cursor="Hand"
-                                                    Click="Open_WAppointmentDetailWindow_Click">
-                                                    <Image
-                                                        Source="/Image/eye.png"
-                                                        Width="15"
-                                                        Height="15" />
-                                                </Button>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
+                                <DataGridTextColumn
+                                    Header="Created At"
+                                    Binding="{Binding Path=CreatedAt}"
+                                    Width="125"
+                                    IsReadOnly="True" />
+
+                                <DataGridTextColumn
+                                    Header="IsActive"
+                                    Binding="{Binding Path=IsActive}"
+                                    Width="125"
+                                    IsReadOnly="True" />
+
                                 <DataGridTemplateColumn
                                     Width="Auto">
                                     <DataGridTemplateColumn.CellTemplate>

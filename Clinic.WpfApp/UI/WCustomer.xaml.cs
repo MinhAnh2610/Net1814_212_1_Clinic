@@ -59,11 +59,11 @@ namespace Clinic.WpfApp.UI
                 var customers = await _customerBusiness.GetAll();
                 if(customers.Status > 0 && customers.Data != null)
                 {
-                    customerList.ItemsSource = customers.Data as List<Customer>;
+                    CustomerListDataGrid.ItemsSource = customers.Data as List<Customer>;
                 }
                 else
                 {
-                    customerList.ItemsSource = new List<Customer>();
+                    CustomerListDataGrid.ItemsSource = new List<Customer>();
                 }
             }
             catch(Exception ex)
@@ -83,7 +83,7 @@ namespace Clinic.WpfApp.UI
                     return;
 
                 }
-                customerList.ItemsSource = customers;
+                CustomerListDataGrid.ItemsSource = customers;
             }
             catch (Exception ex)
             {
