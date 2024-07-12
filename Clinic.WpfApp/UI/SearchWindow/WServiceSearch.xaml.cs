@@ -1,5 +1,6 @@
-using Clinic.Business.Base;
+﻿using Clinic.Business.Clinic;
 using Clinic.Data.Models;
+using Clinic.WpfApp.UI.DetailWindow;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,30 +15,27 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Net;
-using Clinic.Business.Clinic;
-using Clinic.WpfApp.UI.DetailWindow;
+using System.Xml.Linq;
+using static Azure.Core.HttpHeader;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using Button = System.Windows.Controls.Button;
-using Clinic.WpfApp.UI.SearchWindow;
 
-namespace Clinic.WpfApp.UI
+namespace Clinic.WpfApp.UI.SearchWindow
 {
     /// <summary>
-    /// Interaction logic for wServices.xaml
+    /// Interaction logic for WServiceSearch.xaml
     /// </summary>
-    public partial class WServices : Window
+    public partial class WServiceSearch : Window
     {
         private readonly ServiceBusiness _serviceBusiness;
         private readonly ClinicBusiness _clinicBusiness;
-
-        public WServices()
+        public WServiceSearch()
         {
             InitializeComponent();
             this._serviceBusiness = new ServiceBusiness();
             this._clinicBusiness = new ClinicBusiness();
             this.LoadGrdServices();
         }
-
         private async void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -65,28 +63,28 @@ namespace Clinic.WpfApp.UI
 
                 var item = await _serviceBusiness.GetById(serviceID);
 
-                if (item.Data != null)
+                if (item.Data == null)
                 {
-                    var updatedService = item.Data as Service;
+                    var service = new Service()
+                    {
+                        ServiceId = serviceID,
+                        ClinicId = clinicID,
+                        Price = price,
+                        Name = name,
+                        Description = description,
+                        Warranty = warranty,
+                        Duration = duration,
+                        Type = type,
+                        Active = active,
+                        IsInsuranceAccepted = insurance,
+                    };
 
-                    updatedService.ServiceId = serviceID;
-                    updatedService.ClinicId = clinicID;
-                    updatedService.Name = name;
-                    updatedService.Price = price;
-                    updatedService.Description = description;
-                    updatedService.Warranty = warranty;
-                    updatedService.Duration = duration;
-                    updatedService.Type = type;
-                    updatedService.Active = active;
-                    updatedService.IsInsuranceAccepted = insurance;
-
-                    var result = await _serviceBusiness.Update(updatedService);
+                    var result = await _serviceBusiness.Save(service);
                     System.Windows.MessageBox.Show(result.Message, "Save");
                 }
-
                 else
                 {
-                    System.Windows.MessageBox.Show("Can't find the service you want to update.", "Save");
+                    System.Windows.MessageBox.Show("Service already exists.", "Warning");
                 }
 
                 this.ButtonCancel_Click(sender, e);
@@ -102,23 +100,7 @@ namespace Clinic.WpfApp.UI
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                ServiceId.Text = string.Empty;
-                ClinicId.Text = string.Empty;
-                Name.Text = string.Empty;
-                Price.Text = string.Empty;
-                Description.Text = string.Empty;
-                Warranty.Text = string.Empty;
-                Duration.Text = string.Empty;
-                Type.Text = string.Empty;
-                YesActive.IsChecked = null;
-                YesInsurance.IsChecked = null;
-            }
-            catch (Exception ex)
-            {
-                System.Windows.MessageBox.Show(ex.ToString(), "Error");
-            }
+            this.Close();
         }
 
         private async void grdService_ButtonDelete_Click(object sender, RoutedEventArgs e)
@@ -194,7 +176,6 @@ namespace Clinic.WpfApp.UI
                 System.Windows.MessageBox.Show(ex.ToString(), "Error");
             }
         }
-
         private async void LoadGrdServices()
         {
             var result = await _serviceBusiness.GetAll();
@@ -205,6 +186,18 @@ namespace Clinic.WpfApp.UI
             else
             {
                 grdService.ItemsSource = new List<Service>();
+            }
+        }
+
+        private void LoadGrdServices(List<Service> services)
+        {
+            if (services != null)
+            {
+                grdService.ItemsSource = services;
+            }
+            else
+            {
+                LoadGrdServices();
             }
         }
 
@@ -283,10 +276,32 @@ namespace Clinic.WpfApp.UI
             }
         }
 
-        private void ButtonSearch_Click(object sender, RoutedEventArgs e)
+        private async void ButtonSearch_Click(object sender, RoutedEventArgs e)
         {
-            var p = new WServiceSearch();
-            p.ShowDialog();
+            var result = await _serviceBusiness.GetAll();
+            var services = result.Data as List<Service>;
+
+            String serviceID = ServiceId.Text;
+            String clinicID = ClinicId.Text;
+            String price = Price.Text;
+            String name = Name.Text;
+            String description = Description.Text;
+            String warranty = Warranty.Text;
+            String duration = Duration.Text;
+            String type = Type.Text;
+
+            List<Service> sortedServices = services.Where(o =>
+                (string.IsNullOrEmpty(serviceID) || o.ServiceId.ToString().Contains(serviceID)) &&
+                (string.IsNullOrEmpty(clinicID) || o.ClinicId.ToString().Contains(clinicID)) &&
+                (string.IsNullOrEmpty(price) || o.Price.ToString().Contains(price)) &&
+                (string.IsNullOrEmpty(name) || o.Name.Contains(name)) &&
+                (string.IsNullOrEmpty(description) || o.Description.Contains(description)) &&
+                (string.IsNullOrEmpty(warranty) || o.Warranty.Contains(warranty)) &&
+                (string.IsNullOrEmpty(duration) || o.Duration.Contains(duration)) &&
+                (string.IsNullOrEmpty(type) || o.Type.Contains(type))
+            ).ToList();
+
+            this.LoadGrdServices(sortedServices);
         }
     }
 }
