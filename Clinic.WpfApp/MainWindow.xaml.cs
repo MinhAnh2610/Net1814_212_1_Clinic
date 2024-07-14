@@ -47,7 +47,7 @@ namespace Clinic.WpfApp
         {
             var p = new WRecord();
             p.Owner = this;
-            p.Show();
+            p.ShowDialog();
         }
 
         private void Open_WAppointmentDetail_Click(object sender, RoutedEventArgs e)

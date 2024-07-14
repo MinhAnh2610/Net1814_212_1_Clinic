@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Clinic.WpfApp.UI
 {
@@ -22,10 +23,10 @@ namespace Clinic.WpfApp.UI
     /// </summary>
     public partial class WRecord : Window
     {
-        private readonly IRecordBusiness _recordBusiness;
-        private readonly IClinicBusiness _clinicBusiness;
-        private readonly ICustomerBusiness _customerBusiness;
-        private readonly IRecordDetailBusiness _recordDetailBusiness;
+        private IRecordBusiness _recordBusiness;
+        private IClinicBusiness _clinicBusiness;
+        private ICustomerBusiness _customerBusiness;
+        private IRecordDetailBusiness _recordDetailBusiness;
 
         public WRecord()
         {
@@ -38,28 +39,24 @@ namespace Clinic.WpfApp.UI
         }
 
         //###################  Load Records ##################
-        private async void LoadRecords()
+        private async void LoadRecords(IEnumerable<Record> records = null)
         {
             try
             {
-                var records = await _recordBusiness.GetAll();
-                var recordDetails = await _recordDetailBusiness.GetAll();
-                if(records.Status > 0 && records.Data != null)
+                if(records is not null)
                 {
-                    recordList.ItemsSource = records.Data as List<Record>;
+                    recordList.ItemsSource = records;
+                    return;
+                }
+                var br = await _recordBusiness.GetAll();
+                records = br.Data as List<Record>;
+                if(!records.IsNullOrEmpty())
+                {
+                    recordList.ItemsSource = records;
                 }
                 else
                 {
                     recordList.ItemsSource = new List<Record>();
-                }
-
-                if (recordDetails.Status > 0 && recordDetails.Data != null)
-                {
-                    recordDetailList.ItemsSource = recordDetails.Data as List<RecordDetail>;
-                }
-                else
-                {
-                    recordDetailList.ItemsSource= new List<RecordDetail>();
                 }
             }
             catch(Exception ex)
@@ -77,12 +74,21 @@ namespace Clinic.WpfApp.UI
                 //create case
                 if(temp.Data == null)
                 {
+                    var record = new Record()
+                    {
+                        RecordId = Int32.Parse(RecordId.Text)
+
+
+                    };
                     temp = await _clinicBusiness.GetById(Int32.Parse(RecordClinicId.Text));
                     if(temp.Data == null)
                     {
                         System.Windows.MessageBox.Show("Clinic Id not found");
                         return;
                     }
+
+                    record.ClinicId = Int32.Parse(RecordClinicId.Text);
+
                     temp = await _customerBusiness.GetById(Int32.Parse(RecordCustomerId.Text));
                     if(temp.Data == null)
                     {
@@ -90,13 +96,18 @@ namespace Clinic.WpfApp.UI
                         return;
                     }
 
-                    var record = new Record()
+                    record.CustomerId = Int32.Parse(RecordCustomerId.Text);
+
+                    if(NumOfVisits.Text.IsNullOrEmpty())
                     {
-                        RecordId = Int32.Parse(RecordId.Text),
-                        ClinicId = Int32.Parse(RecordClinicId.Text),
-                        CustomerId = Int32.Parse(RecordCustomerId.Text),
-                        NumOfVisits = Int32.Parse(NumOfVisits.Text)
-                    };
+                        record.NumOfVisits = 0;
+                    }
+                    else
+                    {
+                        record.NumOfVisits = Int32.Parse(NumOfVisits.Text);
+                    }
+
+
                     var result = await _recordBusiness.Save(record);
                     System.Windows.MessageBox.Show(result.Message, "Save");
                     //reset text box
@@ -151,7 +162,7 @@ namespace Clinic.WpfApp.UI
             {
                 System.Windows.MessageBox.Show(ex.ToString(), "Error");
             }
-            
+
         }
 
         //################### Delete Button ##################
@@ -184,7 +195,6 @@ namespace Clinic.WpfApp.UI
         //################### Mouse double click ##################
         private async void grdRecord_MouseDouble_Click(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show("Double Click on Grid");
             DataGrid grd = sender as DataGrid;
             if(grd != null && grd.SelectedItems != null && grd.SelectedItems.Count == 1)
             {
@@ -221,7 +231,7 @@ namespace Clinic.WpfApp.UI
         //################### Text change on hover ##################
         private void txtInput_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(RecordId.Text))
+            if(string.IsNullOrEmpty(RecordId.Text))
             {
                 tbPlaceholder1.Visibility = Visibility.Visible;
             }
@@ -230,7 +240,7 @@ namespace Clinic.WpfApp.UI
                 tbPlaceholder1.Visibility = Visibility.Hidden;
             }
 
-            if (string.IsNullOrEmpty(RecordClinicId.Text))
+            if(string.IsNullOrEmpty(RecordClinicId.Text))
             {
                 tbPlaceholder2.Visibility = Visibility.Visible;
             }
@@ -239,7 +249,7 @@ namespace Clinic.WpfApp.UI
                 tbPlaceholder2.Visibility = Visibility.Hidden;
             }
 
-            if (string.IsNullOrEmpty(RecordCustomerId.Text))
+            if(string.IsNullOrEmpty(RecordCustomerId.Text))
             {
                 tbPlaceholder3.Visibility = Visibility.Visible;
             }
@@ -248,7 +258,7 @@ namespace Clinic.WpfApp.UI
                 tbPlaceholder3.Visibility = Visibility.Hidden;
             }
 
-            if (string.IsNullOrEmpty(NumOfVisits.Text))
+            if(string.IsNullOrEmpty(NumOfVisits.Text))
             {
                 tbPlaceholder4.Visibility = Visibility.Visible;
             }
@@ -256,6 +266,50 @@ namespace Clinic.WpfApp.UI
             {
                 tbPlaceholder4.Visibility = Visibility.Hidden;
             }
+        }
+
+        private async void Sort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(_recordBusiness is null)
+            {
+                _recordBusiness = new RecordBusiness();
+            }
+            if(cbSort.SelectedItem != null)
+            {
+                string selectedOption = (cbSort.SelectedItem as ComboBoxItem).Content.ToString();
+                var br = await _recordBusiness.GetAll();
+                var list = br.Data as List<Record>;
+                IEnumerable<Record> sortedList = new List<Record>();
+                switch(selectedOption)
+                {
+                    case "Sort by Id":
+                        sortedList = list;
+                        break;
+                    case "Sort by Num of visits":
+                        sortedList = list.OrderBy(r => r.NumOfVisits);
+                        break;
+                }
+                LoadRecords(sortedList);
+            }
+        }
+
+        private async void BtnSearch_OnClick(object sender, RoutedEventArgs e)
+        {
+            string recordId = RecordId.Text.Trim();
+            string clinicId = RecordClinicId.Text.Trim();
+            string customerId = RecordCustomerId.Text.Trim();
+            string numOfVisit = NumOfVisits.Text.Trim();
+            var bResult = await _recordBusiness.GetAll();
+            var records = bResult.Data as List<Record>;
+
+            var query = from record in records
+                        where (string.IsNullOrEmpty(recordId) || record.RecordId.ToString() == recordId)
+                              && (string.IsNullOrEmpty(clinicId) || record.ClinicId.ToString() == clinicId)
+                              && (string.IsNullOrEmpty(customerId) || record.CustomerId.ToString() == customerId)
+                              && (string.IsNullOrEmpty(numOfVisit) || record.NumOfVisits.ToString() == numOfVisit)
+                        select record;
+
+            LoadRecords(query.ToList());
         }
     }
 }

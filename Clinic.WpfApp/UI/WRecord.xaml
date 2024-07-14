@@ -1,99 +1,4 @@
-﻿<!--<Window x:Class="Clinic.WpfApp.UI.WRecord"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Clinic.WpfApp.UI"
-        mc:Ignorable="d"
-        Title="Record" Height="auto" Width="1300"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        TextElement.FontWeight="Regular"
-        TextElement.FontSize="13"
-        TextOptions.TextFormattingMode="Ideal"
-        TextOptions.TextRenderingMode="Auto"
-        Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}">
-    <StackPanel Orientation="Horizontal">
-        <materialDesign:Card Padding="20" Margin="10">
-            <StackPanel>
-                <GroupBox Header="Record Form" Margin="10">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="200"/>
-                        </Grid.ColumnDefinitions>
-
-                        -->
-<!-- Record Id -->
-<!--
-                        <Label Content="Record Id" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0" Margin="5"/>
-                        <TextBox Grid.Row="0" Grid.Column="1" x:Name="RecordId" Height="25" Text="{Binding Path=RecordId, Mode=TwoWay}" Margin="5"/>
-
-                        -->
-<!-- Record Clinic Id -->
-<!--
-                        <Label Content="Clinic Id" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="1" Margin="5"/>
-                        <TextBox Grid.Row="1" Grid.Column="1" x:Name="RecordClinicId" Height="25" Text="{Binding Path=ClinicId, Mode=TwoWay}" Margin="5"/>
-
-                        -->
-<!--Record Customer Id-->
-<!--
-                        <Label Content="Customer Id" HorizontalAlignment="Left" VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="2" Margin="5"/>
-                        <TextBox Grid.Row="2" Grid.Column="1" x:Name="RecordCustomerId" Height="25" Text="{Binding Path=CustomerId, Mode=TwoWay}" Margin="5"/>
-
-                        -->
-<!--Nums Of Visit-->
-<!--
-                        <Label Content="Number Of Visits" HorizontalAlignment="Left" VerticalContentAlignment="Top" Grid.Column="0" Grid.Row="3" Margin="5"/>
-                        <TextBox Grid.Row="3" Grid.Column="1" x:Name="NumOfVisits" Height="50" Text="{Binding Path=NumOfVisits, Mode=TwoWay}" Margin="5"
-                         AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" />
-                    </Grid>
-                </GroupBox>
-                <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button x:Name="ButtonSave" Content="Save" Height="30" Width="80"
-                Command="{Binding SaveCommand}" Margin="10,0,0,0" Click="ButtonSave_Click"/>
-                    <Button x:Name="ButtonCancel" Content="Cancel" Height="30" Width="80" 
-                Command="{Binding ResetCommand}" Margin="10,0,0,0" Click="ButtonCancel_Click"/>
-                </StackPanel>
-            </StackPanel>
-        </materialDesign:Card>
-
-        <materialDesign:Card Padding="20" Margin="10">
-            <StackPanel>
-                <DataGrid x:Name="recordList" AutoGenerateColumns="False" MouseDoubleClick="grdRecord_MouseDouble_Click" SelectionMode="Single" SelectionUnit="FullRow" ItemsSource="{Binding Records}"
-              HorizontalAlignment="Stretch" CanUserAddRows="False" Margin="10"
-              materialDesign:DataGridAssist.ColumnHeaderPadding="8,4,8,4"
-            RowDetailsVisibilityMode="VisibleWhenSelected">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Record Id" Binding="{Binding Path=RecordId}" Visibility="Visible"/>
-                        <DataGridTextColumn Header="Clinic Id" Binding="{Binding Path=ClinicId}" Visibility="Visible"/>
-                        <DataGridTextColumn Header="Customer Id" Binding="{Binding Path=CustomerId}" Width="auto"  IsReadOnly="True"/>
-                        <DataGridTextColumn Header="Number Of Visits" Binding="{Binding Path=NumOfVisits}" Width="auto"  IsReadOnly="True"/>
-                        <DataGridTemplateColumn Header="Delete" Width="100">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Content="Delete" x:Name="ButtonDelete" CommandParameter="{Binding Path=RecordId}"
-                                Command="{Binding Path=DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor,
-                                        AncestorType=Window}}" Click="ButtonDelete_Click"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </StackPanel>
-        </materialDesign:Card>
-    </StackPanel>
-</Window>-->
-
-<Window
+﻿<Window
     x:Class="Clinic.WpfApp.UI.WRecord"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -103,7 +8,9 @@
     mc:Ignorable="d"
     Title="WRecord"
     Height="770"
-    Width="1520">
+    Width="1520"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Maximized">
     <Window.Resources>
         <Style
             TargetType="DataGridColumnHeader">
@@ -815,6 +722,8 @@
                             Cursor="Hand"
                             Click="ButtonSave_Click">
 
+                            
+
                             <Button.Resources>
                                 <Style
                                     TargetType="{x:Type Border}">
@@ -858,6 +767,72 @@
 
                         </Button>
 
+                        <!--Button Search-->
+                        <Button
+                            x:Name="btnSearch"
+                            Content="Search"
+                            FontSize="13"
+                            FontWeight="SemiBold"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Width="150"
+                            Height="40"
+                            Margin="0,20,20,0"
+                            Grid.Row="7"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            Cursor="Hand"
+                            Click="BtnSearch_OnClick">
+
+                            <Button.Resources>
+                                <Style
+                                    TargetType="{x:Type Border}">
+                                    <Setter
+                                        Property="CornerRadius"
+                                        Value="6" />
+                                </Style>
+                            </Button.Resources>
+
+                            <Button.Style>
+                                <Style
+                                    TargetType="{x:Type Button}">
+                                    <Setter
+                                        Property="Background"
+                                        Value="#1a2122" />
+                                    <Setter
+                                        Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate
+                                                TargetType="{x:Type Button}">
+                                                <Border
+                                                    Background="{TemplateBinding Background}">
+                                                    <ContentPresenter
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger
+                                            Property="IsMouseOver"
+                                            Value="True">
+                                            <Setter
+                                                Property="Background"
+                                                Value="#3D4D51" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+
+                        </Button>
+
+
+                        <!--Box Sort-->
+                        <ComboBox x:Name="cbSort" Width="150" SelectedIndex="0" SelectionChanged="Sort_SelectionChanged" Height="23">
+                            <ComboBoxItem Content="Sort by Id"/>
+                            <ComboBoxItem Content="Sort by Num of visits"/>
+                        </ComboBox>
                         <!--Button Cancel-->
                         <Button
                             x:Name="myButtonCancel"
@@ -868,7 +843,7 @@
                             BorderThickness="0"
                             BorderBrush="#F6F7FA"
                             Width="150"
-                            Margin="0,20,0,0"
+                            Margin="20,20,0,0"
                             Grid.Row="10"
                             Grid.Column="1"
                             Grid.ColumnSpan="2"
@@ -930,7 +905,7 @@
                             CanUserAddRows="False"
                             HeadersVisibility="Column"
                             FrozenColumnCount="3"
-                            Height="Auto"
+                            Height="350"
                             CanUserResizeColumns="False"
                             CanUserResizeRows="False"
                             CanUserSortColumns="True"
@@ -972,96 +947,14 @@
                                                     Height="35"
                                                     Width="40"
                                                     Cursor="Hand"
-                                                    Click="ButtonDelete_Click">
+                                                    Click="ButtonDelete_Click"
+                                                    CommandParameter="{Binding RecordId}">
+
                                                     <Image
                                                         Source="/Image/trash.png"
                                                         Width="15"
                                                         Height="15" />
                                                 </Button>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </StackPanel>
-
-                    <StackPanel
-                        Width="Auto"
-                        Height="Auto">
-                        <DataGrid
-                            x:Name="recordDetailList"
-                            AutoGenerateColumns="False"
-                            GridLinesVisibility="none"
-                            ItemsSource="{Binding AppointmentDetail}"
-                            CanUserAddRows="False"
-                            HeadersVisibility="Column"
-                            FrozenColumnCount="3"
-                            Height="Auto"
-                            CanUserResizeColumns="False"
-                            CanUserResizeRows="False"
-                            CanUserSortColumns="True"
-                            AlternatingRowBackground="#E6E7EA"
-                            MouseDoubleClick="grdRecord_MouseDouble_Click"
-                            SelectionMode="Single"
-                            SelectionUnit="FullRow">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn
-                                    Header="RecordDetailId"
-                                    Binding="{Binding Path=RecordDetailId}"
-                                    Width="150"
-                                    Visibility="Visible" />
-                                <DataGridTextColumn
-                                    Header="AppointmentDetailId"
-                                    Binding="{Binding Path=AppointmentDetailId}"
-                                    Width="150"
-                                    Visibility="Visible" />
-                                <DataGridTextColumn
-                                    Header="RecordId"
-                                    Binding="{Binding Path=RecordId}"
-                                    Width="150"
-                                    IsReadOnly="True" />
-                                <DataGridTextColumn
-                                    Header="Evaluation"
-                                    Binding="{Binding Path=Evaluation}"
-                                    Width="auto"
-                                    IsReadOnly="True" />
-                                <DataGridTextColumn
-                                    Header="Reccommend"
-                                    Binding="{Binding Path=Reccommend}"
-                                    Width="auto"
-                                    IsReadOnly="True" />
-                                <DataGridTextColumn
-                                    Header="Diagnosis"
-                                    Binding="{Binding Path=Diagnosis}"
-                                    Width="auto"
-                                    IsReadOnly="True" />
-                                <DataGridTextColumn
-                                    Header="Prescriptions"
-                                    Binding="{Binding Path=Prescriptions}"
-                                    Width="auto"
-                                    IsReadOnly="True" />
-                                <DataGridTextColumn
-                                    Header="Symptoms"
-                                    Binding="{Binding Path=Symptoms}"
-                                    Width="auto"
-                                    IsReadOnly="True" />
-                                <DataGridTextColumn
-                                    Header="TreatmentPlan"
-                                    Binding="{Binding Path=TreatmentPlan}"
-                                    Width="auto"
-                                    IsReadOnly="True" />
-                                <DataGridTextColumn
-                                    Header="Notes"
-                                    Binding="{Binding Path=Notes}"
-                                    Width="auto"
-                                    IsReadOnly="True" />
-                                <DataGridTemplateColumn
-                                    Width="Auto">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <StackPanel
-                                                Height="35">
                                             </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
