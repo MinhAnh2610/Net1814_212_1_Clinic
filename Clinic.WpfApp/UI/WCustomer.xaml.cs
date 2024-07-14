@@ -25,16 +25,16 @@ namespace Clinic.WpfApp.UI
     /// </summary>
     public partial class WCustomer : Window
     {
-        private readonly ICustomerBusiness _customerBusiness;
+        private ICustomerBusiness _customerBusiness;
         public WCustomer()
         {
             InitializeComponent();
+            _customerBusiness = new CustomerBusiness();
             ResizeMode = ResizeMode.CanResize;
             WindowStyle = WindowStyle.SingleBorderWindow;
             // Handle the window state change event
             WindowState = WindowState.Maximized;
             StateChanged += MainWindow_StateChanged;
-            _customerBusiness = new CustomerBusiness();
             LoadCustomers();
         }
 
@@ -279,6 +279,34 @@ namespace Clinic.WpfApp.UI
                         }
                     }
                 }
+            }
+        }
+
+        private async void Sort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (_customerBusiness is null)
+            {
+                _customerBusiness = new CustomerBusiness();
+            }
+            if(cbSort.SelectedItem != null)
+            {
+                string selectedOption = (cbSort.SelectedItem as ComboBoxItem).Content.ToString();
+                var br = await _customerBusiness.GetAll();
+                var list = br.Data as List<Customer>;
+                IEnumerable<Customer> sortedList = new List<Customer>();
+                switch(selectedOption)
+                {
+                    case "Sort by Customer Id":
+                        sortedList = list;
+                        break;
+                    case "Sort by Created Date":
+                        sortedList = list.OrderBy(c => c.CreatedAt);
+                        break;
+                    case "Sort by Birthdate":
+                        sortedList = list.OrderBy(c => c.DoB);
+                        break;
+                }
+                LoadCustomers(sortedList);
             }
         }
     }

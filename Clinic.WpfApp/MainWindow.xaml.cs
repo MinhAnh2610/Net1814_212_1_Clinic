@@ -40,7 +40,7 @@ namespace Clinic.WpfApp
         {
             var p = new WCustomer();
             p.Owner = this;
-            p.Show();
+            p.ShowDialog();
         }
 
         private void Open_WRecord_Click(object sender, RoutedEventArgs e)
