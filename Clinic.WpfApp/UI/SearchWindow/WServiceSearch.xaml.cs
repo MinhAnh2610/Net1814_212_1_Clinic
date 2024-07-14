@@ -100,7 +100,23 @@ namespace Clinic.WpfApp.UI.SearchWindow
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            try
+            {
+                ServiceId.Text = string.Empty;
+                ClinicId.Text = string.Empty;
+                Name.Text = string.Empty;
+                Price.Text = string.Empty;
+                Description.Text = string.Empty;
+                Warranty.Text = string.Empty;
+                Duration.Text = string.Empty;
+                Type.Text = string.Empty;
+                YesActive.IsChecked = null;
+                YesInsurance.IsChecked = null;
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.ToString(), "Error");
+            }
         }
 
         private async void grdService_ButtonDelete_Click(object sender, RoutedEventArgs e)
