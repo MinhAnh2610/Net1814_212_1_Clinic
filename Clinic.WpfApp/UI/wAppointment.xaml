@@ -7,8 +7,7 @@
 
         xmlns:local="clr-namespace:Clinic.WpfApp.UI"
         mc:Ignorable="d"
-        Title="wAppointment" Height="640" Width="1024" 
-        Loaded="List_Loaded">
+        Title="wAppointment" Height="640" Width="1024" >
     <Window.Background>
         <SolidColorBrush Color="#d4f5fa"/>
     </Window.Background>
@@ -174,6 +173,37 @@
                             </Style>
                         </Button.Style>
                     </Button>
+                    <Button Grid.Row="5" Grid.Column="4" x:Name="ButtonSearch" Height="25" Width="100" Margin="10,0,202,-4" Click="ButtonSearch_Click">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Content" Value="Save"/>
+                                <Setter Property="Background" Value="LimeGreen"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontSize" Value="14"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Margin" Value="5"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Grid>
+                                                <Border x:Name="ButtonBorder" Background="{TemplateBinding Background}" CornerRadius="5"/>
+                                                <ContentPresenter x:Name="ButtonContent" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Grid>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="ButtonBorder" Property="Background" Value="Green"/>
+                                                </Trigger>
+                                                <Trigger Property="IsPressed" Value="True">
+                                                    <Setter TargetName="ButtonBorder" Property="Background" Value="Darkgreen"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
                 </Grid>
             </GroupBox>
             <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Right">
@@ -231,8 +261,31 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
+                        <DataGridTextColumn Header="Insurance" Binding="{Binding Path=Insurance}" Width="100">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Background" Value="LightGray"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Notes" Binding="{Binding Path=Notes}" Width="100">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Background" Value="LightGray"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Insurance" Binding="{Binding Path=Insurance}" Width="100">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Background" Value="LightGray"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
 
-                        <DataGridTemplateColumn Width="120">
+
+
+                            <DataGridTemplateColumn Width="120">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button x:Name="ButtonDelete" Content="Delete" Width="100" Click="ButtonDelete_Click" Background="Red" Foreground="White"/>
