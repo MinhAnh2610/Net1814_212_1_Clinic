@@ -173,7 +173,7 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button Grid.Row="5" Grid.Column="4" x:Name="ButtonSearch" Height="25" Width="100" Margin="10,0,202,-4" Click="ButtonSearch_Click">
+                    <Button Grid.Row="5" Grid.Column="4" x:Name="ButtonSearch" Height="25" Width="100" Margin="10,0,202,-4" Click="ButtonSearch_Click" Content="Search">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}">
                                 <Setter Property="Content" Value="Save"/>
