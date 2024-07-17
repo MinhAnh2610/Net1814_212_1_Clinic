@@ -26,7 +26,6 @@ namespace Clinic.WpfApp.UI
         private IRecordBusiness _recordBusiness;
         private IClinicBusiness _clinicBusiness;
         private ICustomerBusiness _customerBusiness;
-        private IRecordDetailBusiness _recordDetailBusiness;
 
         public WRecord()
         {
@@ -34,7 +33,6 @@ namespace Clinic.WpfApp.UI
             _recordBusiness = new RecordBusiness();
             _clinicBusiness = new ClinicBusiness();
             _customerBusiness = new CustomerBusiness();
-            _recordDetailBusiness = new RecordDetailBusiness();
             LoadRecords();
         }
 

@@ -32,24 +32,8 @@ namespace Clinic.WpfApp.UI
             _customerBusiness = new CustomerBusiness();
             ResizeMode = ResizeMode.CanResize;
             WindowStyle = WindowStyle.SingleBorderWindow;
-            // Handle the window state change event
             WindowState = WindowState.Maximized;
-            StateChanged += MainWindow_StateChanged;
             LoadCustomers();
-        }
-
-        private void MainWindow_StateChanged(object sender, EventArgs e)
-        {
-            if(WindowState == WindowState.Maximized)
-            {
-                // Hide the taskbar when the window is maximized
-                WindowStyle = WindowStyle.None;
-            }
-            else
-            {
-                // Show the taskbar when the window is not maximized
-                WindowStyle = WindowStyle.SingleBorderWindow;
-            }
         }
 
         private async void LoadCustomers()
