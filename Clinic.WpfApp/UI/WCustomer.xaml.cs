@@ -4,6 +4,7 @@ using Clinic.Data.Models;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Globalization;
 using System.Linq;
 using System.Net;
@@ -17,6 +18,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Clinic.WpfApp.UI
 {
@@ -291,6 +293,80 @@ namespace Clinic.WpfApp.UI
                         break;
                 }
                 LoadCustomers(sortedList);
+            }
+        }
+        private void txtInput_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(CustomerId.Text))
+            {
+                tbPlaceholder1.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder1.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(CustomerFirstName.Text))
+            {
+                tbPlaceholder2.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder2.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(CustomerLastName.Text))
+            {
+                tbPlaceholder3.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder3.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(CustomerPhone.Text))
+            {
+                tbPlaceholder4.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder4.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(CustomerAddress.Text))
+            {
+                tbPlaceholder5.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder5.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(CustomerEmail.Text))
+            {
+                tbPlaceholder6.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder6.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(CustomerDoB.Text))
+            {
+                tbPlaceholder7.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder7.Visibility = Visibility.Hidden;
+            }
+
+            if (string.IsNullOrEmpty(CustomerCreatedAt.Text))
+            {
+                tbPlaceholder8.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                tbPlaceholder8.Visibility = Visibility.Hidden;
             }
         }
     }

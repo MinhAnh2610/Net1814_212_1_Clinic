@@ -381,6 +381,7 @@
                 <Grid>
                     <Image
                         Width="18"
+                        Height="18"
                         Panel.ZIndex="1"
                         HorizontalAlignment="Left"
                         Margin="10,0,0,0">
@@ -395,6 +396,8 @@
                         VerticalAlignment="Center"
                         Margin="40,0,0,0"
                         Text="Search..."
+                        x:Name="searchTextChange"
+                        Foreground="LightGray"
                         Panel.ZIndex="1" />
                     <Border
                         BorderThickness="1"
@@ -411,7 +414,9 @@
                             Height="20"
                             FontSize="14"
                             BorderThickness="0"
-                            Background="Transparent" />
+                            Background="Transparent"
+                            TextChanged="Search_TextChanged"
+                            HorizontalAlignment="Left" />
 
                     </Border>
                 </Grid>
@@ -884,6 +889,66 @@
                             Grid.ColumnSpan="2"
                             Cursor="Hand"
                             Click="ButtonUpdate_Click"
+                            Command="{Binding UpdateCommand}">
+
+                            <Button.Resources>
+                                <Style
+                                    TargetType="{x:Type Border}">
+                                    <Setter
+                                        Property="CornerRadius"
+                                        Value="6" />
+                                </Style>
+                            </Button.Resources>
+
+                            <Button.Style>
+                                <Style
+                                    TargetType="{x:Type Button}">
+                                    <Setter
+                                        Property="Background"
+                                        Value="#1a2122" />
+                                    <Setter
+                                        Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate
+                                                TargetType="{x:Type Button}">
+                                                <Border
+                                                    Background="{TemplateBinding Background}">
+                                                    <ContentPresenter
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger
+                                            Property="IsMouseOver"
+                                            Value="True">
+                                            <Setter
+                                                Property="Background"
+                                                Value="#3D4D51" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+
+                        </Button>
+
+                        <!--Button Search-->
+                        <Button
+                            x:Name="myButtonSearch"
+                            Content="Search"
+                            FontSize="13"
+                            FontWeight="SemiBold"
+                            Foreground="White"
+                            BorderThickness="0"
+                            Width="150"
+                            Margin="0,20,20,0"
+                            Grid.Row="8"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            Cursor="Hand"
+                            Click="ButtonSearch_Click"
                             Command="{Binding UpdateCommand}">
 
                             <Button.Resources>

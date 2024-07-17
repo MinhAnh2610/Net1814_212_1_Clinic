@@ -44,7 +44,7 @@ namespace Clinic.WpfApp.UI
             GetAllData();
         }
 
-        //################### Save Button ##################
+        //################### Save Button ##################\\
         private async void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -99,7 +99,7 @@ namespace Clinic.WpfApp.UI
 
         }
 
-        //################### Delete Button ##################
+        //################### Delete Button ##################\\
         private async void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
             AppointmentDetail appointmentDetail = AppointmentDetailList.SelectedItem as AppointmentDetail;
@@ -137,7 +137,7 @@ namespace Clinic.WpfApp.UI
             }
         }
 
-        //################### Cancel Button ##################
+        //################### Cancel Button ##################\\
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             AppointmentDetailId.Text = string.Empty;
@@ -149,7 +149,7 @@ namespace Clinic.WpfApp.UI
             Year.Text = string.Empty;
         }
 
-        //################### Get Data ##################
+        //################### Get Data ##################\\
         private async void ButtonGetData_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -180,7 +180,7 @@ namespace Clinic.WpfApp.UI
             }
         }
 
-        //################### Get All Data ##################
+        //################### Get All Data ##################\\
         private async void GetAllData()
         {
             var result = await _appointmentDetailBusiness.GetAll();
@@ -195,7 +195,7 @@ namespace Clinic.WpfApp.UI
             }
         }
 
-        //################### Update Button ##################
+        //################### Update Button ##################\\
         private async void ButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -259,7 +259,7 @@ namespace Clinic.WpfApp.UI
             }
         }
 
-        //################### Double Click in DataGrid Button ##################
+        //################### Double Click in DataGrid Button ##################\\
         private async void AppointmentDetail_MouseDouble_Click(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show("Double Click on Grid");
@@ -290,7 +290,7 @@ namespace Clinic.WpfApp.UI
             }
         }
 
-        //################### Open WAppointmentDetail Window Button ##################
+        //################### Open WAppointmentDetail Window Button ##################\\
         private void Open_WAppointmentDetailWindow_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -310,7 +310,54 @@ namespace Clinic.WpfApp.UI
             }
         }
 
-        //################### Text changed while hover ##################
+        //################### Search Items ##################\\
+        private async void LoadAppointmentDetail(List<Data.Models.AppointmentDetail> appointmentDetails)
+        {
+            try
+            {
+                if (appointmentDetails != null)
+                {
+                    AppointmentDetailList.ItemsSource = appointmentDetails;
+                }
+                else
+                {
+                    var appointmentDetailListGet = await _appointmentDetailBusiness.GetAll();
+                    AppointmentDetailList.ItemsSource = appointmentDetailListGet.Data as List<Data.Models.AppointmentDetail>;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message, "Error");
+            }
+        }
+        private async void ButtonSearch_Click(Object sender, RoutedEventArgs e)
+        {
+            var appointmentDetailGetAll = await _appointmentDetailBusiness.GetAll();
+            var appointmentDetailList = appointmentDetailGetAll.Data as List<Data.Models.AppointmentDetail>;
+
+            string appointmentDetailId = AppointmentDetailId.Text;
+            string appointmentId = AppointmentId.Text;
+            string serviceId = ServiceId.Text;
+            string isPeriodic = IsPeriodic.Text;
+            string day = Day.Text;
+            string month = Month.Text;
+            string year = Year.Text;
+
+            // Apply filters
+            var filteredAppointmentDetail = appointmentDetailList.Where(c =>
+                (string.IsNullOrEmpty(appointmentDetailId) || c.AppointmentDetailId.ToString().Contains(appointmentDetailId)) &&
+                (string.IsNullOrEmpty(appointmentId) || c.AppointmentId.ToString().Contains(appointmentId, StringComparison.OrdinalIgnoreCase)) &&
+                (string.IsNullOrEmpty(serviceId) || c.ServiceId.ToString().Contains(serviceId, StringComparison.OrdinalIgnoreCase)) &&
+                (string.IsNullOrEmpty(isPeriodic) || c.IsPeriodic.ToString().Contains(isPeriodic, StringComparison.OrdinalIgnoreCase)) &&
+                (string.IsNullOrEmpty(day) || c.Day.ToString().Contains(day, StringComparison.OrdinalIgnoreCase)) &&
+                (string.IsNullOrEmpty(month) || c.Month.ToString().Contains(month, StringComparison.OrdinalIgnoreCase)) &&
+                (string.IsNullOrEmpty(year) || c.Year.ToString().Contains(year, StringComparison.OrdinalIgnoreCase))
+            ).ToList();
+
+            LoadAppointmentDetail(filteredAppointmentDetail);
+        }
+
+        //################### Text changed while hover ##################\\
         private void txtInput_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(AppointmentDetailId.Text))
@@ -374,6 +421,18 @@ namespace Clinic.WpfApp.UI
             else
             {
                 tbPlaceholder7.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(Search.Text))
+            {
+                searchTextChange.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                searchTextChange.Visibility = Visibility.Hidden;
             }
         }
     }

@@ -32,9 +32,10 @@ namespace Clinic.WpfApp.UI
         {
             InitializeComponent();
             _business = new AppointmentBusiness();
+            List_Loaded();
 
         }
-        private async void List_Loaded(object sender, RoutedEventArgs e)
+        private async void List_Loaded()
         {
             // Call your async startup function
             await ListLoader();
@@ -97,7 +98,7 @@ namespace Clinic.WpfApp.UI
                         var result =
                             await _business.DeleteById(appointment.AppointmentId);
                         MessageBox.Show(result.Message, "Deleted");
-                        List_Loaded(sender, e);
+                        List_Loaded();
                     }
                     else
                     {
@@ -133,7 +134,10 @@ namespace Clinic.WpfApp.UI
                         appointment.PaymentMethod = PaymentMethod.Text;
                         appointment.PaymentStatus = Convert.ToBoolean(PaymentStatus.IsChecked);
                         appointment.DentistName = DentistName.Text;
-                   
+                        appointment.Insurance= Convert.ToBoolean(Insurance.IsChecked);
+                        appointment.PatientCondition= PatientCondition.Text;
+                        appointment.Notes= Notes.Text;
+
 
                     var result = await _business.Save(appointment);
                     MessageBox.Show(result.Message, "Save");
@@ -149,6 +153,9 @@ namespace Clinic.WpfApp.UI
                     appointment.PaymentMethod = PaymentMethod.Text;
                     appointment.PaymentStatus = Convert.ToBoolean(PaymentStatus.IsChecked);
                     appointment.DentistName = DentistName.Text;
+                    appointment.Insurance = Convert.ToBoolean(Insurance.IsChecked);
+                    appointment.PatientCondition = PatientCondition.Text;
+                    appointment.Notes = Notes.Text;
 
                     var result = await _business.Update(appointment);
                     MessageBox.Show(result.Message, "Update");
@@ -161,6 +168,9 @@ namespace Clinic.WpfApp.UI
                 PaymentMethod.Text = string.Empty;
                 PaymentStatus.IsChecked = false;
                 DentistName.Text = string.Empty;
+                Insurance.IsChecked = false; 
+                PatientCondition.Text = string.Empty;
+                Notes.Text = string.Empty;
 
                 // Empty all textboxes
                 CustomerID.Text = string.Empty;
@@ -169,6 +179,9 @@ namespace Clinic.WpfApp.UI
                 PaymentMethod.Text = string.Empty;
                 PaymentStatus.IsChecked = false;
                 DentistName.Text = string.Empty;
+                Insurance.IsChecked = false;
+                PatientCondition.Text = string.Empty;
+                Notes.Text = string.Empty;
             }
             catch (Exception ex)
             {
@@ -206,6 +219,22 @@ namespace Clinic.WpfApp.UI
                     {
                         editedRow.DentistName = newCellContent;
                     }
+                    else if(column.Header.ToString() == "Notes")
+                    {
+                        editedRow.Notes = newCellContent;
+                    }
+                    else if (column.Header.ToString() == "Patient Condition")
+                    {
+                        editedRow.PatientCondition = newCellContent;
+                    }
+                    else if (column.Header.ToString() == "Insurance")
+                    {
+                        editedRow.Insurance = Convert.ToBoolean(newCellContent);
+                    }
+                    else if (column.Header.ToString() == "Date")
+                    {
+                        editedRow.Date = DateOnly.FromDateTime(Convert.ToDateTime(newCellContent));
+                    }
                     var result = await _business.Update(editedRow);
                     MessageBox.Show(result.Message, "Updated");
                     await ListLoader();
@@ -233,6 +262,34 @@ namespace Clinic.WpfApp.UI
         {
 
         }
+        private async void ButtonSearch_Click(object sender, RoutedEventArgs e)
+        {
+            var appointments = await _business.GetAll();
+            var appList = appointments.Data as List<Data.Models.Appointment>;
+
+            string AppID = AppointmentID.Text;
+            string CusID = CustomerID.Text;
+            DateTime DateSel = Convert.ToDateTime(Date.SelectedDate);
+            var DateTemp = DateOnly.FromDateTime(DateSel);
+            var Totals = Total.Text;
+            var PayMethod = PaymentMethod.Text;
+            var PayStatus = PaymentStatus.IsChecked.ToString();
+            var DenName = DentistName.Text;
+
+            // Apply filters
+            var filteredApps = appList.Where(c =>
+                (string.IsNullOrEmpty(AppID) || c.AppointmentId.ToString().Contains(AppID)) &&
+                (string.IsNullOrEmpty(CusID) || c.CustomerId.ToString().Equals(CusID)) &&
+                (string.IsNullOrEmpty(Totals) || c.Total.ToString().Contains(Totals)) &&
+                (string.IsNullOrEmpty(PayMethod) || c.PaymentMethod.Contains(PayMethod)) &&
+                (string.IsNullOrEmpty(DenName) || c.DentistName.Contains(DenName))
+
+
+            ).ToList();
+
+            w_appointments.ItemsSource = filteredApps;
+        }
+
         private async void grdAppointment_MouseDouble_Click(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show("Double Click on Grid");
@@ -259,6 +316,10 @@ namespace Clinic.WpfApp.UI
                                 PaymentMethod.Text = item.PaymentMethod;
                                 PaymentStatus.IsChecked = item.PaymentStatus;
                                 DentistName.Text = item.DentistName;
+                                Insurance.IsChecked = item.Insurance;
+                                PatientCondition.Text = item.PatientCondition;
+                                Notes.Text = item.Notes;
+
                             }
                         }
                     }

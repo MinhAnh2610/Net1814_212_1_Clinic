@@ -65,7 +65,27 @@ namespace Clinic.WpfApp.UI
 
                 var item = await _serviceBusiness.GetById(serviceID);
 
-                if (item.Data != null)
+                if (item.Data == null)
+                {
+                    var service = new Service()
+                    {
+                        ServiceId = serviceID,
+                        ClinicId = clinicID,
+                        Price = price,
+                        Name = name,
+                        Description = description,
+                        Warranty = warranty,
+                        Duration = duration,
+                        Type = type,
+                        Active = active,
+                        IsInsuranceAccepted = insurance,
+                    };
+
+                    var result = await _serviceBusiness.Save(service);
+                    System.Windows.MessageBox.Show(result.Message, "Save");
+                }
+
+                else
                 {
                     var updatedService = item.Data as Service;
 
@@ -82,11 +102,6 @@ namespace Clinic.WpfApp.UI
 
                     var result = await _serviceBusiness.Update(updatedService);
                     System.Windows.MessageBox.Show(result.Message, "Save");
-                }
-
-                else
-                {
-                    System.Windows.MessageBox.Show("Can't find the service you want to update.", "Save");
                 }
 
                 this.ButtonCancel_Click(sender, e);
