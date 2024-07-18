@@ -117,6 +117,11 @@ namespace Clinic.WpfApp.UI
                 //case : update
                 if(item.Data != null)
                 {
+                    if((DateOnly.Parse(CustomerDoB.Text) > DateOnly.FromDateTime(DateTime.Now)) || (DateOnly.Parse(CustomerDoB.Text) < DateOnly.FromDateTime(DateTime.Now).AddYears(-120)))
+                    {
+                        MessageBox.Show("Invalid date of birth");
+                        return;
+                    }
                     ComboBoxItem comboBoxGender = (ComboBoxItem)comboGender.SelectedItem;
                     string gender = comboBoxGender.Content.ToString();
                     ComboBoxItem comboBoxIsActive = (ComboBoxItem)comboIsActive.SelectedItem;
@@ -129,6 +134,7 @@ namespace Clinic.WpfApp.UI
                     customer.Address = CustomerAddress.Text;
                     customer.Gender = (gender == "Male") ? true : false;
                     customer.Email = CustomerEmail.Text;
+                    
                     customer.DoB = DateOnly.Parse(CustomerDoB.Text);
                     customer.CreatedAt = (CustomerCreatedAt.Text == string.Empty) ? DateOnly.FromDateTime(DateTime.Now) : DateOnly.Parse(CustomerCreatedAt.Text);
                     customer.IsActive = (isActive == "True") ? true : false;
@@ -141,10 +147,14 @@ namespace Clinic.WpfApp.UI
 
                     //refresh list
                     LoadCustomers();
-                    return;
                 }
                 else
                 {
+                    if((DateOnly.Parse(CustomerDoB.Text) > DateOnly.FromDateTime(DateTime.Now)) || (DateOnly.Parse(CustomerDoB.Text) < DateOnly.FromDateTime(DateTime.Now).AddYears(-120)))
+                    {
+                        MessageBox.Show("Invalid date of birth");
+                        return;
+                    }
                     ComboBoxItem comboBoxGender = (ComboBoxItem)comboGender.SelectedItem;
                     string gender = comboBoxGender.Content.ToString();
                     ComboBoxItem comboBoxIsAtive = (ComboBoxItem)comboIsActive.SelectedItem;
@@ -172,8 +182,6 @@ namespace Clinic.WpfApp.UI
                     //refresh list
                     LoadCustomers();
                 }
-                return;
-
             }
             catch(FormatException fe)
             {
